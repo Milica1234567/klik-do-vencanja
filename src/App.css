@@ -1,3 +1,10 @@
 #root {
   min-height: 100vh;
+  --oatmilk: #f7f1e6;
+  --main-text: #353230;
+  --canyon-clay: #C26D53;
+}
+:root {
+  --font-cursive: "Allura", cursive;
+  --font-main: "Montserrat", sans-serif;
 }

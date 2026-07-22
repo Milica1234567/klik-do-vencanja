@@ -1,40 +1,31 @@
+import "./Hero.css";
 function Hero() {
   return (
-    <section className="hero" id="hero">
-      <div className="hero__container">
-        <div className="hero__content">
-          <span className="hero__eyebrow">
-            Digitalne pozivnice za venčanja i posebne događaje
+    <section className="quote-card">
+      <div className="quote-card_inner">
+        <p className="quote-card_text">
+          Prvi utisak o vašoj proslavi
+          <br />
+          <span className="quote-card_red">
+            počinje <span style={{ fontStyle: "italic" }}>pozivnicom</span>.
           </span>
-
-          <h1 className="hero__title">
-            Vaša priča počinje <br />
-            jednim klikom.
-          </h1>
-
-          <p className="hero__description">
-            Kreiramo elegantne, interaktivne digitalne pozivnice koje će
-            oduševiti vaše goste. RSVP, mapa, galerija, muzika i još mnogo toga
-            – sve na jednom mestu.
-          </p>
-
-          <div className="hero__buttons">
-            <a href="#demo" className="btn btn--primary">
-              Pogledajte demo
-            </a>
-
-            <a href="#contact" className="btn btn--secondary">
-              Zatražite ponudu
-            </a>
-          </div>
-        </div>
-
-        <div className="hero__preview">
-          {/* Ovde kasnije ide mockup telefona ili animirana pozivnica */}
-          <div className="hero__placeholder">
-            Preview pozivnice
-          </div>
-        </div>
+        </p>
+        <svg
+          className="quote-line"
+          width="340"
+          height="18"
+          viewBox="0 -5 340 18"
+        >
+          <path
+            d="M-100 10 Q90 -15 335 10"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            pathLength="100"
+          />
+        </svg>
+        <span className="quote-card_signature">Klikom do venčanja</span>
       </div>
     </section>
   );
