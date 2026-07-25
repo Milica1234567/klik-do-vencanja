@@ -1,8 +1,12 @@
+import "./Hero.css";
+
+import Container from "../layout/Container";
+
 function Hero() {
   return (
     <section className="hero" id="hero">
-      <div className="hero__container">
-        <div className="hero__content">
+      <Container>
+        <div className="col-6 hero__content">
           <span className="hero__eyebrow">
             Digitalne pozivnice za venčanja i posebne događaje
           </span>
@@ -29,13 +33,9 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero__preview">
-          {/* Ovde kasnije ide mockup telefona ili animirana pozivnica */}
-          <div className="hero__placeholder">
-            Preview pozivnice
-          </div>
-        </div>
-      </div>
+        {/* Right half reserved for future hero media (grid 6+6 like wireframe) */}
+        <div className="col-6 hero__media" aria-hidden="true" />
+      </Container>
     </section>
   );
 }
