@@ -6,11 +6,15 @@ import Hero from "./components/Hero/Hero";
 import InvitationShowcase from "./components/InvitationShowcase/InvitationShowcase";
 import SectionHandoff from "./components/layout/SectionHandoff";
 import TemplateStudio from "./components/TemplateStudio/TemplateStudio";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Contacts from "./components/Contacts/Contacts";
+import Pricing from "./components/Pricing/Pricing";
 
 function App() {
   return (
     <>
-      {/* header */}
+      <Header />
 
       <main>
         <Hero />
@@ -19,8 +23,10 @@ function App() {
         <Benefits />
         <BenefitsThread />
         <TemplateStudio />
+        <Contacts />
+        <Pricing/>
       </main>
-      {/* footer */}
+      <Footer />
     </>
   );
 }

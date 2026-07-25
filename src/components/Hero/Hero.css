@@ -1,156 +1,94 @@
-.hero {
+.quote-card {
   position: relative;
-  padding: clamp(4rem, 8vw, 7rem) 0;
-}
-
-.hero__content {
-  max-width: none;
-  align-self: center;
-}
-
-.hero__media {
-  min-height: clamp(12rem, 28vw, 22rem);
-}
-
-.hero__eyebrow {
-  display: inline-block;
-  margin-bottom: 1.25rem;
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #c26d53;
-}
-
-.hero__title {
-  margin: 0 0 1.25rem;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.75rem);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #2e2a28;
-}
-
-.hero__description {
-  margin: 0 0 2rem;
-  max-width: 32rem;
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  font-weight: 400;
-  line-height: 1.7;
-  color: color-mix(in srgb, #2e2a28 78%, transparent);
-}
-
-.hero__buttons {
+  z-index: 10;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  min-height: 3rem;
-  padding: 0.85rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease,
-    transform 0.35s ease;
+  padding: 0 24px;
+  margin-top: -100px;
 }
 
-.btn--primary {
-  background-color: #c26d53;
-  color: #fffaf3;
-  box-shadow: 0 10px 28px rgba(194, 109, 83, 0.28);
+.quote-card_inner {
+  position: relative;
+  isolation: isolate;
+  width: min(780px, 100%);
+  min-height: 260px;
+  padding: 56px 64px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background: linear-gradient(rgba(247, 241, 230, 1), rgba(236, 228, 219, 1));
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  box-shadow:
+    0 30px 70px rgba(46, 42, 40, 0.14),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+    inset -1px -1px 0 rgba(46, 42, 40, 0.05);
 }
 
-.btn--primary:hover {
-  background-color: color-mix(in srgb, #c26d53 88%, #2e2a28);
-  transform: translateY(-1px);
+.quote-card_inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../../assets/patterns/lace.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  filter: grayscale(1) contrast(0.8);
 }
 
-.btn--secondary {
-  background-color: transparent;
-  color: #2e2a28;
-  border-color: color-mix(in srgb, #caa290 70%, #2e2a28);
+.quote-card_inner::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  z-index: -1;
+
+  border: 1px solid rgba(194, 109, 83, 0.16);
+  border-radius: 20px;
+
+  pointer-events: none;
 }
 
-.btn--secondary:hover {
-  background-color: color-mix(in srgb, #caa290 18%, #f7f1e6);
-  border-color: #caa290;
+.quote-card_text {
+  position: relative;
+  max-width: 620px;
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 30px;
+  line-height: 1.6;
+  color: var(--main-text);
+  margin-bottom: 14px;
 }
 
-@media (max-width: 900px) {
-  .hero {
-    padding: clamp(3rem, 10vw, 4.5rem) 0 clamp(2.5rem, 8vw, 3.5rem);
-  }
-
-  .hero__content {
-    max-width: 36rem;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .hero__media {
-    display: none;
-    min-height: 0;
-  }
-
-  .hero__eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    max-width: 22rem;
-    margin-inline: auto;
-    line-height: 1.45;
-  }
-
-  .hero__title {
-    font-size: clamp(2.05rem, 8vw, 2.85rem);
-    line-height: 1.15;
-  }
-
-  .hero__description {
-    margin-inline: auto;
-    max-width: 28rem;
-    font-size: clamp(0.95rem, 3.4vw, 1.05rem);
-    line-height: 1.65;
-  }
-
-  .hero__buttons {
-    justify-content: center;
-  }
+.quote-card_red {
+  color: var(--canyon-clay);
 }
 
-@media (max-width: 600px) {
-  .hero__buttons {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.7rem;
-  }
-
-  .hero__buttons .btn {
-    width: 100%;
-  }
+.quote-card_signature {
+  font-family: var(--font-cursive);
+  text-align: right;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: none;
-  }
+.quote-line {
+  color: var(--canyon-clay);
+}
 
-  .btn--primary:hover,
-  .btn--secondary:hover {
-    transform: none;
+.quote-line path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+
+  animation: drawLine 3s ease forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
   }
 }
