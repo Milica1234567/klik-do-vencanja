@@ -4,7 +4,7 @@ import {
   type Variants,
 } from "framer-motion";
 
-import { benefitBlocks } from "../../data/benefits";
+import { invitationProcessSteps } from "../../data/benefits";
 import "./BenefitsThread.css";
 
 const easePremium: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -42,8 +42,7 @@ const stationReveal: Variants = {
 };
 
 /**
- * Alternative B — compact horizontal typographic ribbon.
- * Text only; comparison option beneath the collage Benefits section.
+ * Horizontal process ribbon — how a digital invitation comes to life.
  */
 function BenefitsThread() {
   const reduceMotion = useReducedMotion();
@@ -64,20 +63,15 @@ function BenefitsThread() {
           viewport={{ once: true, amount: 0.6 }}
         >
           <motion.p className="benefits-thread__eyebrow" variants={fadeUp}>
-            zašto digitalno
+            kako nastaje
           </motion.p>
-          <div className="benefits-thread__heading-row">
-            <motion.h2
-              className="benefits-thread__title"
-              id="benefits-thread-title"
-              variants={fadeUp}
-            >
-              Osmišljene oko <em>vašeg</em> događaja
-            </motion.h2>
-            <motion.p className="benefits-thread__lede" variants={fadeUp}>
-              Pet tihih prednosti — jedna linija misli.
-            </motion.p>
-          </div>
+          <motion.h2
+            className="benefits-thread__title"
+            id="benefits-thread-title"
+            variants={fadeUp}
+          >
+            Od prve ideje do <em>vaše</em> pozivnice
+          </motion.h2>
         </motion.header>
 
         <motion.div
@@ -92,12 +86,12 @@ function BenefitsThread() {
           </div>
 
           <ul className="benefits-thread__stations">
-            {benefitBlocks.map((block, index) => {
+            {invitationProcessSteps.map((step, index) => {
               const numeral = String(index + 1).padStart(2, "0");
 
               return (
                 <motion.li
-                  key={block.id}
+                  key={step.id}
                   className="benefits-thread__station"
                   variants={stationReveal}
                 >
@@ -106,11 +100,10 @@ function BenefitsThread() {
                     {numeral}
                   </span>
                   <h3 className="benefits-thread__station-title">
-                    {block.note.title}
+                    <span>{step.titleLines[0]}</span>
+                    <span>{step.titleLines[1]}</span>
                   </h3>
-                  <p className="benefits-thread__station-body">
-                    {block.note.body}
-                  </p>
+                  <p className="benefits-thread__station-body">{step.body}</p>
                 </motion.li>
               );
             })}

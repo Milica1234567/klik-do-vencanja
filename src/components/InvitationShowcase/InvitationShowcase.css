@@ -12,7 +12,7 @@
   isolation: isolate;
   overflow: hidden;
   min-height: auto;
-  padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.25rem);
+  padding: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1.5rem, 3vw, 2.25rem);
   background-color: var(--color-cream);
   color: #2e2a28;
 }
@@ -188,25 +188,6 @@
   );
 }
 
-.invitation-showcase__intro {
-  position: relative;
-  z-index: 1;
-  margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
-  text-align: center;
-}
-
-.invitation-showcase__script {
-  margin: 0;
-  font-family: var(--font-script);
-  font-size: clamp(1.85rem, 4.5vw, 3rem);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, #2e2a28 38%, var(--color-dusty-rose));
-  opacity: 0.78;
-  text-shadow: 0 10px 36px rgba(194, 109, 83, 0.12);
-}
-
 .invitation-showcase__container.site-container {
   width: min(100% - (var(--page-margin) * 1.2), 1480px);
 }
@@ -214,7 +195,7 @@
 .invitation-showcase__stage {
   position: relative;
   z-index: 2;
-  padding-block: 0.5rem 2.5rem;
+  padding-block: 0.35rem 2.25rem;
   overflow-x: clip;
   overflow-y: visible;
 }
@@ -401,11 +382,7 @@
   }
 
   .invitation-showcase {
-    padding: clamp(2.5rem, 6vw, 3.5rem) 0 clamp(1.25rem, 3vw, 1.75rem);
-  }
-
-  .invitation-showcase__script {
-    font-size: clamp(1.55rem, 6.5vw, 2.35rem);
+    padding: clamp(1rem, 3vw, 1.75rem) 0 clamp(1.25rem, 3vw, 1.75rem);
   }
 
   .invitation-showcase__stage {
@@ -443,12 +420,7 @@
 
   .invitation-showcase {
     min-height: auto;
-    padding-block: 2.35rem 1.25rem;
-  }
-
-  .invitation-showcase__intro {
-    margin-bottom: 0.65rem;
-    padding-inline: 0.5rem;
+    padding-block: 1rem 1.25rem;
   }
 
   .invitation-showcase__stage {

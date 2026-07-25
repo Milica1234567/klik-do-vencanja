@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import {
   motion,
   useMotionValue,
@@ -71,6 +71,51 @@ function BenefitsTitle({ titleY, reduceMotion }: BenefitsTitleProps) {
     </div>
   );
 }
+
+/** Same wording — stacked like the center title, with a script accent. */
+const noteTitleMarkup: Record<string, ReactNode> = {
+  modern: (
+    <>
+      <span>Moderan i</span>
+      <span>
+        <em>sofisticiran</em>
+      </span>
+      <span>izbor</span>
+    </>
+  ),
+  simple: (
+    <>
+      <span>
+        <em>Jednostavno</em>
+      </span>
+      <span>i bez stresa</span>
+    </>
+  ),
+  "all-in-one": (
+    <>
+      <span>Sve na</span>
+      <span>
+        <em>jednom</em> mestu
+      </span>
+    </>
+  ),
+  communication: (
+    <>
+      <span>Laka</span>
+      <span>
+        <em>komunikacija</em>
+      </span>
+      <span className="benefits__note-nowrap">sa gostima</span>
+    </>
+  ),
+  rsvp: (
+    <>
+      <span>
+        Jednostavan <span className="benefits__note-rsvp">RSVP</span>
+      </span>
+    </>
+  ),
+};
 
 function Benefits() {
   const compositionRef = useRef<HTMLDivElement>(null);
@@ -180,7 +225,9 @@ function Benefits() {
                 </figure>
 
                 <article className={`benefits__note ${block.note.noteClass}`}>
-                  <h3 className="benefits__note-title">{block.note.title}</h3>
+                  <h3 className="benefits__note-title">
+                    {noteTitleMarkup[block.note.id] ?? block.note.title}
+                  </h3>
                   <p className="benefits__note-body">{block.note.body}</p>
                 </article>
               </div>
