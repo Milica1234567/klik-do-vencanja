@@ -1,5 +1,6 @@
 .benefits-thread {
-  --bt-ink: #2e2a28;
+  --bt-ink: #4e5a46;
+  --bt-muted: color-mix(in srgb, #4e5a46 72%, transparent);
   --bt-line: color-mix(in srgb, var(--color-dusty-rose) 50%, var(--color-warm-beige));
   position: relative;
   z-index: 1;
@@ -7,45 +8,38 @@
   overflow: clip;
   background: var(--color-bg);
   color: var(--bt-ink);
-  padding: clamp(2.75rem, 5.5vw, 4rem) 0 clamp(3rem, 6vw, 4.5rem);
-  border-top: 1px solid color-mix(in srgb, var(--color-warm-beige) 32%, transparent);
+  padding: clamp(3.25rem, 6.5vw, 5rem) 0 clamp(2rem, 4vw, 2.75rem);
 }
 
 .benefits-thread__inner {
-  width: min(100%, 1180px);
+  /* Match carousel + benefits collage */
+  width: min(100% - (var(--page-margin) * 1.2), 1480px);
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2rem);
+  padding-inline: 0;
 }
 
 .benefits-thread__header {
-  margin-bottom: clamp(1.75rem, 3.5vw, 2.35rem);
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.25rem);
 }
 
 .benefits-thread__eyebrow {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.65rem;
   font-family: var(--font-script);
-  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.85rem, 4.5vw, 3rem);
   font-weight: 400;
   line-height: 1;
-  color: color-mix(in srgb, var(--bt-ink) 42%, var(--color-dusty-rose));
-}
-
-.benefits-thread__heading-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.5rem 2.5rem;
+  color: color-mix(in srgb, #4e5a46 55%, var(--color-dusty-rose));
 }
 
 .benefits-thread__title {
   margin: 0;
-  max-width: 16ch;
-  font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  max-width: 18ch;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.45rem, 5.2vw, 3.85rem);
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  color: var(--bt-ink);
+  color: #4e5a46;
 }
 
 .benefits-thread__title em {
@@ -53,26 +47,15 @@
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
-  color: color-mix(in srgb, var(--bt-ink) 55%, var(--color-dusty-rose));
-}
-
-.benefits-thread__lede {
-  margin: 0;
-  max-width: 14rem;
-  flex-shrink: 0;
-  font-family: var(--font-body);
-  font-size: 0.84rem;
-  font-weight: 400;
-  line-height: 1.55;
-  text-align: right;
-  color: color-mix(in srgb, var(--bt-ink) 58%, transparent);
+  font-size: 1.12em;
+  color: #4e5a46;
 }
 
 /* ─── Horizontal ribbon ─── */
 
 .benefits-thread__ribbon {
   position: relative;
-  padding-top: 2.35rem;
+  padding-top: 2.75rem;
 }
 
 .benefits-thread__hairline {
@@ -120,7 +103,7 @@
 
 .benefits-thread__station {
   position: relative;
-  padding: 0.35rem 1.65rem 0.25rem 1.15rem;
+  padding: 0.45rem 1.75rem 0.35rem 1.25rem;
   border-right: 1px solid color-mix(in srgb, var(--color-warm-beige) 28%, transparent);
 }
 
@@ -135,10 +118,10 @@
 
 .benefits-thread__dot {
   position: absolute;
-  top: -2.35rem;
-  left: 1.15rem;
-  width: 9px;
-  height: 9px;
+  top: -2.75rem;
+  left: 1.25rem;
+  width: 11px;
+  height: 11px;
   translate: 0 -50%;
   border-radius: 50%;
   background: var(--color-bg);
@@ -152,66 +135,67 @@
 
 .benefits-thread__numeral {
   display: block;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.65rem;
   font-family: var(--font-script);
-  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
   line-height: 1;
-  color: color-mix(in srgb, var(--bt-ink) 32%, var(--color-dusty-rose));
+  color: color-mix(in srgb, #4e5a46 45%, var(--color-dusty-rose));
 }
 
 .benefits-thread__station-title {
-  margin: 0 0 0.55rem;
-  font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  margin: 0 0 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 2.7em;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
   font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-  color: var(--bt-ink);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: #4e5a46;
+}
+
+.benefits-thread__station-title span {
+  display: block;
 }
 
 .benefits-thread__station-body {
   margin: 0;
-  padding-right: 0.35rem;
+  padding-right: 0.45rem;
   font-family: var(--font-body);
-  font-size: clamp(0.72rem, 1.05vw, 0.8rem);
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
   font-weight: 400;
   line-height: 1.6;
-  color: color-mix(in srgb, var(--bt-ink) 62%, transparent);
+  color: var(--bt-muted);
 }
 
 /* ─── Tablet: still horizontal, snug ─── */
 
 @media (max-width: 980px) {
-  .benefits-thread__heading-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
-  }
-
-  .benefits-thread__lede {
-    text-align: left;
-    max-width: 22rem;
+  .benefits-thread__inner {
+    width: min(100% - (var(--page-margin) * 1.2), 1480px);
   }
 
   .benefits-thread__stations {
-    grid-template-columns: repeat(5, minmax(10.5rem, 1fr));
+    grid-template-columns: repeat(5, minmax(12rem, 1fr));
     gap: 0;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 0.65rem;
+    padding-bottom: 0.75rem;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
   }
 
   .benefits-thread__station {
     scroll-snap-align: start;
-    min-width: 11.25rem;
-    padding: 0.35rem 1.5rem 0.25rem 1rem;
+    min-width: 12.5rem;
+    padding: 0.45rem 1.6rem 0.35rem 1.1rem;
   }
 
   .benefits-thread__dot {
-    top: -2.35rem;
-    left: 1rem;
+    top: -2.75rem;
+    left: 1.1rem;
   }
 
   .benefits-thread__station:first-child .benefits-thread__dot {
@@ -219,7 +203,7 @@
   }
 
   .benefits-thread__hairline {
-    width: max(100%, calc(5 * 11.25rem));
+    width: max(100%, calc(5 * 12.5rem));
   }
 }
 
@@ -227,41 +211,53 @@
 
 @media (max-width: 600px) {
   .benefits-thread {
-    padding: 2.35rem 0 2.85rem;
+    padding: 2.75rem 0 3.25rem;
+  }
+
+  .benefits-thread__inner {
+    width: min(100% - (var(--page-margin) * 2), 1480px);
+  }
+
+  .benefits-thread__eyebrow {
+    font-size: clamp(1.55rem, 6.5vw, 2.35rem);
   }
 
   .benefits-thread__title {
     max-width: 14ch;
-    font-size: 1.7rem;
+    font-size: clamp(2rem, 8vw, 2.65rem);
   }
 
   .benefits-thread__ribbon {
-    margin-inline: -1.15rem;
-    padding-inline: 1.15rem;
-    padding-top: 2.15rem;
+    margin-inline: calc(var(--page-margin) * -0.35);
+    padding-inline: 0.35rem;
+    padding-top: 2.45rem;
   }
 
   .benefits-thread__stations {
-    grid-template-columns: repeat(5, minmax(12rem, 1fr));
+    grid-template-columns: repeat(5, minmax(13.5rem, 1fr));
     gap: 0;
   }
 
   .benefits-thread__station {
-    min-width: 12rem;
+    min-width: 13.5rem;
     border-right: 1px solid color-mix(in srgb, var(--color-warm-beige) 28%, transparent);
-    padding: 0.25rem 1.4rem 0.2rem 0.95rem;
+    padding: 0.35rem 1.5rem 0.3rem 1rem;
   }
 
   .benefits-thread__dot {
-    top: -2.15rem;
+    top: -2.45rem;
+  }
+
+  .benefits-thread__numeral {
+    font-size: 2.15rem;
   }
 
   .benefits-thread__station-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .benefits-thread__station-body {
-    font-size: 0.78rem;
+    font-size: 0.9rem;
   }
 }
 

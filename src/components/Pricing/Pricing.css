@@ -1,5 +1,5 @@
 .pricing {
-  padding: clamp(90px, 10vw, 150px) 24px;
+  padding: clamp(48px, 5vw, 72px) 24px clamp(48px, 5vw, 72px);
   background: #f7f1e6;
 }
 
@@ -256,7 +256,7 @@
 
 @media (max-width: 650px) {
   .pricing {
-    padding: 78px 18px;
+    padding: 48px 18px 48px;
   }
 
   .pricing_heading {

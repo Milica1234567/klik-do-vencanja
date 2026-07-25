@@ -163,10 +163,6 @@ function InvitationShowcase({
 
       <motion.div style={{ opacity: exitOpacity, y: exitY }}>
         <Container className="invitation-showcase__container">
-          <div className="col-12 invitation-showcase__intro">
-            <p className="invitation-showcase__script">elegancija u pokretu</p>
-          </div>
-
           <div
             className="col-12 invitation-showcase__stage"
             onMouseEnter={() => {

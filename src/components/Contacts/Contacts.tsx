@@ -1,6 +1,5 @@
 import "./Contacts.css";
 import { useState } from "react";
-import "./Contacts.css";
 import Instagram from "../../assets/icons/instagram-green.png";
 import Facebook from "../../assets/icons/facebook-green.png";
 import TikTok from "../../assets/icons/tik-tok-green.png";

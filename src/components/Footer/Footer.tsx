@@ -2,64 +2,74 @@ import "./Footer.css";
 import Instagram from "../../assets/icons/instagram.png";
 import Facebook from "../../assets/icons/facebook.png";
 import TikTok from "../../assets/icons/tik-tok.png";
-import Logo from "../../assets/logo.png";
+
+const navLinks = [
+  { label: "Demo", href: "#demo" },
+  { label: "Cene", href: "#pricing" },
+  { label: "Kontakt", href: "#contact" },
+] as const;
+
+const socials = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/klikdovencanja/",
+    icon: Instagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com",
+    icon: Facebook,
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@klikdovencanja",
+    icon: TikTok,
+  },
+] as const;
+
 function Footer() {
   return (
-    <section className="footer">
-      <div className="footer_container">
-        <div className="footer_logo_container">
-          <img src={Logo} alt="Logo"></img>
-        </div>
-        <div className="menu-container">
-          <ul>
-            <li>Demo</li>
-            <li>Cene</li>
-            <li>Kontakt</li>
-          </ul>
-        </div>
-        <div className="social-container">
-          <div className="social-icon">
-            <a
-              href="https://www.instagram.com/klikdovencanja/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Instagram} alt="Instagram"></img>
-            </a>
-          </div>
-          <div className="social-icon">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Facebook} alt="Facebook"></img>
-            </a>
-          </div>
-          <div className="social-icon">
-            <a
-              href="https://www.tiktok.com/@klikdovencanja"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={TikTok} alt="TikTok"></img>
-            </a>
-          </div>
-          {/*<div className="social-icon">
-            <a
-              href="mailto:dovencanjaklik@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Email} alt="Email"></img>
-            </a>
-          </div>*/}
-        </div>
+    <footer className="footer" id="footer">
+      <div className="footer__inner">
+        <p className="footer__brand">Klik do venčanja</p>
+
+        <p className="footer__tagline">
+          Digitalne pozivnice, s ljubavlju pripremljene.
+        </p>
+
+        <nav className="footer__nav" aria-label="Futer navigacija">
+          {navLinks.map((link, index) => (
+            <span key={link.label} className="footer__nav-item">
+              {index > 0 ? (
+                <span className="footer__dot" aria-hidden="true">
+                  ·
+                </span>
+              ) : null}
+              <a href={link.href}>{link.label}</a>
+            </span>
+          ))}
+        </nav>
+
+        <ul className="footer__socials">
+          {socials.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+              >
+                <img src={item.icon} alt="" />
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p className="footer__copy">
+          &copy; 2026 Klik do venčanja. Sva prava zadržana.
+        </p>
       </div>
-      <div className="footer_copyright">
-        <p>&copy; 2026 Klik do venčanja. Sva prava zadržana.</p>
-      </div>
-    </section>
+    </footer>
   );
 }
 
