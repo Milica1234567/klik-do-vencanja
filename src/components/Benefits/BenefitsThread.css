@@ -1,0 +1,272 @@
+.benefits-thread {
+  --bt-ink: #2e2a28;
+  --bt-line: color-mix(in srgb, var(--color-dusty-rose) 50%, var(--color-warm-beige));
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--color-bg);
+  color: var(--bt-ink);
+  padding: clamp(2.75rem, 5.5vw, 4rem) 0 clamp(3rem, 6vw, 4.5rem);
+  border-top: 1px solid color-mix(in srgb, var(--color-warm-beige) 32%, transparent);
+}
+
+.benefits-thread__inner {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+.benefits-thread__header {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.35rem);
+}
+
+.benefits-thread__eyebrow {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-script);
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1;
+  color: color-mix(in srgb, var(--bt-ink) 42%, var(--color-dusty-rose));
+}
+
+.benefits-thread__heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+}
+
+.benefits-thread__title {
+  margin: 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--bt-ink);
+}
+
+.benefits-thread__title em {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: color-mix(in srgb, var(--bt-ink) 55%, var(--color-dusty-rose));
+}
+
+.benefits-thread__lede {
+  margin: 0;
+  max-width: 14rem;
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: right;
+  color: color-mix(in srgb, var(--bt-ink) 58%, transparent);
+}
+
+/* ─── Horizontal ribbon ─── */
+
+.benefits-thread__ribbon {
+  position: relative;
+  padding-top: 2.35rem;
+}
+
+.benefits-thread__hairline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--bt-line) 35%, transparent);
+  overflow: hidden;
+}
+
+.benefits-thread__hairline-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-terracotta) 70%, var(--color-dusty-rose)) 12%,
+    var(--bt-line) 88%,
+    transparent 100%
+  );
+  animation: benefits-thread-draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes benefits-thread-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.benefits-thread__stations {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 0;
+}
+
+.benefits-thread__station {
+  position: relative;
+  padding: 0.35rem 1.65rem 0.25rem 1.15rem;
+  border-right: 1px solid color-mix(in srgb, var(--color-warm-beige) 28%, transparent);
+}
+
+.benefits-thread__station:last-child {
+  border-right: 0;
+  padding-right: 0.25rem;
+}
+
+.benefits-thread__station:first-child {
+  padding-left: 0.15rem;
+}
+
+.benefits-thread__dot {
+  position: absolute;
+  top: -2.35rem;
+  left: 1.15rem;
+  width: 9px;
+  height: 9px;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1.5px solid color-mix(in srgb, var(--color-terracotta) 70%, var(--color-dusty-rose));
+  box-shadow: 0 0 0 5px var(--color-bg);
+}
+
+.benefits-thread__station:first-child .benefits-thread__dot {
+  left: 0.15rem;
+}
+
+.benefits-thread__numeral {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: var(--font-script);
+  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
+  line-height: 1;
+  color: color-mix(in srgb, var(--bt-ink) 32%, var(--color-dusty-rose));
+}
+
+.benefits-thread__station-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--bt-ink);
+}
+
+.benefits-thread__station-body {
+  margin: 0;
+  padding-right: 0.35rem;
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 1.05vw, 0.8rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--bt-ink) 62%, transparent);
+}
+
+/* ─── Tablet: still horizontal, snug ─── */
+
+@media (max-width: 980px) {
+  .benefits-thread__heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .benefits-thread__lede {
+    text-align: left;
+    max-width: 22rem;
+  }
+
+  .benefits-thread__stations {
+    grid-template-columns: repeat(5, minmax(10.5rem, 1fr));
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.65rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .benefits-thread__station {
+    scroll-snap-align: start;
+    min-width: 11.25rem;
+    padding: 0.35rem 1.5rem 0.25rem 1rem;
+  }
+
+  .benefits-thread__dot {
+    top: -2.35rem;
+    left: 1rem;
+  }
+
+  .benefits-thread__station:first-child .benefits-thread__dot {
+    left: 0.15rem;
+  }
+
+  .benefits-thread__hairline {
+    width: max(100%, calc(5 * 11.25rem));
+  }
+}
+
+/* ─── Mobile: horizontal scroll strip ─── */
+
+@media (max-width: 600px) {
+  .benefits-thread {
+    padding: 2.35rem 0 2.85rem;
+  }
+
+  .benefits-thread__title {
+    max-width: 14ch;
+    font-size: 1.7rem;
+  }
+
+  .benefits-thread__ribbon {
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-top: 2.15rem;
+  }
+
+  .benefits-thread__stations {
+    grid-template-columns: repeat(5, minmax(12rem, 1fr));
+    gap: 0;
+  }
+
+  .benefits-thread__station {
+    min-width: 12rem;
+    border-right: 1px solid color-mix(in srgb, var(--color-warm-beige) 28%, transparent);
+    padding: 0.25rem 1.4rem 0.2rem 0.95rem;
+  }
+
+  .benefits-thread__dot {
+    top: -2.15rem;
+  }
+
+  .benefits-thread__station-title {
+    font-size: 1rem;
+  }
+
+  .benefits-thread__station-body {
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .benefits-thread__hairline-fill {
+    animation: none;
+  }
+}
