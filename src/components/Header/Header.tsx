@@ -64,6 +64,32 @@ function Header() {
           sve tipove proslava
         </p>
       </div>
+      <div>
+        <a
+          href="#"
+          className="scroll-indicator"
+          aria-label="Scroll down"
+        >
+          <svg width="28" height="42" viewBox="0 0 28 42">
+            <path
+              d="M4 12 L14 22 L24 12"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M4 22 L14 32 L24 22"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
     </section>
   );
 }

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   padding: 0 24px;
-  margin-top: -120px;
+  margin-top: -100px;
 }
 
 .quote-card_inner {
@@ -84,7 +84,7 @@
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
 
-  animation: drawLine 1s ease forwards;
+  animation: drawLine 3s ease forwards;
 }
 
 @keyframes drawLine {
