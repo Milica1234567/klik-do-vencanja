@@ -1,13 +1,7 @@
-import {
-  motion,
-  useInView,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import showcaseAtmosphere from "../../assets/backgrounds/invitation-botanical-atmosphere.png";
+import showcaseAtmosphere from "../../assets/backgrounds/invitation-botanical-atmosphere-sm.jpg";
 import { invitationTemplates } from "../../data/invitations";
 import type { InvitationTemplate } from "../../types/invitation";
 import Container from "../layout/Container";
@@ -32,44 +26,12 @@ function InvitationShowcase({
   const manualPauseRef = useRef(false);
   const modalOpenRef = useRef(false);
 
-  const isInView = useInView(sectionRef, { amount: 0.2, once: false });
+  const isInView = useInView(sectionRef, { amount: 0.15, once: false });
   const reduceMotion = useReducedMotion();
   const [mediaEnabled, setMediaEnabled] = useState(false);
-  const [compactMotion, setCompactMotion] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<InvitationTemplate | null>(
-    null,
-  );
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<InvitationTemplate | null>(null);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 700px)");
-    const sync = () => setCompactMotion(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  /* Soft exit into the next section — Rhionn-style handoff */
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const exitOpacity = useTransform(
-    scrollYProgress,
-    [0.55, 1],
-    reduceMotion ? [1, 1] : [1, compactMotion ? 0.4 : 0.15],
-  );
-  const exitY = useTransform(
-    scrollYProgress,
-    [0.55, 1],
-    reduceMotion ? [0, 0] : [0, compactMotion ? -16 : -48],
-  );
-  const atmosphereOpacity = useTransform(
-    scrollYProgress,
-    [0.45, 1],
-    reduceMotion ? [1, 1] : [1, 0],
-  );
-
-  // Keep media mounted once the section has been seen — avoids reload flicker.
   useEffect(() => {
     if (isInView) setMediaEnabled(true);
   }, [isInView]);
@@ -114,6 +76,7 @@ function InvitationShowcase({
   }, [clearResumeTimer]);
 
   const handleStep = (direction: -1 | 1) => {
+    if (reduceMotion) return;
     pauseForInteraction();
     marqueeRef.current?.step(direction);
     scheduleResume();
@@ -143,64 +106,59 @@ function InvitationShowcase({
       className={`invitation-showcase ${className}`.trim()}
       aria-label="Prikaz primera digitalnih pozivnica"
     >
-      <motion.div
-        className="invitation-showcase__atmosphere"
-        style={{ opacity: atmosphereOpacity }}
-        aria-hidden="true"
-      >
-        <img
-          className="invitation-showcase__bg"
-          src={showcaseAtmosphere}
-          alt=""
-          decoding="async"
-        />
+      <div className="invitation-showcase__atmosphere" aria-hidden="true">
+        {mediaEnabled ? (
+          <img
+            className="invitation-showcase__bg"
+            src={showcaseAtmosphere}
+            alt=""
+            decoding="async"
+            loading="lazy"
+          />
+        ) : null}
         <div className="invitation-showcase__wash" />
-        <div className="invitation-showcase__glow invitation-showcase__glow--rose" />
-        <div className="invitation-showcase__glow invitation-showcase__glow--terracotta" />
-        <div className="invitation-showcase__glow invitation-showcase__glow--sage" />
         <div className="invitation-showcase__ground" />
-      </motion.div>
+      </div>
 
-      <motion.div style={{ opacity: exitOpacity, y: exitY }}>
-        <Container className="invitation-showcase__container">
-          <div
-            className="col-12 invitation-showcase__stage"
-            onMouseEnter={() => {
-              hoverRef.current = true;
-              syncPaused();
-            }}
-            onMouseLeave={() => {
-              hoverRef.current = false;
-              syncPaused();
-            }}
+      <Container className="invitation-showcase__container">
+        <div
+          className="col-12 invitation-showcase__stage"
+          onMouseEnter={() => {
+            hoverRef.current = true;
+            syncPaused();
+          }}
+          onMouseLeave={() => {
+            hoverRef.current = false;
+            syncPaused();
+          }}
+        >
+          <button
+            type="button"
+            className="invitation-showcase__arrow invitation-showcase__arrow--prev"
+            aria-label="Prethodna pozivnica"
+            onClick={() => handleStep(-1)}
           >
-            <button
-              type="button"
-              className="invitation-showcase__arrow invitation-showcase__arrow--prev"
-              aria-label="Prethodna pozivnica"
-              onClick={() => handleStep(-1)}
-            >
-              <span aria-hidden="true">‹</span>
-            </button>
+            <span aria-hidden="true">‹</span>
+          </button>
 
-            <InvitationMarquee
-              ref={marqueeRef}
-              templates={templates}
-              mediaEnabled={mediaEnabled}
-              onSelectTemplate={handleSelectTemplate}
-            />
+          <InvitationMarquee
+            ref={marqueeRef}
+            templates={templates}
+            mediaEnabled={mediaEnabled}
+            isActive={isInView && !reduceMotion}
+            onSelectTemplate={handleSelectTemplate}
+          />
 
-            <button
-              type="button"
-              className="invitation-showcase__arrow invitation-showcase__arrow--next"
-              aria-label="Sledeća pozivnica"
-              onClick={() => handleStep(1)}
-            >
-              <span aria-hidden="true">›</span>
-            </button>
-          </div>
-        </Container>
-      </motion.div>
+          <button
+            type="button"
+            className="invitation-showcase__arrow invitation-showcase__arrow--next"
+            aria-label="Sledeća pozivnica"
+            onClick={() => handleStep(1)}
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </Container>
 
       <InvitationPreviewModal
         template={selectedTemplate}

@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 
 import { invitationCategoryLabels } from "../../data/invitationLabels";
@@ -15,138 +15,92 @@ function canHoverPlay() {
   return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 }
 
+/**
+ * Poster by default. On desktop hover, play this card's video only.
+ * Video source is detached on leave so the marquee stays light.
+ * Click opens the preview modal (CTA lives there).
+ */
 function InvitationCardComponent({
   template,
   mediaEnabled,
   onSelectTemplate,
 }: InvitationCardProps) {
-  const articleRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const sourceAttachedRef = useRef(false);
-  const nearViewportRef = useRef(false);
+  const detachTimerRef = useRef<number | null>(null);
   const hoveringRef = useRef(false);
+  const [playing, setPlaying] = useState(false);
+
   const { media, title, category, accentColor } = template;
   const label = invitationCategoryLabels[category];
+  const isVideo = media.type === "video";
+
+  const stillSrc = isVideo
+    ? media.poster
+    : mediaEnabled
+      ? media.src
+      : undefined;
 
   useEffect(() => {
-    const node = articleRef.current;
-    const video = videoRef.current;
-    if (!node || !video || media.type !== "video") return;
-
-    let cancelled = false;
-
-    const attachSource = () => {
-      if (sourceAttachedRef.current || cancelled) return;
-      video.src = media.src;
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      video.preload = "metadata";
-      sourceAttachedRef.current = true;
-    };
-
-    const detachSource = () => {
-      if (!sourceAttachedRef.current) return;
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-      sourceAttachedRef.current = false;
-    };
-
-    const showStillFrame = () => {
-      if (cancelled || hoveringRef.current) return;
-      video.pause();
-      try {
-        if (Number.isFinite(video.duration) && video.duration > 0) {
-          video.currentTime = Math.min(0.08, video.duration * 0.02);
-        } else {
-          video.currentTime = 0.05;
-        }
-      } catch {
-        // Seek can fail before readyState allows it.
-      }
-    };
-
-    const onLoadedData = () => {
-      showStillFrame();
-    };
-
-    const syncNearViewport = (near: boolean) => {
-      nearViewportRef.current = near;
-      if (!mediaEnabled) {
-        video.pause();
-        return;
-      }
-
-      if (near) {
-        attachSource();
-        if (video.readyState >= 2 && !hoveringRef.current) {
-          showStillFrame();
-        }
-        return;
-      }
-
-      hoveringRef.current = false;
-      detachSource();
-    };
-
-    if (!mediaEnabled) {
-      hoveringRef.current = false;
-      video.pause();
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    video.addEventListener("loadeddata", onLoadedData);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        syncNearViewport(entry.isIntersecting);
-      },
-      { rootMargin: "80px", threshold: 0.01 },
-    );
-
-    observer.observe(node);
-
     return () => {
-      cancelled = true;
-      video.removeEventListener("loadeddata", onLoadedData);
-      observer.disconnect();
-      hoveringRef.current = false;
-      video.pause();
+      if (detachTimerRef.current !== null) {
+        window.clearTimeout(detachTimerRef.current);
+      }
     };
-  }, [media, mediaEnabled]);
+  }, []);
+
+  const clearDetachTimer = () => {
+    if (detachTimerRef.current !== null) {
+      window.clearTimeout(detachTimerRef.current);
+      detachTimerRef.current = null;
+    }
+  };
 
   const playOnHover = () => {
-    if (!canHoverPlay() || !mediaEnabled || media.type !== "video") return;
-    const video = videoRef.current;
-    if (!video || !nearViewportRef.current) return;
+    if (!canHoverPlay() || !mediaEnabled || !isVideo) return;
 
+    clearDetachTimer();
     hoveringRef.current = true;
 
-    if (!sourceAttachedRef.current) {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!video.getAttribute("src")) {
       video.src = media.src;
       video.muted = true;
       video.defaultMuted = true;
       video.playsInline = true;
-      sourceAttachedRef.current = true;
     }
 
     video.muted = true;
     const playPromise = video.play();
     if (playPromise) {
-      void playPromise.catch(() => {
-        // Ignore transient autoplay / load races.
-      });
+      void playPromise
+        .then(() => {
+          if (hoveringRef.current) setPlaying(true);
+        })
+        .catch(() => {
+          // Ignore transient autoplay / load races.
+        });
     }
   };
 
   const pauseOnLeave = () => {
     hoveringRef.current = false;
+    setPlaying(false);
+
     const video = videoRef.current;
-    if (!video || media.type !== "video") return;
+    if (!video || !isVideo) return;
+
     video.pause();
+
+    clearDetachTimer();
+    detachTimerRef.current = window.setTimeout(() => {
+      const current = videoRef.current;
+      if (!current || hoveringRef.current) return;
+      current.removeAttribute("src");
+      current.load();
+      detachTimerRef.current = null;
+    }, 450);
   };
 
   const handlePointerEnter = (event: ReactPointerEvent<HTMLElement>) => {
@@ -154,21 +108,16 @@ function InvitationCardComponent({
     playOnHover();
   };
 
-  const handlePointerLeave = () => {
-    pauseOnLeave();
-  };
-
   return (
     <article
-      ref={articleRef}
-      className={`invitation-card${onSelectTemplate ? " invitation-card--interactive" : ""}`}
+      className={`invitation-card${onSelectTemplate ? " invitation-card--interactive" : ""}${playing ? " is-playing" : ""}`}
       style={
         accentColor
           ? ({ "--invitation-accent": accentColor } as CSSProperties)
           : undefined
       }
       onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
+      onPointerLeave={pauseOnLeave}
     >
       <button
         type="button"
@@ -177,10 +126,26 @@ function InvitationCardComponent({
         aria-label={`Otvori pregled: ${title}`}
       >
         <div className="invitation-card__frame">
-          {media.type === "video" ? (
+          {stillSrc ? (
+            <img
+              className="invitation-card__media invitation-card__media--poster"
+              src={stillSrc}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
+          ) : (
+            <div
+              className="invitation-card__media invitation-card__media--placeholder"
+              aria-hidden="true"
+            />
+          )}
+
+          {isVideo && mediaEnabled ? (
             <video
               ref={videoRef}
-              className="invitation-card__media"
+              className="invitation-card__media invitation-card__media--video"
               muted
               loop
               playsInline
@@ -188,15 +153,7 @@ function InvitationCardComponent({
               poster={media.poster}
               aria-hidden="true"
             />
-          ) : (
-            <img
-              className="invitation-card__media"
-              src={mediaEnabled ? media.src : undefined}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          )}
+          ) : null}
         </div>
         <p className="invitation-card__label">{label}</p>
       </button>

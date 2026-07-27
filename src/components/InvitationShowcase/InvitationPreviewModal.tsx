@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 
 import type { InvitationTemplate } from "../../types/invitation";
 import "./InvitationPreviewModal.css";
@@ -9,7 +10,10 @@ type InvitationPreviewModalProps = {
   onClose: () => void;
 };
 
-function InvitationPreviewModal({ template, onClose }: InvitationPreviewModalProps) {
+function InvitationPreviewModal({
+  template,
+  onClose,
+}: InvitationPreviewModalProps) {
   useEffect(() => {
     if (!template) return;
 
@@ -32,7 +36,8 @@ function InvitationPreviewModal({ template, onClose }: InvitationPreviewModalPro
     return null;
   }
 
-  const { media, title } = template;
+  const { media, title, slug } = template;
+  const detailPath = `/pozivnice/${slug}`;
 
   return createPortal(
     <div
@@ -82,6 +87,14 @@ function InvitationPreviewModal({ template, onClose }: InvitationPreviewModalPro
         </div>
 
         <p className="invitation-modal__title">{title}</p>
+
+        <Link
+          className="invitation-modal__cta"
+          to={detailPath}
+          onClick={onClose}
+        >
+          Pogledaj pozivnicu
+        </Link>
       </div>
     </div>,
     document.body,

@@ -8,6 +8,8 @@
   color: var(--benefits-ink);
   margin-top: clamp(-2.5rem, -5vw, -1.5rem);
   padding: clamp(0.75rem, 2vw, 1.25rem) 0 clamp(1.5rem, 3vw, 2.25rem);
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
 }
 
 .benefits__inner {
@@ -40,7 +42,6 @@
 }
 
 .benefits__title-motion {
-  will-change: transform;
   backface-visibility: hidden;
 }
 
@@ -99,16 +100,12 @@
   box-shadow: none;
   overflow: hidden;
   border-radius: 20px;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.45s ease,
-    z-index 0s;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .benefits__shot:hover {
   z-index: 10;
-  transform: translateY(-0.55rem) scale(1.035);
-  box-shadow: 0 16px 36px rgba(46, 42, 40, 0.14);
+  transform: translateY(-0.4rem);
 }
 
 .benefits__shot img {
@@ -120,11 +117,6 @@
   object-position: center;
   background: none;
   border-radius: 20px;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.benefits__shot:hover img {
-  transform: scale(1.05);
 }
 
 .benefits__shot--1 {
@@ -652,7 +644,6 @@
   .benefits__title-motion,
   .benefits__title,
   .benefits__shot,
-  .benefits__shot img,
   .benefits__note,
   .benefits__note-title,
   .benefits__note-body,
@@ -662,7 +653,6 @@
   }
 
   .benefits__shot:hover,
-  .benefits__shot:hover img,
   .benefits__note:hover,
   .benefits__note--3:hover {
     transform: none;

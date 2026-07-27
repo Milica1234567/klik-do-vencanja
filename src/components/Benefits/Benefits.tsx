@@ -192,13 +192,39 @@ function Benefits() {
     refreshMetrics();
     applyProgress();
 
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    let listening = false;
+    const startListening = () => {
+      if (listening) return;
+      listening = true;
+      window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    };
+    const stopListening = () => {
+      if (!listening) return;
+      listening = false;
+      window.removeEventListener("scroll", scheduleUpdate);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          cacheDocTop();
+          startListening();
+          scheduleUpdate();
+        } else {
+          stopListening();
+        }
+      },
+      { rootMargin: "20% 0px" },
+    );
+    io.observe(el);
+
     window.addEventListener("resize", onResize, { passive: true });
 
     return () => {
       if (rafId !== 0) window.cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", scheduleUpdate);
+      stopListening();
       window.removeEventListener("resize", onResize);
+      io.disconnect();
     };
   }, [reduceMotion, titleY]);
 
