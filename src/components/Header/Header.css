@@ -15,6 +15,29 @@
   clip-path: polygon(0 0, 100% 0, 100% 88%, 65% 100%, 35% 100%, 0 85%);
 }
 
+.header--page {
+  min-height: 0;
+  background-image: none;
+  background-color: #f7f1e6;
+  color: #4e5a46;
+  clip-path: none;
+  overflow: visible;
+  border-bottom: 1px solid color-mix(in srgb, #caa290 28%, transparent);
+}
+
+.header--page::before {
+  display: none;
+}
+
+.header--page .header_logo,
+.header--page .header_nav a {
+  color: #4e5a46;
+}
+
+.header--page .header_burger span {
+  background-color: #4e5a46;
+}
+
 .header::before {
   content: "";
   position: absolute;
@@ -32,6 +55,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header_logo {
+  font-family: var(--font-main);
+  font-size: 22px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .header_content {

@@ -1,4 +1,3 @@
-import { useAnimationFrame, useReducedMotion } from "framer-motion";
 import {
   forwardRef,
   useCallback,
@@ -7,6 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
+import { useReducedMotion } from "framer-motion";
 
 import type { InvitationTemplate } from "../../types/invitation";
 import InvitationCard from "./InvitationCard";
@@ -19,6 +19,8 @@ export type InvitationMarqueeHandle = {
 type InvitationMarqueeProps = {
   templates: InvitationTemplate[];
   mediaEnabled: boolean;
+  /** When false, animation loop is fully stopped (no rAF). */
+  isActive?: boolean;
   onSelectTemplate?: (template: InvitationTemplate) => void;
 };
 
@@ -27,19 +29,16 @@ type StepAnimation = {
 };
 
 const STAGGER_OFFSETS = [12, 56, 100, 36, 80, 24];
-const CRUISE_SPEED = 64;
+const CRUISE_SPEED = 48;
 const SPEED_LERP = 0.0045;
-/**
- * Arrow step glide strength (1/s). Lower = silkier slide.
- * Loop / cruise logic unchanged — only the step feel.
- */
 const STEP_SMOOTH = 3.2;
 const STEP_SETTLE_PX = 0.35;
 
 function buildSequence(templates: InvitationTemplate[]): InvitationTemplate[] {
   if (templates.length === 0) return [];
 
-  const density = Math.max(5, templates.length * 2);
+  // Keep the loop short — posters are cheap, but DOM + compositing still costs.
+  const density = Math.max(3, templates.length);
   const sequence: InvitationTemplate[] = [];
 
   for (let i = 0; i < density; i += 1) {
@@ -78,7 +77,7 @@ const InvitationMarquee = forwardRef<
   InvitationMarqueeHandle,
   InvitationMarqueeProps
 >(function InvitationMarquee(
-  { templates, mediaEnabled, onSelectTemplate },
+  { templates, mediaEnabled, isActive = true, onSelectTemplate },
   ref,
 ) {
   const prefersReducedMotion = useReducedMotion();
@@ -95,6 +94,9 @@ const InvitationMarquee = forwardRef<
   const speedRef = useRef(CRUISE_SPEED);
   const pausedRef = useRef(false);
   const stepAnimRef = useRef<StepAnimation | null>(null);
+  const rafRef = useRef(0);
+  const lastTsRef = useRef(0);
+  const runningRef = useRef(false);
 
   const handleSelect = useCallback(
     (template: InvitationTemplate) => {
@@ -109,6 +111,94 @@ const InvitationMarquee = forwardRef<
       trackRef.current.style.transform = `translate3d(${position}px, 0, 0)`;
     }
   };
+
+  const stopLoop = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    }
+    runningRef.current = false;
+    lastTsRef.current = 0;
+    if (trackRef.current) {
+      trackRef.current.classList.remove("is-cruising");
+    }
+  }, []);
+
+  const tick = useCallback(
+    (ts: number) => {
+      rafRef.current = 0;
+
+      if (prefersReducedMotion) {
+        stopLoop();
+        return;
+      }
+
+      const loopWidth = loopWidthRef.current;
+      const track = trackRef.current;
+      if (loopWidth <= 0 || !track) {
+        runningRef.current = false;
+        return;
+      }
+
+      const last = lastTsRef.current || ts;
+      lastTsRef.current = ts;
+      const dt = Math.min(ts - last, 32);
+      const stepAnim = stepAnimRef.current;
+
+      if (stepAnim) {
+        let position = positionRef.current;
+        const remaining = stepAnim.to - position;
+        const alpha = 1 - Math.exp(-(dt / 1000) * STEP_SMOOTH);
+        position += remaining * alpha;
+
+        if (Math.abs(stepAnim.to - position) <= STEP_SETTLE_PX) {
+          const settled = normalizeLoop(stepAnim.to, stepAnim.to, loopWidth);
+          targetXRef.current = settled.position;
+          stepAnimRef.current = null;
+          applyTransform(settled.position);
+        } else {
+          applyTransform(position);
+        }
+      } else if (pausedRef.current) {
+        if (Math.abs(speedRef.current) < 0.15) {
+          speedRef.current = 0;
+          stopLoop();
+          return;
+        }
+        const blend = Math.min(1, dt * SPEED_LERP);
+        speedRef.current += (0 - speedRef.current) * blend;
+        let position = positionRef.current;
+        position -= (speedRef.current * dt) / 1000;
+        ({ position } = normalizeLoop(position, position, loopWidth));
+        targetXRef.current = position;
+        applyTransform(position);
+      } else {
+        let position = positionRef.current;
+        ({ position } = normalizeLoop(position, position, loopWidth));
+        const blend = Math.min(1, dt * SPEED_LERP);
+        speedRef.current += (CRUISE_SPEED - speedRef.current) * blend;
+        position -= (speedRef.current * dt) / 1000;
+        ({ position } = normalizeLoop(position, position, loopWidth));
+        targetXRef.current = position;
+        applyTransform(position);
+      }
+
+      runningRef.current = true;
+      rafRef.current = requestAnimationFrame(tick);
+    },
+    [prefersReducedMotion, stopLoop],
+  );
+
+  const ensureLoop = useCallback(() => {
+    if (prefersReducedMotion || !isActive) return;
+    if (runningRef.current) return;
+    if (trackRef.current) {
+      trackRef.current.classList.add("is-cruising");
+    }
+    runningRef.current = true;
+    lastTsRef.current = 0;
+    rafRef.current = requestAnimationFrame(tick);
+  }, [isActive, prefersReducedMotion, tick]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -147,6 +237,17 @@ const InvitationMarquee = forwardRef<
     applyTransform(0);
   }, [sequence]);
 
+  useEffect(() => {
+    if (!isActive || prefersReducedMotion) {
+      stopLoop();
+      return;
+    }
+    if (!pausedRef.current) {
+      ensureLoop();
+    }
+    return () => stopLoop();
+  }, [ensureLoop, isActive, prefersReducedMotion, stopLoop]);
+
   useImperativeHandle(
     ref,
     () => ({
@@ -157,7 +258,6 @@ const InvitationMarquee = forwardRef<
         const loopWidth = loopWidthRef.current;
         if (step <= 0 || loopWidth <= 0) return;
 
-        // Start from the live on-screen position (supports rapid re-clicks).
         const liveFrom = positionRef.current;
         let nextTarget = liveFrom - direction * step;
 
@@ -168,64 +268,17 @@ const InvitationMarquee = forwardRef<
         applyTransform(normalized.position);
         stepAnimRef.current = { to: normalized.target };
         speedRef.current = 0;
+        ensureLoop();
       },
       setPaused: (paused: boolean) => {
         pausedRef.current = paused;
+        if (!paused && isActive) {
+          ensureLoop();
+        }
       },
     }),
-    [prefersReducedMotion],
+    [ensureLoop, isActive, prefersReducedMotion],
   );
-
-  useAnimationFrame((_, delta) => {
-    if (prefersReducedMotion) return;
-
-    const loopWidth = loopWidthRef.current;
-    const track = trackRef.current;
-    if (loopWidth <= 0 || !track) return;
-
-    const dt = Math.min(delta, 32);
-    const stepAnim = stepAnimRef.current;
-
-    // Glide step: exponential damp toward target (no mid-flight normalize).
-    if (stepAnim) {
-      let position = positionRef.current;
-      const remaining = stepAnim.to - position;
-      const alpha = 1 - Math.exp(-(dt / 1000) * STEP_SMOOTH);
-      position += remaining * alpha;
-
-      if (Math.abs(stepAnim.to - position) <= STEP_SETTLE_PX) {
-        const settled = normalizeLoop(stepAnim.to, stepAnim.to, loopWidth);
-        targetXRef.current = settled.position;
-        stepAnimRef.current = null;
-        applyTransform(settled.position);
-        return;
-      }
-
-      applyTransform(position);
-      return;
-    }
-
-    // Idle while paused — skip work so scrolling other sections stays smooth
-    if (pausedRef.current && Math.abs(speedRef.current) < 0.15) {
-      speedRef.current = 0;
-      return;
-    }
-
-    let position = positionRef.current;
-    ({ position } = normalizeLoop(position, position, loopWidth));
-
-    const targetSpeed = pausedRef.current ? 0 : CRUISE_SPEED;
-    const blend = Math.min(1, dt * SPEED_LERP);
-    speedRef.current += (targetSpeed - speedRef.current) * blend;
-
-    if (Math.abs(speedRef.current) >= 0.15 || targetSpeed !== 0) {
-      position -= (speedRef.current * dt) / 1000;
-    }
-
-    ({ position } = normalizeLoop(position, position, loopWidth));
-    targetXRef.current = position;
-    applyTransform(position);
-  });
 
   if (templates.length === 0) {
     return null;
@@ -273,7 +326,7 @@ const InvitationMarquee = forwardRef<
   }
 
   return (
-      <div ref={rootRef} className="invitation-marquee">
+    <div ref={rootRef} className="invitation-marquee">
       <div ref={trackRef} className="invitation-marquee__track">
         {renderSequence("a", sequenceRef, true)}
         {renderSequence("clone")}

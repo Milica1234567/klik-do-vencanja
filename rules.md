@@ -103,6 +103,21 @@ Sajt mora biti potpuno responsive:
 - tablet
 - desktop
 
+Digitalne pozivnice (TEMPLATE POZIVNICE) — mobile-first je PRIORITET:
+
+Gosti najčešće otvaraju pozivnicu na telefonu (iPhone / Android).
+Ne praviti desktop dizajn koji se samo smanjuje.
+Prvo osmisliti i kodirati mobilni prikaz, zatim dodatno prilagoditi desktop.
+
+Posebno paziti na:
+- veličinu koverte i proporcije slojeva
+- animacije otvaranja (fluidne, transform/opacity)
+- pozicioniranje teksta
+- slike i dekorativne elemente
+- bez horizontalnog scroll-a
+- premium izgled na malom ekranu
+- tap target ≥ 44px za pečat i CTA
+
 Tehnologije:
 
 - React
@@ -177,3 +192,32 @@ Pre implementacije:
 
 Svaka sekcija sajta mora izgledati posebno dizajnirano.
 Ne koristiti generičke layout-e.
+
+---
+
+Arhitektura digitalnih pozivnica (TEMPLATE POZIVNICE):
+
+Canva služi za grafičke elemente, ne za celu pozivnicu kao jedan export.
+
+Zabranjeno kao sama pozivnica:
+- jedna ogromna PNG cele pozivnice
+- jedan statičan video kao pozivnica
+
+Dozvoljeno iz Canve (odvojeni asseti):
+- koverta, poklopac, pečat, papir
+- cvetovi, čipka, dekor, pozadine, ilustracije
+- frame / mask slotovi koje React puni dinamičkim slikama
+
+React kontroliše:
+- strukturu sekcija
+- dinamički tekst i slike (content)
+- interakcije
+- Framer Motion animacije po sloju
+
+Slojevi po template-u:
+Template → background | decorative assets | images | text | interactive | animations
+
+Layer placement je mobile-first (`placement`); desktop samo kao `placementDesktop`.
+
+Novi template = novi folder + asseti + config + unos u registry.
+Detalji: `src/TEMPLATE POZIVNICE/shared/architecture.ts`

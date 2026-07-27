@@ -15,6 +15,8 @@
   padding: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1.5rem, 3vw, 2.25rem);
   background-color: var(--color-cream);
   color: #2e2a28;
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 /* Soft dissolve into the benefits section */
@@ -49,9 +51,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  opacity: 0.28;
-  filter: saturate(0.85) contrast(0.94) brightness(1.06);
-  transform: scale(1.03);
+  opacity: 0.22;
 }
 
 .invitation-showcase__wash {
@@ -84,10 +84,7 @@
 }
 
 .invitation-showcase__glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(56px);
-  opacity: 0.75;
+  display: none;
 }
 
 .invitation-showcase__glow--rose {
@@ -266,9 +263,12 @@
   width: max-content;
   gap: clamp(1.5rem, 3vw, 2.75rem);
   padding-bottom: 1.5rem;
-  will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+}
+
+.invitation-marquee__track.is-cruising {
+  will-change: transform;
 }
 
 .invitation-marquee__sequence {
@@ -302,19 +302,12 @@
 }
 
 .invitation-card--interactive .invitation-card__frame {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .invitation-card--interactive .invitation-card__hit:hover .invitation-card__frame,
 .invitation-card--interactive .invitation-card__hit:focus-visible .invitation-card__frame {
   transform: translateY(-4px) scale(1.015);
-  box-shadow:
-    0 26px 52px rgba(46, 42, 40, 0.14),
-    0 12px 28px rgba(194, 109, 83, 0.14),
-    0 0 0 1px rgba(196, 166, 155, 0.3),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
 }
 
 .invitation-card__frame {
@@ -327,11 +320,7 @@
     #fffaf3 0%,
     color-mix(in srgb, var(--invitation-accent) 22%, var(--color-cream)) 100%
   );
-  box-shadow:
-    0 22px 48px rgba(46, 42, 40, 0.12),
-    0 10px 24px rgba(194, 109, 83, 0.1),
-    0 0 0 1px rgba(196, 166, 155, 0.22),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+  box-shadow: 0 14px 32px rgba(46, 42, 40, 0.1);
 }
 
 .invitation-card__media {
@@ -339,11 +328,30 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   background: var(--color-cream);
   pointer-events: none;
 }
 
-.invitation-card__media--fallback {
+.invitation-card__media--poster {
+  position: absolute;
+  inset: 0;
+}
+
+.invitation-card__media--video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.invitation-card.is-playing .invitation-card__media--video {
+  opacity: 1;
+}
+
+.invitation-card__media--placeholder {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     165deg,
     #fffaf3 0%,
