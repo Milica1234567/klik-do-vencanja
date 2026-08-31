@@ -146,8 +146,24 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+  .header:not(.header--page) {
+    min-height: 100vh;
+    min-height: 100svh;
+    background-position: 46% center;
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 64% 100%, 36% 100%, 0 92%);
+  }
+
+  .header:not(.header--page)::before {
+    background: linear-gradient(
+      180deg,
+      rgba(38, 31, 26, 0.32) 0%,
+      rgba(38, 31, 26, 0.24) 34%,
+      rgba(38, 31, 26, 0.42) 100%
+    );
+  }
+
   .header_container {
-    padding: 20px 24px;
+    padding: max(20px, env(safe-area-inset-top)) 24px 20px;
   }
 
   .header_logo {
@@ -163,9 +179,9 @@ body.menu-open {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 42px;
-    height: 42px;
-    padding: 8px;
+    width: 44px;
+    height: 44px;
+    padding: 9px;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -220,6 +236,54 @@ body.menu-open {
     color: var(--oatmilk);
     font-size: 20px;
     text-decoration: none;
+  }
+
+  .header_content {
+    top: 44%;
+    right: 24px;
+    left: 24px;
+    width: auto;
+    max-width: 430px;
+    margin-inline: auto;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+
+  .header_content h1 {
+    margin: 0 !important;
+    font-size: clamp(1.7rem, 8.5vw, 2.65rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+
+  .header_span_cursive {
+    display: block;
+    margin-top: 0.28em;
+    font-size: clamp(2rem, 9.8vw, 2.9rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+    white-space: normal;
+  }
+
+  .header_span_p {
+    max-width: 34ch;
+    margin: 22px auto 0 !important;
+    font-size: clamp(0.9rem, 3.8vw, 1rem);
+    line-height: 1.65;
+    text-wrap: balance;
+  }
+
+  .header_span_p br {
+    display: none;
+  }
+
+  .scroll-indicator {
+    bottom: max(9svh, calc(env(safe-area-inset-bottom) + 44px));
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
   }
 
   .header--menu-open .header_content {
