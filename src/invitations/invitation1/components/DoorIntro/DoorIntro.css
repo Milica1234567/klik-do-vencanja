@@ -1,0 +1,380 @@
+.invitation-1-route .door-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  width: 100%;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  perspective: 1500px;
+  perspective-origin: 50% 48%;
+
+  background: #e9dfd0;
+}
+
+/* =========================
+   VRATA
+========================= */
+
+.invitation-1-route .door {
+  position: absolute;
+  top: 0;
+
+  width: 50%;
+  height: 100%;
+
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  background: #e9dfd0;
+
+  transform: translateZ(0);
+
+  transition:
+    transform 2.15s cubic-bezier(0.65, 0, 0.25, 1),
+    filter 2.15s ease,
+    box-shadow 2.15s ease;
+
+  will-change: transform;
+}
+
+/* LEVO */
+
+.invitation-1-route .door-left {
+  left: 0;
+
+  transform-origin: left center;
+
+  box-shadow:
+    inset -3px 0 8px rgba(70, 55, 40, 0.1);
+}
+
+/* DESNO */
+
+.invitation-1-route .door-right {
+  right: 0;
+
+  transform-origin: right center;
+
+  box-shadow:
+    inset 3px 0 8px rgba(70, 55, 40, 0.1);
+}
+
+/* =========================
+   SLIKA NA VRATIMA
+========================= */
+
+.invitation-1-route .door-background {
+  position: absolute;
+  top: 0;
+
+  display: block;
+
+  width: 200%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.invitation-1-route .door-left .door-background {
+  left: 0;
+}
+
+.invitation-1-route .door-right .door-background {
+  right: 0;
+}
+
+/* Providni reljefni detalji ostaju diskretni preko postojeće teksture papira. */
+
+.invitation-1-route .door-details {
+  position: absolute;
+  top: 0;
+
+  display: block;
+
+  width: 200%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0.24;
+  mix-blend-mode: soft-light;
+
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.invitation-1-route .door-left .door-details {
+  left: 0;
+}
+
+.invitation-1-route .door-right .door-details {
+  right: 0;
+}
+
+/* Tanka unutrašnja bordura povezuje oba krila u jedan komad papira. */
+
+.invitation-1-route .door::before {
+  content: "";
+
+  position: absolute;
+  inset: 15px;
+
+  z-index: 1;
+
+  border: 1px solid rgba(132, 112, 78, 0.22);
+
+  pointer-events: none;
+}
+
+.invitation-1-route .door-left::before {
+  border-right: 0;
+}
+
+.invitation-1-route .door-right::before {
+  border-left: 0;
+}
+
+/* =========================
+   SENKA NA SPOJU
+========================= */
+
+.invitation-1-route .door-left::after,
+.invitation-1-route .door-right::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 8px;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+.invitation-1-route .door-left::after {
+  right: 0;
+
+  background: linear-gradient(
+    to left,
+    rgba(70, 55, 40, 0.13),
+    transparent
+  );
+}
+
+.invitation-1-route .door-right::after {
+  left: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(70, 55, 40, 0.13),
+    transparent
+  );
+}
+
+/* =========================
+   PEČAT
+========================= */
+
+.invitation-1-route .seal {
+  position: absolute;
+
+  top: 48%;
+  left: 50%;
+
+  z-index: 30;
+
+  width: 100px;
+  height: 100px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invitation-1-route .seal-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  filter: drop-shadow(0 5px 7px rgba(58, 48, 35, 0.18));
+}
+
+/* =========================
+   OTVORI POZIVNICU
+========================= */
+
+.invitation-1-route .open-button {
+  position: absolute;
+
+  top: calc(48% + 72px);
+  left: 50%;
+
+  z-index: 30;
+
+  transform: translateX(-50%);
+
+  padding: 8px 10px;
+
+  border: 0;
+
+  background: transparent;
+
+  font-family: "Baskervville", serif;
+  font-size: 11px;
+  font-weight: 400;
+
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+
+  color: rgba(77, 66, 54, 0.75);
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invitation-1-route .open-button::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 28px;
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: rgba(77, 66, 54, 0.25);
+}
+
+/* =========================
+   OTVARANJE
+========================= */
+
+.invitation-1-route .opened .door-left {
+  transform: rotateY(-112deg);
+
+  filter: brightness(0.92) saturate(0.94);
+
+  box-shadow: 14px 0 30px rgba(53, 41, 29, 0.14);
+}
+
+.invitation-1-route .opened .door-right {
+  transform: rotateY(112deg);
+
+  filter: brightness(0.92) saturate(0.94);
+
+  box-shadow: -14px 0 30px rgba(53, 41, 29, 0.14);
+}
+
+.invitation-1-route .opened .seal {
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.72)
+    rotate(7deg);
+
+  pointer-events: none;
+}
+
+.invitation-1-route .opened .open-button {
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(12px);
+
+  pointer-events: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .invitation-1-route .door-intro {
+    perspective: 1200px;
+  }
+
+  .invitation-1-route .door::before {
+    inset: 10px;
+  }
+
+  .invitation-1-route .seal {
+    width: 96px;
+    height: 96px;
+  }
+
+  .invitation-1-route .open-button {
+    top: calc(48% + 68px);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-1-route .door {
+    transition-duration: 0.4s;
+  }
+
+  .invitation-1-route .seal,
+  .invitation-1-route .open-button {
+    transition-duration: 0.2s;
+  }
+}

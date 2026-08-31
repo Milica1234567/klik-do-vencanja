@@ -1,0 +1,254 @@
+.invitation-1-route .day-plan {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  padding: 84px 24px 76px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.48), transparent 38%);
+  color: #6d6255;
+}
+
+.invitation-1-route .day-plan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(74, 60, 46, 0.018) 0,
+    rgba(74, 60, 46, 0.018) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.invitation-1-route .day-plan__header {
+  position: relative;
+  z-index: 1;
+}
+
+.invitation-1-route .day-plan__header p {
+  margin: 0 0 14px;
+  font-family: "Baskervville", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(86, 75, 63, 0.62);
+}
+
+.invitation-1-route .day-plan__header h2 {
+  margin: 0;
+  font-family: "Baskervville", serif;
+  font-size: clamp(38px, 9vw, 54px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: #716457;
+}
+
+.invitation-1-route .day-plan__header span {
+  display: inline-block;
+  margin-top: 19px;
+  font-family: "Baskervville", serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(96, 82, 69, 0.48);
+}
+
+.invitation-1-route .day-path {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 520px);
+  height: 640px;
+  margin: 56px auto 45px;
+}
+
+.invitation-1-route .day-path__line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.invitation-1-route .day-path__line path {
+  fill: none;
+  stroke: rgba(103, 89, 75, 0.34);
+  stroke-width: 0.55;
+  stroke-dasharray: 2.2 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.invitation-1-route .day-stop {
+  position: absolute;
+  width: 50%;
+  min-height: 125px;
+  display: flex;
+  align-items: center;
+}
+
+.invitation-1-route .day-stop:nth-child(2) {
+  top: 18px;
+  left: 0;
+  justify-content: flex-end;
+  padding-right: 52%;
+}
+
+.invitation-1-route .day-stop:nth-child(3) {
+  top: 178px;
+  right: 0;
+  justify-content: flex-start;
+  padding-left: 52%;
+}
+
+.invitation-1-route .day-stop:nth-child(4) {
+  top: 338px;
+  left: 0;
+  justify-content: flex-end;
+  padding-right: 52%;
+}
+
+.invitation-1-route .day-stop:nth-child(5) {
+  top: 498px;
+  right: 0;
+  justify-content: flex-start;
+  padding-left: 52%;
+}
+
+.invitation-1-route .day-stop__dot {
+  position: absolute;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+  border: 2px solid #eee7dc;
+  border-radius: 50%;
+  background: #766858;
+  box-shadow: 0 0 0 1px rgba(103, 89, 75, 0.48);
+}
+
+.invitation-1-route .day-stop:nth-child(2) .day-stop__dot,
+.invitation-1-route .day-stop:nth-child(4) .day-stop__dot {
+  right: 22%;
+}
+
+.invitation-1-route .day-stop:nth-child(3) .day-stop__dot,
+.invitation-1-route .day-stop:nth-child(5) .day-stop__dot {
+  left: 22%;
+}
+
+.invitation-1-route .day-stop__content {
+  width: 190px;
+  font-family: "Baskervville", serif;
+}
+
+.invitation-1-route .day-stop--left .day-stop__content {
+  text-align: right;
+}
+
+.invitation-1-route .day-stop--right .day-stop__content {
+  text-align: left;
+}
+
+.invitation-1-route .day-stop time {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: rgba(86, 75, 63, 0.66);
+}
+
+.invitation-1-route .day-stop h3 {
+  margin: 0 0 7px;
+  font-family: "Baskervville", serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #6d6053;
+}
+
+.invitation-1-route .day-stop p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(83, 72, 61, 0.78);
+}
+
+.invitation-1-route .day-stop small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  color: rgba(92, 79, 65, 0.58);
+}
+
+.invitation-1-route .day-plan__next {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: "Baskervville", serif;
+  font-size: 9px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(86, 75, 63, 0.62);
+}
+
+.invitation-1-route .day-plan__next span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .invitation-1-route .day-plan {
+    padding: 68px 20px 66px;
+  }
+
+  .invitation-1-route .day-path {
+    width: 100%;
+    height: 600px;
+    margin-top: 45px;
+  }
+
+  .invitation-1-route .day-stop {
+    min-height: 115px;
+  }
+
+  .invitation-1-route .day-stop:nth-child(2) {
+    top: 12px;
+  }
+
+  .invitation-1-route .day-stop:nth-child(3) {
+    top: 158px;
+  }
+
+  .invitation-1-route .day-stop:nth-child(4) {
+    top: 306px;
+  }
+
+  .invitation-1-route .day-stop:nth-child(5) {
+    top: 454px;
+  }
+
+  .invitation-1-route .day-stop__content {
+    width: 128px;
+  }
+
+  .invitation-1-route .day-stop h3 {
+    font-size: 18px;
+  }
+
+  .invitation-1-route .day-stop p {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-1-route .day-plan {
+    scroll-behavior: auto;
+  }
+}

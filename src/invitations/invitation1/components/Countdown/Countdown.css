@@ -1,0 +1,160 @@
+.invitation-1-route .countdown {
+  position: relative;
+  box-sizing: border-box;
+  padding: 82px 24px 88px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.5), transparent 50%);
+  color: #6d6255;
+}
+
+.invitation-1-route .countdown::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(74, 60, 46, 0.018) 0,
+    rgba(74, 60, 46, 0.018) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.invitation-1-route .countdown__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 650px);
+  margin: 0 auto;
+}
+
+.invitation-1-route .countdown__monogram {
+  display: block;
+  margin-bottom: 28px;
+  font-family: "Baskervville", serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(96, 82, 69, 0.46);
+}
+
+.invitation-1-route .countdown__eyebrow {
+  margin: 0 0 13px;
+  font-family: "Baskervville", serif;
+  font-size: 10px;
+  letter-spacing: 2.7px;
+  text-transform: uppercase;
+  color: rgba(86, 75, 63, 0.62);
+}
+
+.invitation-1-route .countdown h2 {
+  margin: 0;
+  font-family: "Baskervville", serif;
+  font-size: clamp(36px, 8vw, 50px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #716457;
+}
+
+.invitation-1-route .countdown__units {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 47px auto 42px;
+}
+
+.invitation-1-route .countdown__unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: "Baskervville", serif;
+}
+
+.invitation-1-route .countdown__unit + .countdown__unit::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: 0;
+  width: 1px;
+  background: rgba(91, 78, 65, 0.2);
+}
+
+.invitation-1-route .countdown__unit strong {
+  min-width: 2.2ch;
+  font-size: clamp(31px, 7vw, 45px);
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #6d6053;
+}
+
+.invitation-1-route .countdown__unit span {
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(86, 75, 63, 0.58);
+}
+
+.invitation-1-route .countdown__today {
+  margin: 46px 0 42px;
+  font-family: "Baskervville", serif;
+  font-size: clamp(24px, 6vw, 34px);
+  font-style: italic;
+  color: #716457;
+}
+
+.invitation-1-route .countdown__ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(180px, 60%);
+  margin: 0 auto;
+}
+
+.invitation-1-route .countdown__ornament span {
+  width: 58px;
+  height: 1px;
+  background: rgba(100, 87, 73, 0.28);
+}
+
+.invitation-1-route .countdown__ornament i {
+  width: 7px;
+  height: 7px;
+  box-sizing: border-box;
+  border: 1px solid rgba(100, 87, 73, 0.42);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 600px) {
+  .invitation-1-route .countdown {
+    padding: 68px 18px 72px;
+  }
+
+  .invitation-1-route .countdown__units {
+    margin-top: 40px;
+  }
+
+  .invitation-1-route .countdown__unit {
+    gap: 7px;
+  }
+
+  .invitation-1-route .countdown__unit span {
+    font-size: 8px;
+    letter-spacing: 1.15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .invitation-1-route .countdown {
+    padding-inline: 12px;
+  }
+
+  .invitation-1-route .countdown__unit strong {
+    font-size: 28px;
+  }
+}
