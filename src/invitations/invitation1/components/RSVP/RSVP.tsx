@@ -39,7 +39,7 @@ function RSVP() {
             </button>
           </div>
         ) : (
-          <form className="inv1-rsvp-form" onSubmit={handleSubmit}>
+          <form className="rsvp-form" onSubmit={handleSubmit}>
             <label className="rsvp-field">
               <span>Ime i prezime</span>
               <input name="name" type="text" autoComplete="name" required />

@@ -46,28 +46,30 @@ function DoorIntro({ onOpen }: DoorIntroProps) {
       </div>
 
       <div className="door door-right">
-        <img
-          className="door-background"
-          src={backgroundDoor}
-          alt=""
-          aria-hidden="true"
-        />
-        <img
-          className="door-details"
-          src={backgroundDetails}
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
+        <div className="door-surface">
+          <img
+            className="door-background"
+            src={backgroundDoor}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            className="door-details"
+            src={backgroundDetails}
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
 
-      <button
-        className="seal"
-        type="button"
-        onClick={handleOpen}
-        aria-label="Otvori pozivnicu"
-      >
-        <img className="seal-image" src={waxseal} alt="" aria-hidden="true" />
-      </button>
+        <button
+          className="seal"
+          type="button"
+          onClick={handleOpen}
+          aria-label="Otvori pozivnicu"
+        >
+          <img className="seal-image" src={waxseal} alt="" aria-hidden="true" />
+        </button>
+      </div>
 
       <button type="button" className="open-button" onClick={handleOpen}>
         Otvori pozivnicu

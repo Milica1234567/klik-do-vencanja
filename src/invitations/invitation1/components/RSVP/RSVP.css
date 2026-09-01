@@ -82,7 +82,7 @@
   color: rgba(92, 79, 65, 0.74);
 }
 
-.invitation-1-route .inv1-rsvp-form {
+.invitation-1-route .rsvp-form {
   display: grid;
   gap: 30px;
   text-align: left;

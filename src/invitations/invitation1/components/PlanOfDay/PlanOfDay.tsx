@@ -38,12 +38,21 @@ function PlanOfDay() {
 
       <div className="day-path">
         <svg
-          className="day-path__line"
+          className="day-path__line day-path__line--desktop"
           viewBox="0 0 100 640"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
           <path d="M50 0 C50 70 23 75 23 150 C23 220 77 230 77 310 C77 385 23 400 23 475 C23 550 50 565 50 640" />
+        </svg>
+
+        <svg
+          className="day-path__line day-path__line--mobile"
+          viewBox="0 0 100 600"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M50 0 C50 25 23 35 23 70 S77 145 77 210 S23 285 23 350 S77 425 77 490 S50 565 50 600" />
         </svg>
 
         {events.map((event, index) => (
