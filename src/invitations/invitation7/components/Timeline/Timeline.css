@@ -1,0 +1,30 @@
+.invitation-7-route .inv7-wedding-timeline {
+  min-height: 100svh;
+  padding-block: 105px 130px;
+  background: rgba(249, 246, 237, 0.76);
+}
+.invitation-7-route .inv7-wedding-timeline header > p { margin: 0 0 12px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(73, 80, 66, 0.65); }
+.invitation-7-route .inv7-wedding-timeline header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(42px, 9vw, 62px); font-weight: 400; color: #555b4d; }
+.invitation-7-route .inv7-wedding-timeline__list { position: relative; width: min(100%, 430px); margin: 70px auto 0; }
+.invitation-7-route .inv7-wedding-timeline__list::before { content: ""; position: absolute; top: 22px; bottom: 22px; left: 50%; width: 1px; background: rgba(103, 116, 89, 0.35); transform: translateX(-50%); }
+.invitation-7-route .inv7-wedding-timeline article { position: relative; box-sizing: border-box; min-height: 132px; width: 50%; padding: 23px 38px 20px 0; text-align: right; }
+.invitation-7-route .inv7-wedding-timeline article:nth-child(even) { margin-left: 50%; padding: 23px 0 20px 38px; text-align: left; }
+.invitation-7-route .inv7-wedding-timeline time { display: block; margin-bottom: 7px; font-size: 12px; letter-spacing: 2.5px; color: #8e6d70; }
+.invitation-7-route .inv7-wedding-timeline h3 { margin: 0; font-family: "EB Garamond", serif; font-size: 22px; font-weight: 500; line-height: 1.25; color: #53584b; }
+.invitation-7-route .inv7-timeline-flower { position: absolute; top: 25px; right: -11px; width: 22px; height: 22px; z-index: 1; }
+.invitation-7-route .inv7-wedding-timeline article:nth-child(even) .inv7-timeline-flower { right: auto; left: -11px; }
+.invitation-7-route .inv7-timeline-flower i { position: absolute; left: 8px; top: 1px; width: 7px; height: 13px; border-radius: 80% 20% 70% 30%; background: #a7b296; transform-origin: 50% 10px; }
+.invitation-7-route .inv7-timeline-flower i:nth-child(2) { transform: rotate(120deg); }
+.invitation-7-route .inv7-timeline-flower i:nth-child(3) { transform: rotate(240deg); }
+.invitation-7-route .inv7-timeline-flower--2 i { background: #c7ad79; }
+.invitation-7-route .inv7-timeline-flower--3 i { background: #a9898b; }
+.invitation-7-route .inv7-timeline-flower--4 i { background: #91a8aa; }
+
+@media (max-width: 480px) {
+  .invitation-7-route .inv7-wedding-timeline { padding-block: 90px 110px; }
+  .invitation-7-route .inv7-wedding-timeline__list::before { left: 28px; }
+  .invitation-7-route .inv7-wedding-timeline article,
+.invitation-7-route .inv7-wedding-timeline article:nth-child(even) { width: 100%; margin-left: 0; padding: 21px 0 22px 70px; text-align: left; }
+  .invitation-7-route .inv7-timeline-flower,
+.invitation-7-route .inv7-wedding-timeline article:nth-child(even) .inv7-timeline-flower { left: 17px; right: auto; }
+}

@@ -1,0 +1,37 @@
+.invitation-10-route .inv10-rsvp { min-height: 110svh; padding: 130px 0 150px; background: var(--inv10-soft-white); }
+.invitation-10-route .inv10-rsvp header { text-align: left; }
+.invitation-10-route .inv10-rsvp header h2 { margin: 0; font-family: "Bodoni Moda", serif; font-size: clamp(43px, 12vw, 78px); font-weight: 400; line-height: 1.1; color: var(--inv10-taupe); }
+.invitation-10-route .inv10-rsvp header p { margin: 30px 0 0; font-family: "Manrope", sans-serif; font-size: 10px; line-height: 1.8; letter-spacing: 0.12em; color: var(--inv10-text-soft); }
+.invitation-10-route .inv10-rsvp form { display: grid; gap: 34px; width: min(100%, 560px); margin: 75px auto 0; text-align: left; }
+.invitation-10-route .inv10-rsvp__field { display: grid; gap: 8px; }
+.invitation-10-route .inv10-rsvp__field > span,
+.invitation-10-route .inv10-rsvp legend { font-family: "Manrope", sans-serif; font-size: 8px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--inv10-warm-gray); }
+.invitation-10-route .inv10-rsvp input[type="text"],
+.invitation-10-route .inv10-rsvp select,
+.invitation-10-route .inv10-rsvp textarea { box-sizing: border-box; width: 100%; padding: 10px 1px 12px; border: 0; border-bottom: 1px solid var(--inv10-taupe-light); border-radius: 0; outline: none; background: transparent; color: var(--inv10-text); font: 17px "Bodoni Moda", serif; transition: border-color 0.35s ease; }
+.invitation-10-route .inv10-rsvp textarea { resize: vertical; }
+.invitation-10-route .inv10-rsvp select { appearance: none; }
+.invitation-10-route .inv10-rsvp input:focus,
+.invitation-10-route .inv10-rsvp select:focus,
+.invitation-10-route .inv10-rsvp textarea:focus { border-color: var(--inv10-champagne-dark); }
+.invitation-10-route .inv10-rsvp fieldset { margin: 0; padding: 0; border: 0; }
+.invitation-10-route .inv10-rsvp__choices { display: grid; gap: 10px; margin-top: 15px; }
+.invitation-10-route .inv10-rsvp__choices label { display: flex; align-items: center; gap: 11px; min-height: 34px; cursor: pointer; }
+.invitation-10-route .inv10-rsvp__choices input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.invitation-10-route .inv10-rsvp__choices i { position: relative; box-sizing: border-box; width: 16px; height: 16px; border: 1px solid var(--inv10-taupe-light); border-radius: 50%; }
+.invitation-10-route .inv10-rsvp__choices input:checked + i::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--inv10-taupe); }
+.invitation-10-route .inv10-rsvp__choices label:focus-within i { outline: 1px solid var(--inv10-champagne-dark); outline-offset: 3px; }
+.invitation-10-route .inv10-rsvp__choices span { font-family: "Manrope", sans-serif; font-size: 11px; font-weight: 300; color: var(--inv10-warm-gray); }
+.invitation-10-route .inv10-rsvp__submit { justify-self: start; margin-top: 17px; padding: 15px 28px; border: 1px solid var(--inv10-taupe); background: transparent; color: var(--inv10-warm-gray); font: 400 8px "Manrope", sans-serif; letter-spacing: 0.3em; text-transform: uppercase; cursor: pointer; transition: background 0.45s ease, color 0.45s ease; }
+.invitation-10-route .inv10-rsvp__submit:hover,
+.invitation-10-route .inv10-rsvp__submit:focus-visible { background: var(--inv10-taupe); color: var(--inv10-white); }
+.invitation-10-route .inv10-rsvp__success { margin-top: 75px; text-align: left; }
+.invitation-10-route .inv10-rsvp__success > span { font: 400 11px "Manrope", sans-serif; letter-spacing: 0.35em; color: var(--inv10-champagne-dark); }
+.invitation-10-route .inv10-rsvp__success h3 { margin: 23px 0 9px; font: 400 48px "Bodoni Moda", serif; color: var(--inv10-taupe); }
+.invitation-10-route .inv10-rsvp__success p { margin: 0; font-family: "Manrope", sans-serif; font-size: 11px; color: var(--inv10-text-soft); }
+.invitation-10-route .inv10-rsvp__success button { margin-top: 27px; padding: 6px 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--inv10-warm-gray); font: 8px "Manrope", sans-serif; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
+
+@media (min-width: 700px) {
+  .invitation-10-route .inv10-rsvp header { padding-left: 7%; }
+  .invitation-10-route .inv10-rsvp__submit { justify-self: end; }
+}

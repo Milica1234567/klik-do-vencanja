@@ -1,0 +1,35 @@
+.invitation-7-route .inv7-watercolor-rsvp {
+  min-height: 100svh;
+  padding-block: 110px 130px;
+  background: rgba(249, 246, 237, 0.8);
+}
+.invitation-7-route .inv7-watercolor-rsvp header > p { margin: 0 0 13px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(73, 80, 66, 0.65); }
+.invitation-7-route .inv7-watercolor-rsvp header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(42px, 9vw, 60px); font-weight: 400; color: #555b4d; }
+.invitation-7-route .inv7-watercolor-rsvp form { display: grid; gap: 30px; width: min(100%, 480px); margin: 60px auto 0; text-align: left; }
+.invitation-7-route .inv7-watercolor-rsvp form > label,
+.invitation-7-route .inv7-watercolor-rsvp fieldset { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; }
+.invitation-7-route .inv7-watercolor-rsvp form > label > span,
+.invitation-7-route .inv7-watercolor-rsvp legend { font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(70, 78, 64, 0.74); }
+.invitation-7-route .inv7-watercolor-rsvp input[type="text"],
+.invitation-7-route .inv7-watercolor-rsvp select,
+.invitation-7-route .inv7-watercolor-rsvp textarea { box-sizing: border-box; width: 100%; padding: 9px 2px 11px; border: 0; border-bottom: 1px solid rgba(92, 106, 80, 0.42); border-radius: 0; outline: 0; background: transparent; color: #4f5549; font: 18px "EB Garamond", serif; }
+.invitation-7-route .inv7-watercolor-rsvp textarea { resize: vertical; }
+.invitation-7-route .inv7-watercolor-rsvp select { appearance: none; }
+.invitation-7-route .inv7-watercolor-rsvp input:focus,
+.invitation-7-route .inv7-watercolor-rsvp select:focus,
+.invitation-7-route .inv7-watercolor-rsvp textarea:focus { border-color: #8e6d70; }
+.invitation-7-route .inv7-watercolor-rsvp fieldset > div { display: flex; gap: 30px; margin-top: 7px; }
+.invitation-7-route .inv7-watercolor-rsvp fieldset label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.invitation-7-route .inv7-watercolor-rsvp fieldset input { accent-color: #89957b; }
+.invitation-7-route .inv7-watercolor-rsvp fieldset label span { font-size: 16px; color: #53594c; }
+.invitation-7-route .inv7-watercolor-rsvp__submit { justify-self: center; margin-top: 14px; padding: 8px 2px; border: 0; border-bottom: 1px solid rgba(86, 99, 74, 0.58); background: transparent; color: #596352; font: 500 10px "EB Garamond", serif; letter-spacing: 2.4px; text-transform: uppercase; cursor: pointer; }
+.invitation-7-route .inv7-watercolor-rsvp__thanks { margin: 70px auto 0; }
+.invitation-7-route .inv7-watercolor-rsvp__thanks > span { font: 28px "Allura", cursive; color: #8e6d70; }
+.invitation-7-route .inv7-watercolor-rsvp__thanks h3 { margin: 15px 0 7px; font: 400 40px "EB Garamond", serif; }
+.invitation-7-route .inv7-watercolor-rsvp__thanks p { margin: 0; font-size: 17px; }
+.invitation-7-route .inv7-watercolor-rsvp__thanks button { margin-top: 24px; padding: 5px 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: #626d59; font: 10px "EB Garamond", serif; letter-spacing: 1.6px; text-transform: uppercase; cursor: pointer; }
+
+@media (max-width: 480px) {
+  .invitation-7-route .inv7-watercolor-rsvp { padding-block: 90px 115px; }
+  .invitation-7-route .inv7-watercolor-rsvp fieldset > div { flex-direction: column; gap: 10px; }
+}

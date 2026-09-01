@@ -1,0 +1,6 @@
+.invitation-9-route .inv9-footer { position: relative; box-sizing: border-box; min-height: 90svh; display: flex; align-items: center; justify-content: center; padding: 120px 50px 135px; }
+.invitation-9-route .inv9-footer__inner { width: min(100%, 520px); }
+.invitation-9-route .inv9-footer p { margin: 0 0 43px; font-size: clamp(19px, 5vw, 26px); font-style: italic; line-height: 1.65; color: var(--inv9-text); }
+.invitation-9-route .inv9-footer strong { display: block; margin-top: 39px; font-family: "Bodoni Moda", serif; font-size: 24px; font-weight: 400; letter-spacing: 0.35em; color: var(--inv9-olive-dark); }
+.invitation-9-route .inv9-footer strong i { font-family: "Parisienne", cursive; font-size: 0.82em; font-weight: 400; letter-spacing: 0; color: var(--inv9-muted-gold); }
+.invitation-9-route .inv9-footer time { display: block; margin-top: 20px; font-size: 8px; letter-spacing: 3px; color: var(--inv9-taupe); }

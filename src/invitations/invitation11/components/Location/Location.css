@@ -1,0 +1,9 @@
+.invitation-11-route .inv11-location { min-height: 88svh; display: flex; align-items: center; padding: 120px 0; background: var(--inv11-paper); color: var(--inv11-ink); }
+.invitation-11-route .inv11-location .inv11-content { text-align: left; }
+.invitation-11-route .inv11-location .inv11-kicker { margin: 0 0 26px; color: var(--inv11-wine-light); }
+.invitation-11-route .inv11-location h2 { margin: 0; font-family: var(--inv11-font-display); font-size: clamp(51px, 14vw, 83px); font-weight: 400; line-height: 0.95; color: var(--inv11-wine); }
+.invitation-11-route .inv11-location address { margin: 18px 0 34px; font-family: var(--inv11-font-body); font-size: 9px; font-style: normal; letter-spacing: 0.32em; text-transform: uppercase; color: var(--inv11-olive); }
+.invitation-11-route .inv11-location__description { margin: 0 0 45px; font-size: 20px; font-style: italic; line-height: 1.5; color: rgba(75, 64, 59, 0.74); }
+.invitation-11-route .inv11-location a { display: inline-block; padding-bottom: 7px; border-bottom: 1px solid currentColor; color: var(--inv11-wine-light); font-family: var(--inv11-font-body); font-size: 8px; letter-spacing: 0.25em; text-decoration: none; text-transform: uppercase; }
+.invitation-11-route .inv11-location a span { display: inline-block; margin-left: 8px; font-size: 12px; transition: transform 0.35s ease; }
+.invitation-11-route .inv11-location a:hover span { transform: translate(2px, -2px); }

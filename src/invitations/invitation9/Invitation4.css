@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Parisienne&display=swap");
+
+.invitation-9-route .invitation9-bodoni {
+  --inv9-white: #fff;
+  --inv9-ivory: #faf8f3;
+  --inv9-cream: #f4f0e7;
+  --inv9-olive: #6f7049;
+  --inv9-olive-dark: #4f5138;
+  --inv9-taupe: #8c8274;
+  --inv9-warm-gray: #837d74;
+  --inv9-champagne: #b9a77a;
+  --inv9-muted-gold: #a69467;
+  --inv9-text: #4e4b43;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--inv9-ivory);
+  color: var(--inv9-text);
+  color-scheme: light;
+  font-family: "Bodoni Moda", Georgia, serif;
+}
+
+.invitation-9-route .invitation9-bodoni::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  background: url("./assets/background.png") center / 100% 100% no-repeat;
+}
+
+.invitation-9-route .invitation9-bodoni section { position: relative; z-index: 1; box-sizing: border-box; width: 100%; background: transparent; }
+.invitation-9-route .invitation9-bodoni footer { position: relative; z-index: 1; background: transparent; }
+.invitation-9-route .inv9-content { position: relative; z-index: 1; width: min(calc(100% - 96px), 620px); margin-inline: auto; }
+
+.invitation-9-route .invitation9-bodoni [data-inv9-reveal] {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1.15s ease, transform 1.15s ease;
+  transition-delay: var(--inv9-delay, 0s);
+}
+
+.invitation-9-route .invitation9-bodoni [data-inv9-reveal].inv9-visible { opacity: 1; transform: translateY(0); }
+
+.invitation-9-route .inv9-ornament { display: flex; align-items: center; justify-content: center; gap: 10px; color: rgba(166, 148, 103, 0.72); }
+.invitation-9-route .inv9-ornament::before,
+.invitation-9-route .inv9-ornament::after { content: ""; width: 36px; height: 1px; background: currentColor; }
+.invitation-9-route .inv9-ornament span { font-size: 14px; line-height: 1; }
+
+@media (min-width: 700px) {
+  .invitation-9-route .invitation9-bodoni::before { background-size: min(100%, 1126px) 100%; }
+  .invitation-9-route .inv9-content { width: min(calc(100% - 160px), 620px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-9-route .invitation9-bodoni [data-inv9-reveal] { opacity: 1; transform: none; transition: none; }
+}

@@ -1,0 +1,37 @@
+.invitation-8-route .inv8-rsvp { min-height: 108svh; padding: 125px 0 145px; background: var(--inv8-paper) url("../../assets/background.png") center / auto 100% no-repeat; }
+.invitation-8-route .inv8-rsvp::before { content: ""; position: absolute; inset: 0; background: rgba(248, 245, 236, 0.34); }
+.invitation-8-route .inv8-rsvp header p { margin: 0 0 20px; font-size: 12px; line-height: 1.75; letter-spacing: 1.3px; color: rgba(85, 83, 72, 0.76); }
+.invitation-8-route .inv8-rsvp header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(39px, 10.5vw, 58px); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-rsvp form { display: grid; gap: 29px; width: min(100%, 470px); margin: 62px auto 0; text-align: left; }
+.invitation-8-route .inv8-rsvp__field { display: grid; gap: 7px; }
+.invitation-8-route .inv8-rsvp__field > span,
+.invitation-8-route .inv8-rsvp legend { font-size: 9px; font-weight: 500; letter-spacing: 2.1px; text-transform: uppercase; color: rgba(82, 82, 57, 0.82); }
+.invitation-8-route .inv8-rsvp input[type="text"],
+.invitation-8-route .inv8-rsvp select,
+.invitation-8-route .inv8-rsvp textarea { box-sizing: border-box; width: 100%; padding: 9px 2px 11px; border: 0; border-bottom: 1px solid rgba(116, 115, 76, 0.5); border-radius: 0; outline: none; background: transparent; color: var(--inv8-text); font: 18px "EB Garamond", serif; transition: border-color 0.35s ease; }
+.invitation-8-route .inv8-rsvp textarea { resize: vertical; }
+.invitation-8-route .inv8-rsvp select { appearance: none; }
+.invitation-8-route .inv8-rsvp input:focus,
+.invitation-8-route .inv8-rsvp select:focus,
+.invitation-8-route .inv8-rsvp textarea:focus { border-color: var(--inv8-berry); }
+.invitation-8-route .inv8-rsvp fieldset { margin: 0; padding: 0; border: 0; }
+.invitation-8-route .inv8-rsvp__choices { display: flex; gap: 27px; margin-top: 14px; }
+.invitation-8-route .inv8-rsvp__choices label { display: flex; align-items: center; gap: 9px; min-height: 32px; cursor: pointer; }
+.invitation-8-route .inv8-rsvp__choices input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.invitation-8-route .inv8-rsvp__choices i { position: relative; box-sizing: border-box; width: 16px; height: 16px; border: 1px solid rgba(116, 115, 76, 0.66); border-radius: 50%; }
+.invitation-8-route .inv8-rsvp__choices .selected i::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--inv8-olive); }
+.invitation-8-route .inv8-rsvp__choices label:focus-within i { outline: 1px solid var(--inv8-berry); outline-offset: 3px; }
+.invitation-8-route .inv8-rsvp__choices span { font-size: 15px; color: var(--inv8-text); }
+.invitation-8-route .inv8-rsvp__submit { justify-self: center; margin-top: 13px; padding: 14px 24px; border: 1px solid var(--inv8-olive); background: transparent; color: var(--inv8-olive-dark); font: 500 9px "EB Garamond", serif; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: background 0.45s ease, color 0.45s ease; }
+.invitation-8-route .inv8-rsvp__submit:hover,
+.invitation-8-route .inv8-rsvp__submit:focus-visible { background: var(--inv8-olive); color: var(--inv8-ivory); }
+.invitation-8-route .inv8-rsvp__success { margin: 68px auto 0; }
+.invitation-8-route .inv8-rsvp__success h3 { margin: 22px 0 8px; font: 400 39px "EB Garamond", serif; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-rsvp__success p { margin: 0; font-size: 16px; }
+.invitation-8-route .inv8-rsvp__success button { margin-top: 26px; padding: 5px 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--inv8-olive); font: 9px "EB Garamond", serif; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+
+@media (min-width: 700px) { .invitation-8-route .inv8-rsvp { background-size: 100% auto; } }
+@media (max-width: 430px) {
+  .invitation-8-route .inv8-rsvp { padding-block: 110px 125px; }
+  .invitation-8-route .inv8-rsvp__choices { flex-direction: column; gap: 6px; }
+}

@@ -1,0 +1,11 @@
+.invitation-10-route .inv10-intro { min-height: 82svh; display: flex; align-items: center; padding: 120px 0; background: var(--inv10-soft-white); }
+.invitation-10-route .inv10-intro .inv10-content { text-align: left; }
+.invitation-10-route .inv10-intro .inv10-kicker { margin: 0 0 32px; }
+.invitation-10-route .inv10-intro h2 { max-width: 560px; margin: 0; font-family: "Bodoni Moda", serif; font-size: clamp(29px, 7vw, 48px); font-weight: 400; font-style: italic; line-height: 1.45; color: var(--inv10-text); }
+.invitation-10-route .inv10-intro__petal { right: -145px; bottom: -80px; width: 270px; height: 440px; opacity: 0.35; }
+.invitation-10-route .inv10-intro__petal::before { background-position: 66% center; }
+
+@media (min-width: 700px) {
+  .invitation-10-route .inv10-intro__petal { right: -110px; width: 360px; height: 540px; }
+  .invitation-10-route .inv10-intro .inv10-content { padding-left: 6%; }
+}

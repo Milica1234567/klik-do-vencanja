@@ -1,0 +1,118 @@
+.invitation-10-route .inv10-countdown {
+  min-height: 68svh;
+  display: flex;
+  align-items: center;
+  padding: 110px 0 120px;
+  overflow: hidden;
+  background: var(--inv10-warm-ivory);
+  color: var(--inv10-text);
+}
+
+.invitation-10-route .inv10-countdown__petal {
+  position: absolute;
+  right: -150px;
+  bottom: -170px;
+  width: 300px;
+  height: 470px;
+  opacity: 0.18;
+  background: url("../../assets/background.png") 68% center / cover no-repeat;
+  animation: inv10-countdown-petal 13s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.invitation-10-route .inv10-countdown .inv10-content {
+  width: min(calc(100% - 32px), 650px);
+}
+
+.invitation-10-route .inv10-countdown p {
+  margin: 0 0 55px;
+  font-family: "Manrope", sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--inv10-text-soft);
+}
+
+.invitation-10-route .inv10-countdown h2 {
+  margin: 0;
+  font-family: "Bodoni Moda", serif;
+  font-size: clamp(40px, 10vw, 65px);
+  font-weight: 400;
+  color: var(--inv10-taupe);
+}
+
+.invitation-10-route .inv10-countdown__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.invitation-10-route .inv10-countdown__unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+
+.invitation-10-route .inv10-countdown__unit + .inv10-countdown__unit::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  width: 1px;
+  background: rgba(164, 157, 146, 0.34);
+}
+
+.invitation-10-route .inv10-countdown__unit strong {
+  min-width: 2ch;
+  font-family: "Bodoni Moda", serif;
+  font-size: clamp(35px, 10vw, 61px);
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--inv10-taupe);
+}
+
+.invitation-10-route .inv10-countdown__unit span {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(7px, 1.8vw, 9px);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--inv10-text-soft);
+}
+
+@keyframes inv10-countdown-petal {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+@media (min-width: 700px) {
+  .invitation-10-route .inv10-countdown__petal {
+    right: -110px;
+    width: 390px;
+    height: 560px;
+  }
+}
+
+@media (max-width: 380px) {
+  .invitation-10-route .inv10-countdown .inv10-content {
+    width: min(calc(100% - 20px), 650px);
+  }
+
+  .invitation-10-route .inv10-countdown__unit {
+    gap: 9px;
+  }
+
+  .invitation-10-route .inv10-countdown__unit span {
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-10-route .inv10-countdown__petal {
+    animation: none;
+  }
+}

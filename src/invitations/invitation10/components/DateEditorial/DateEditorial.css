@@ -1,0 +1,8 @@
+.invitation-10-route .inv10-date { min-height: 96svh; display: flex; align-items: center; padding: 120px 0; background: var(--inv10-ivory); }
+.invitation-10-route .inv10-date .inv10-kicker { margin: 0 0 44px; text-align: right; }
+.invitation-10-route .inv10-date__composition { display: flex; align-items: flex-end; justify-content: center; gap: clamp(25px, 9vw, 80px); }
+.invitation-10-route .inv10-date__composition strong { font-size: clamp(140px, 39vw, 260px); font-weight: 400; line-height: 0.72; letter-spacing: -0.09em; color: var(--inv10-taupe); }
+.invitation-10-route .inv10-date__composition > div { display: flex; flex-direction: column; align-items: flex-start; padding-bottom: 5px; border-left: 1px solid rgba(164, 157, 146, 0.55); }
+.invitation-10-route .inv10-date__composition span,
+.invitation-10-route .inv10-date__composition time { padding-left: 18px; font-family: "Manrope", sans-serif; font-size: clamp(15px, 4vw, 21px); font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--inv10-warm-gray); }
+.invitation-10-route .inv10-date__composition time { margin-top: 16px; font-size: 10px; }

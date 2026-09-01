@@ -1,0 +1,27 @@
+.invitation-8-route .inv8-timeline { min-height: 100svh; padding: 120px 0 145px; background: var(--inv8-paper); }
+.invitation-8-route .inv8-timeline::after { content: ""; position: absolute; right: -115px; bottom: 5%; width: 270px; height: 420px; opacity: 0.28; background: url("../../assets/background.png") right 48% / 270px auto no-repeat; }
+.invitation-8-route .inv8-timeline header > p { margin: 0 0 13px; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--inv8-muted-gold); }
+.invitation-8-route .inv8-timeline header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(43px, 11vw, 62px); font-weight: 400; letter-spacing: 0.03em; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-timeline__items { position: relative; width: min(100%, 450px); margin: 72px auto 0; }
+.invitation-8-route .inv8-timeline__items::before { content: ""; position: absolute; top: 15px; bottom: 15px; left: 28px; width: 1px; background: rgba(116, 115, 76, 0.34); }
+.invitation-8-route .inv8-timeline article { position: relative; min-height: 128px; box-sizing: border-box; padding: 6px 0 34px 76px; text-align: left; }
+.invitation-8-route .inv8-timeline article:last-child { min-height: 80px; padding-bottom: 0; }
+.invitation-8-route .inv8-timeline article time { display: block; margin-bottom: 9px; font-size: 11px; letter-spacing: 3px; color: var(--inv8-berry); }
+.invitation-8-route .inv8-timeline article h3 { margin: 0 0 7px; font-family: "EB Garamond", serif; font-size: 15px; font-weight: 500; letter-spacing: 2.2px; line-height: 1.35; text-transform: uppercase; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-timeline article p { margin: 0; font-size: 14px; font-style: italic; letter-spacing: 0.3px; color: rgba(85, 83, 72, 0.68); }
+.invitation-8-route .inv8-timeline__mark { position: absolute; z-index: 1; left: 17px; top: 3px; width: 23px; height: 25px; background: var(--inv8-paper); }
+.invitation-8-route .inv8-timeline__mark i { position: absolute; left: 8px; top: 3px; width: 7px; height: 15px; border-radius: 90% 10% 90% 10%; background: var(--inv8-sage); transform-origin: 50% 11px; }
+.invitation-8-route .inv8-timeline__mark i:nth-child(2) { transform: rotate(120deg); }
+.invitation-8-route .inv8-timeline__mark i:nth-child(3) { transform: rotate(240deg); }
+.invitation-8-route .inv8-timeline__mark--inv8-berry i { width: 7px; height: 7px; border-radius: 50%; background: var(--inv8-berry); }
+.invitation-8-route .inv8-timeline__mark--inv8-flower i { background: #d8d3ba; }
+.invitation-8-route .inv8-timeline__mark--inv8-blue i { background: var(--inv8-dusty-blue); }
+.invitation-8-route .inv8-timeline > .inv8-bee { right: 8%; top: 28%; transform: scale(0.76); animation-delay: -3s; }
+
+@media (min-width: 650px) {
+  .invitation-8-route .inv8-timeline__items::before { left: 50%; }
+  .invitation-8-route .inv8-timeline article { width: 50%; padding: 4px 49px 35px 0; text-align: right; }
+  .invitation-8-route .inv8-timeline article:nth-child(even) { margin-left: 50%; padding: 4px 0 35px 49px; text-align: left; }
+  .invitation-8-route .inv8-timeline__mark { left: auto; right: -12px; }
+  .invitation-8-route .inv8-timeline article:nth-child(even) .inv8-timeline__mark { left: -11px; right: auto; }
+}

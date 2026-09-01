@@ -1,0 +1,12 @@
+.invitation-10-route .inv10-location { min-height: 86svh; display: flex; align-items: center; padding: 120px 0; background: var(--inv10-ivory); }
+.invitation-10-route .inv10-location .inv10-content { text-align: right; }
+.invitation-10-route .inv10-location .inv10-kicker { margin: 0 0 27px; }
+.invitation-10-route .inv10-location h2 { margin: 0; font-family: "Bodoni Moda", serif; font-size: clamp(46px, 12vw, 78px); font-weight: 400; line-height: 1; color: var(--inv10-taupe); }
+.invitation-10-route .inv10-location address { margin: 18px 0 45px; font-family: "Manrope", sans-serif; font-size: 10px; font-style: normal; letter-spacing: 0.3em; text-transform: uppercase; color: var(--inv10-text-soft); }
+.invitation-10-route .inv10-location a { display: inline-block; padding-bottom: 8px; border-bottom: 1px solid currentColor; color: var(--inv10-warm-gray); font-family: "Manrope", sans-serif; font-size: 8px; letter-spacing: 0.28em; text-decoration: none; text-transform: uppercase; }
+.invitation-10-route .inv10-location a span { display: inline-block; margin-left: 8px; font-size: 12px; transition: transform 0.35s ease; }
+.invitation-10-route .inv10-location a:hover span { transform: translate(2px, -2px); }
+.invitation-10-route .inv10-location__petal { left: -155px; top: -80px; width: 270px; height: 430px; opacity: 0.27; }
+.invitation-10-route .inv10-location__petal::before { background-position: 25% center; animation-delay: -5s; }
+
+@media (min-width: 700px) { .invitation-10-route .inv10-location__petal { left: -120px; width: 370px; height: 530px; } }

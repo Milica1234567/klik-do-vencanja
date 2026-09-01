@@ -1,0 +1,28 @@
+.invitation-11-route .inv11-hero { min-height: 100svh; display: grid; place-items: center; isolation: isolate; padding: 72px 24px 58px; }
+.invitation-11-route .inv11-hero__cover { position: absolute; inset: 0; z-index: -2; background: var(--inv11-wine) url("../../assets/background.png") center / cover no-repeat; }
+.invitation-11-route .inv11-hero::before { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: var(--inv11-wine) url("../../assets/background.png") center / cover no-repeat; animation: inv11-cover-open 2.25s cubic-bezier(0.76, 0, 0.24, 1) 0.15s forwards; }
+.invitation-11-route .inv11-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(48, 5, 9, 0.18); }
+.invitation-11-route .inv11-hero__content { width: min(100%, 630px); }
+.invitation-11-route .inv11-hero__line { margin: 0 0 55px; font-size: 14px; font-style: italic; letter-spacing: 0.08em; color: rgba(247, 240, 228, 0.76); }
+.invitation-11-route .inv11-hero h1 { margin: 0; display: flex; flex-direction: column; align-items: center; font-family: var(--inv11-font-display); font-size: clamp(52px, 15vw, 91px); font-weight: 400; line-height: 0.78; letter-spacing: 0.04em; text-transform: uppercase; color: var(--inv11-ivory); }
+.invitation-11-route .inv11-hero h1 i { margin: 18px 0 11px; font-family: var(--inv11-font-script); font-size: 0.39em; font-weight: 400; line-height: 1; text-transform: none; color: var(--inv11-blush); }
+.invitation-11-route .inv11-hero time { display: block; margin-top: 59px; font-family: var(--inv11-font-body); font-size: 9px; font-weight: 300; letter-spacing: 0.38em; color: rgba(247, 240, 228, 0.78); }
+.invitation-11-route .inv11-hero__enter { opacity: 0; transform: translateY(15px); animation: inv11-hero-enter 1.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.invitation-11-route .inv11-hero__enter--inv11-1 { animation-delay: 0.7s; }
+.invitation-11-route .inv11-hero__enter--inv11-2 { animation-delay: 1.05s; }
+.invitation-11-route .inv11-hero__enter--inv11-3 { animation-delay: 1.36s; }
+.invitation-11-route .inv11-hero__enter--inv11-4 { animation-delay: 1.67s; }
+.invitation-11-route .inv11-hero__enter--inv11-5 { animation-delay: 2.02s; }
+.invitation-11-route .inv11-hero__continue { position: absolute; left: 50%; bottom: 20px; width: 24px; height: 35px; transform: translateX(-50%); }
+.invitation-11-route .inv11-hero__continue::before { content: ""; position: absolute; left: 11px; top: 0; width: 1px; height: 25px; background: rgba(247, 240, 228, 0.38); }
+.invitation-11-route .inv11-hero__continue span { position: absolute; left: 8px; bottom: 4px; width: 6px; height: 6px; border-right: 1px solid rgba(247, 240, 228, 0.5); border-bottom: 1px solid rgba(247, 240, 228, 0.5); transform: rotate(45deg); }
+@keyframes inv11-cover-open { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); } }
+@keyframes inv11-hero-enter { to { opacity: 1; transform: translateY(0); } }
+
+.invitation-11-route .invitation11-wine:not(.invitation11-wine--inv11-revealed) .inv11-hero::before,
+.invitation-11-route .invitation11-wine:not(.invitation11-wine--inv11-revealed) .inv11-hero__enter {
+  animation-play-state: paused;
+}
+
+@media (max-width: 400px) { .invitation-11-route .inv11-hero h1 { font-size: 49px; } }
+@media (prefers-reduced-motion: reduce) { .invitation-11-route .inv11-hero::before { display: none; } .invitation-11-route .inv11-hero__enter { animation: none; opacity: 1; transform: none; } }
