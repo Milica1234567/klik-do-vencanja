@@ -2,12 +2,6 @@ import "./PlanOfDay.css";
 
 const events = [
   {
-    time: "16:00",
-    title: "Venčanje",
-    place: "Crkva Svetog Marka",
-    note: "Tašmajdan, Beograd",
-  },
-  {
     time: "17:30",
     title: "Okupljanje gostiju",
     place: "Vila Jelena",
@@ -24,6 +18,13 @@ const events = [
     title: "Prvi ples",
     place: "Ana & Marko",
     note: "A zatim plešemo zajedno",
+  },
+
+  {
+    time: "16:00",
+    title: "Venčanje",
+    place: "Crkva Svetog Marka",
+    note: "Tašmajdan, Beograd",
   },
 ];
 

@@ -6,19 +6,19 @@
   background: var(--inv8-paper) url("../../assets/background.png") center top / auto 100% no-repeat;
 }
 
-.invitation-8-route .inv8-hero__inner { position: relative; z-index: 1; width: min(100%, 560px); }
-.invitation-8-route .inv8-hero__monogram { display: flex; align-items: center; justify-content: center; gap: 17px; margin-bottom: 49px; font-size: 15px; letter-spacing: 3px; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-hero__inner { position: relative; z-index: 1; width: min(100%, 560px); margin-inline: auto; text-align: center; }
+.invitation-8-route .inv8-hero__monogram { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 34px; font-size: 15px; letter-spacing: 3px; color: var(--inv8-olive-dark); }
 .invitation-8-route .inv8-hero__monogram i { position: relative; display: block; width: 20px; height: 27px; }
 .invitation-8-route .inv8-hero__monogram i::before,
 .invitation-8-route .inv8-hero__monogram i::after { content: ""; position: absolute; top: 5px; width: 8px; height: 17px; border: 1px solid var(--inv8-sage); border-radius: 100% 0 100% 0; }
 .invitation-8-route .inv8-hero__monogram i::before { left: 1px; transform: rotate(-44deg); }
 .invitation-8-route .inv8-hero__monogram i::after { right: 1px; transform: scaleX(-1) rotate(-44deg); }
-.invitation-8-route .inv8-hero__invitation { margin: 0 0 37px; font-size: 9px; font-weight: 500; line-height: 2.1; letter-spacing: 3.2px; text-transform: uppercase; color: rgba(76, 78, 56, 0.82); }
+.invitation-8-route .inv8-hero__invitation { margin: 0 0 27px; font-size: 9px; font-weight: 500; line-height: 1.8; letter-spacing: 3.2px; text-align: center; text-transform: uppercase; color: rgba(76, 78, 56, 0.82); }
 .invitation-8-route .inv8-hero h1 { margin: 0; display: flex; flex-direction: column; align-items: center; font-family: "EB Garamond", serif; font-weight: 400; color: var(--inv8-olive-dark); }
 .invitation-8-route .inv8-hero__name { font-size: clamp(45px, 13vw, 72px); line-height: 0.95; letter-spacing: 0.18em; text-transform: uppercase; }
-.invitation-8-route .inv8-hero__and { margin: 12px 0 7px; font-family: "Parisienne", cursive; font-size: 37px; line-height: 1; color: var(--inv8-berry); }
-.invitation-8-route .inv8-hero__date { display: block; margin-top: 38px; font-size: 13px; letter-spacing: 4px; color: var(--inv8-olive-dark); }
-.invitation-8-route .inv8-hero__place { margin: 18px 0 0; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: rgba(77, 79, 57, 0.72); }
+.invitation-8-route .inv8-hero__and { margin: 8px 0 4px; font-family: "Parisienne", cursive; font-size: 37px; line-height: 1; color: var(--inv8-berry); }
+.invitation-8-route .inv8-hero__date { display: block; margin-top: 27px; font-size: 13px; letter-spacing: 4px; text-align: center; color: var(--inv8-olive-dark); }
+.invitation-8-route .inv8-hero__place { margin: 12px 0 0; font-size: 9px; letter-spacing: 4px; text-align: center; text-transform: uppercase; color: rgba(77, 79, 57, 0.72); }
 .invitation-8-route .inv8-hero__enter { opacity: 0; transform: translateY(12px); animation: inv8-hero-enter 1.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .invitation-8-route .inv8-hero__enter--inv8-1 { animation-delay: 0.25s; }
 .invitation-8-route .inv8-hero__enter--inv8-2 { animation-delay: 0.65s; }
@@ -34,7 +34,7 @@
 
 @media (min-width: 700px) {
   .invitation-8-route .inv8-hero { background-size: 100% auto; }
-  .invitation-8-route .inv8-hero__monogram { margin-bottom: 58px; }
+  .invitation-8-route .inv8-hero__monogram { margin-bottom: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

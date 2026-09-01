@@ -4,7 +4,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-inline: 24px;
   padding-block: 110px;
+  text-align: center;
 }
 
 .invitation-7-route .inv7-invitation-intro > p {
@@ -17,7 +19,9 @@
 }
 
 .invitation-7-route .inv7-invitation-intro small {
+  display: block;
   max-width: 360px;
+  margin-inline: auto;
   font-size: 12px;
   font-style: italic;
   letter-spacing: 0.6px;

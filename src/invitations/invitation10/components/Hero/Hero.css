@@ -1,9 +1,9 @@
 .invitation-10-route .inv10-hero { min-height: 100svh; display: grid; place-items: center; padding: 65px 24px 54px; isolation: isolate; }
 .invitation-10-route .inv10-hero__texture { position: absolute; inset: -7%; z-index: -2; background: var(--inv10-ivory) url("../../assets/background.png") center / cover no-repeat; }
 .invitation-10-route .inv10-hero__veil { position: absolute; inset: 0; z-index: -1; background: rgba(253, 252, 249, 0.53); }
-.invitation-10-route .inv10-hero__content { width: min(100%, 800px); }
+.invitation-10-route .inv10-hero__content { width: min(100%, 800px); text-align: left; }
 .invitation-10-route .inv10-hero__kicker { margin: 0 0 62px; font-family: "Manrope", sans-serif; font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--inv10-taupe); }
-.invitation-10-route .inv10-hero h1 { margin: 0; display: flex; flex-direction: column; font-family: "Bodoni Moda", serif; font-weight: 400; text-transform: uppercase; }
+.invitation-10-route .inv10-hero h1 { margin: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; font-family: "Bodoni Moda", serif; font-weight: 400; text-transform: uppercase; }
 .invitation-10-route .inv10-hero__name { display: block; font-size: clamp(46px, 13.5vw, 88px); font-weight: 400; line-height: 0.98; letter-spacing: 0.1em; color: var(--inv10-taupe); }
 .invitation-10-route .inv10-hero__and { margin: 12px 0 8px; font-family: "Parisienne", cursive; font-size: 31px; line-height: 1; text-transform: lowercase; color: var(--inv10-champagne-dark); }
 .invitation-10-route .inv10-hero__date { display: block; margin-top: 55px; font-family: "Manrope", sans-serif; font-size: 10px; letter-spacing: 0.32em; color: var(--inv10-warm-gray); }
@@ -23,9 +23,11 @@
 @keyframes inv10-emboss-enter { to { opacity: 1; transform: translateY(0); color: var(--inv10-taupe); text-shadow: -1px -1px 1px rgba(255, 255, 255, 0), 1px 1px 2px rgba(130, 120, 105, 0); } }
 
 @media (min-width: 720px) {
-  .invitation-10-route .inv10-hero__name--inv10-sofija { align-self: flex-start; text-align: left; margin-left: 8%; }
-  .invitation-10-route .inv10-hero__name--inv10-aleksandar { align-self: flex-end; text-align: right; margin-right: 3%; }
+  .invitation-10-route .inv10-hero__name--inv10-sofija,
+  .invitation-10-route .inv10-hero__name--inv10-aleksandar { align-self: flex-start; margin-inline: 0; text-align: left; }
 }
-@media (max-width: 400px) { .invitation-10-route .inv10-hero__name { font-size: 43px; letter-spacing: 0.07em; } }
+@media (max-width: 719px) {
+  .invitation-10-route .inv10-hero__name { font-size: clamp(38px, 10.5vw, 50px); letter-spacing: 0.07em; }
+}
 @media (prefers-reduced-motion: reduce) { .invitation-10-route .inv10-hero__enter,
 .invitation-10-route .inv10-hero__name.inv10-hero__enter { opacity: 1; transform: none; animation: none; color: var(--inv10-taupe); text-shadow: none; } }

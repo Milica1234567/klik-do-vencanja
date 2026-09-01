@@ -1,10 +1,10 @@
-.invitation-8-route .inv8-timeline { min-height: 100svh; padding: 120px 0 145px; background: var(--inv8-paper); }
+.invitation-8-route .inv8-timeline { min-height: 84svh; padding: 88px 0 105px; background: var(--inv8-paper); }
 .invitation-8-route .inv8-timeline::after { content: ""; position: absolute; right: -115px; bottom: 5%; width: 270px; height: 420px; opacity: 0.28; background: url("../../assets/background.png") right 48% / 270px auto no-repeat; }
 .invitation-8-route .inv8-timeline header > p { margin: 0 0 13px; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--inv8-muted-gold); }
 .invitation-8-route .inv8-timeline header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(43px, 11vw, 62px); font-weight: 400; letter-spacing: 0.03em; color: var(--inv8-olive-dark); }
-.invitation-8-route .inv8-timeline__items { position: relative; width: min(100%, 450px); margin: 72px auto 0; }
+.invitation-8-route .inv8-timeline__items { position: relative; width: min(100%, 450px); margin: 48px auto 0; }
 .invitation-8-route .inv8-timeline__items::before { content: ""; position: absolute; top: 15px; bottom: 15px; left: 28px; width: 1px; background: rgba(116, 115, 76, 0.34); }
-.invitation-8-route .inv8-timeline article { position: relative; min-height: 128px; box-sizing: border-box; padding: 6px 0 34px 76px; text-align: left; }
+.invitation-8-route .inv8-timeline article { position: relative; min-height: 108px; box-sizing: border-box; padding: 6px 0 25px 76px; text-align: left; }
 .invitation-8-route .inv8-timeline article:last-child { min-height: 80px; padding-bottom: 0; }
 .invitation-8-route .inv8-timeline article time { display: block; margin-bottom: 9px; font-size: 11px; letter-spacing: 3px; color: var(--inv8-berry); }
 .invitation-8-route .inv8-timeline article h3 { margin: 0 0 7px; font-family: "EB Garamond", serif; font-size: 15px; font-weight: 500; letter-spacing: 2.2px; line-height: 1.35; text-transform: uppercase; color: var(--inv8-olive-dark); }

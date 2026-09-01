@@ -1,11 +1,11 @@
-.invitation-8-route .inv8-date { min-height: 96svh; display: flex; align-items: center; padding: 120px 0; background-color: rgba(251, 249, 243, 0.88); }
+.invitation-8-route .inv8-date { min-height: 78svh; display: flex; align-items: center; padding: 88px 0; background-color: rgba(251, 249, 243, 0.88); }
 .invitation-8-route .inv8-date::before { content: ""; position: absolute; top: -70px; left: -115px; width: 290px; height: 440px; opacity: 0.32; background: url("../../assets/background.png") left top / 290px auto no-repeat; }
-.invitation-8-route .inv8-date .inv8-content > p { margin: 0 0 48px; font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--inv8-muted-gold); }
+.invitation-8-route .inv8-date .inv8-content > p { margin: 0 0 32px; font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--inv8-muted-gold); }
 .invitation-8-route .inv8-date__composition { display: flex; flex-direction: column; align-items: center; text-transform: uppercase; color: var(--inv8-olive-dark); }
 .invitation-8-route .inv8-date__composition span { font-size: 13px; letter-spacing: 6px; }
 .invitation-8-route .inv8-date__composition strong { margin: 20px 0 13px; font-size: clamp(112px, 31vw, 170px); font-weight: 400; line-height: 0.75; letter-spacing: -0.06em; }
 .invitation-8-route .inv8-date__composition time { margin-top: 18px; font-size: 12px; letter-spacing: 5px; }
-.invitation-8-route .inv8-date .inv8-leaf-mark { margin-top: 48px; }
+.invitation-8-route .inv8-date .inv8-leaf-mark { margin-top: 32px; }
 
 @media (min-width: 700px) {
   .invitation-8-route .inv8-date::before { left: -75px; width: 360px; height: 520px; background-size: 360px auto; }

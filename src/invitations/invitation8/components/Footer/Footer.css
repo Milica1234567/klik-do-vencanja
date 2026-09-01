@@ -1,9 +1,9 @@
-.invitation-8-route .inv8-footer { position: relative; box-sizing: border-box; min-height: 88svh; display: flex; align-items: center; justify-content: center; padding: 120px 24px 135px; background: var(--inv8-paper) url("../../assets/background.png") center bottom / auto 100% no-repeat; }
-.invitation-8-route .inv8-footer__inner { position: relative; z-index: 1; }
-.invitation-8-route .inv8-footer p { margin: 0 0 39px; font-size: clamp(22px, 5.5vw, 29px); line-height: 1.55; color: var(--inv8-text); }
-.invitation-8-route .inv8-footer .inv8-leaf-mark { margin-bottom: 38px; }
+.invitation-8-route .inv8-footer { position: relative; box-sizing: border-box; min-height: 68svh; display: flex; align-items: center; justify-content: center; padding: 88px 24px 96px; background: var(--inv8-paper) url("../../assets/background.png") center bottom / auto 100% no-repeat; }
+.invitation-8-route .inv8-footer__inner { position: relative; z-index: 1; width: min(100%, 560px); margin-inline: auto; text-align: center; }
+.invitation-8-route .inv8-footer p { margin: 0 0 27px; font-size: clamp(22px, 5.5vw, 29px); line-height: 1.45; color: var(--inv8-text); }
+.invitation-8-route .inv8-footer .inv8-leaf-mark { margin-bottom: 26px; }
 .invitation-8-route .inv8-footer strong { display: block; font-family: "EB Garamond", serif; font-size: 31px; font-weight: 400; letter-spacing: 0.35em; color: var(--inv8-olive-dark); }
 .invitation-8-route .inv8-footer strong i { font-family: "Parisienne", cursive; font-size: 0.8em; font-weight: 400; letter-spacing: 0; color: var(--inv8-berry); }
-.invitation-8-route .inv8-footer time { display: block; margin-top: 21px; font-size: 9px; letter-spacing: 3.2px; color: rgba(77, 79, 57, 0.72); }
+.invitation-8-route .inv8-footer time { display: block; margin-top: 14px; font-size: 9px; font-weight: 600; letter-spacing: 3.2px; color: rgba(77, 79, 57, 0.72); }
 
 @media (min-width: 700px) { .invitation-8-route .inv8-footer { background-size: 100% auto; } }

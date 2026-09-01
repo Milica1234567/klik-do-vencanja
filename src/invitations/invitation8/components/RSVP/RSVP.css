@@ -1,8 +1,8 @@
-.invitation-8-route .inv8-rsvp { min-height: 108svh; padding: 125px 0 145px; background: var(--inv8-paper) url("../../assets/background.png") center / auto 100% no-repeat; }
+.invitation-8-route .inv8-rsvp { min-height: 90svh; padding: 92px 0 108px; background: var(--inv8-paper) url("../../assets/background.png") center / auto 100% no-repeat; }
 .invitation-8-route .inv8-rsvp::before { content: ""; position: absolute; inset: 0; background: rgba(248, 245, 236, 0.34); }
 .invitation-8-route .inv8-rsvp header p { margin: 0 0 20px; font-size: 12px; line-height: 1.75; letter-spacing: 1.3px; color: rgba(85, 83, 72, 0.76); }
 .invitation-8-route .inv8-rsvp header h2 { margin: 0; font-family: "EB Garamond", serif; font-size: clamp(39px, 10.5vw, 58px); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--inv8-olive-dark); }
-.invitation-8-route .inv8-rsvp form { display: grid; gap: 29px; width: min(100%, 470px); margin: 62px auto 0; text-align: left; }
+.invitation-8-route .inv8-rsvp form { display: grid; gap: 22px; width: min(100%, 470px); margin: 43px auto 0; text-align: left; }
 .invitation-8-route .inv8-rsvp__field { display: grid; gap: 7px; }
 .invitation-8-route .inv8-rsvp__field > span,
 .invitation-8-route .inv8-rsvp legend { font-size: 9px; font-weight: 500; letter-spacing: 2.1px; text-transform: uppercase; color: rgba(82, 82, 57, 0.82); }
@@ -32,6 +32,6 @@
 
 @media (min-width: 700px) { .invitation-8-route .inv8-rsvp { background-size: 100% auto; } }
 @media (max-width: 430px) {
-  .invitation-8-route .inv8-rsvp { padding-block: 110px 125px; }
+  .invitation-8-route .inv8-rsvp { padding-block: 82px 96px; }
   .invitation-8-route .inv8-rsvp__choices { flex-direction: column; gap: 6px; }
 }
