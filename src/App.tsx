@@ -10,6 +10,9 @@ import TemplatePreviewPage from "./pages/TemplatePreviewPage";
 import Invitation1Page from "./invitations/invitation1/Invitation1Page";
 import Invitation2Page from "./invitations/invitation2/Invitation2Page";
 import Invitation3Page from "./invitations/invitation3/Invitation3Page";
+import Invitation4Page from "./invitations/invitation4/Invitation4Page";
+import Invitation5Page from "./invitations/invitation5/Invitation5Page";
+import Invitation6Page from "./invitations/invitation6/Invitation6Page";
 
 /** Scroll to hash targets after client-side navigation (e.g. /#pricing). */
 function ScrollToHash() {
@@ -46,6 +49,9 @@ function App() {
         <Route path="/p/invitation-1" element={<Invitation1Page />} />
         <Route path="/p/invitation-2" element={<Invitation2Page />} />
         <Route path="/p/invitation-3" element={<Invitation3Page />} />
+        <Route path="/p/invitation-4" element={<Invitation4Page />} />
+        <Route path="/p/invitation-5" element={<Invitation5Page />} />
+        <Route path="/p/invitation-6" element={<Invitation6Page />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
