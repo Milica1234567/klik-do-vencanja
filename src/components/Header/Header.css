@@ -6,7 +6,7 @@
   --z-burger: 40;
   position: relative;
   min-height: 80vh;
-  background-image: url("../../assets/header.png");
+  background-image: url("../../assets/pozadina.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -149,7 +149,8 @@ body.menu-open {
   .header:not(.header--page) {
     min-height: 100vh;
     min-height: 100svh;
-    background-position: 46% center;
+    background-image: url("../../assets/pozadina-mobile.png");
+    background-position: center;
     clip-path: polygon(0 0, 100% 0, 100% 92%, 64% 100%, 36% 100%, 0 92%);
   }
 

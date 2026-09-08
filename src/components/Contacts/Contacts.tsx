@@ -133,10 +133,17 @@ C12 280 8 320 9 320
             <ul>
               <li>
                 <div>
-                  <img src={Instagram} alt="Instagram" />
+                  <a
+                    href="https://www.instagram.com/klikdovencanja/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram — @klikdovencanja"
+                  >
+                    <img src={Instagram} alt="Instagram" />
+                  </a>
                 </div>
                 <a
-                  href="https://www.instagram.com"
+                  href="https://www.instagram.com/klikdovencanja/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

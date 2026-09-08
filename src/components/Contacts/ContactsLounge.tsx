@@ -82,7 +82,7 @@ function IconEmail() {
 const socials: { label: string; href: string; icon: ReactNode }[] = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com",
+    href: "https://www.instagram.com/klikdovencanja/",
     icon: <IconInstagram />,
   },
   {
