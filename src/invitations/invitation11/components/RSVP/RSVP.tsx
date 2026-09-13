@@ -13,7 +13,7 @@ function RSVP() {
       <div className="inv11-content">
         <header data-inv11-reveal><p className="inv11-kicker">Vaš odgovor</p><h2 id="inv11-rsvp-title">Potvrda dolaska</h2></header>
         {submitted ? (
-          <div className="inv11-rsvp__success" role="status"><span>A · N</span><h3>Hvala vam</h3><p>Vaš odgovor je zabeležen.</p><button type="button" onClick={() => setSubmitted(false)}>Izmeni odgovor</button></div>
+          <div className="inv11-rsvp__success" role="status"><span>M · N</span><h3>Hvala vam</h3><p>Vaš odgovor je zabeležen.</p><button type="button" onClick={() => setSubmitted(false)}>Izmeni odgovor</button></div>
         ) : (
           <form onSubmit={handleSubmit} data-inv11-reveal>
             <label className="inv11-rsvp__field"><span>Ime i prezime</span><input name="name" type="text" autoComplete="name" required /></label>

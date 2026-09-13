@@ -5,13 +5,13 @@
   --inv10-soft-white: #fdfcf9;
   --inv10-ivory: #f8f6f1;
   --inv10-warm-ivory: #f3f0e9;
-  --inv10-taupe: #81796d;
-  --inv10-taupe-light: #a49d92;
+  --inv10-taupe: #675f56;
+  --inv10-taupe-light: #8f877d;
   --inv10-champagne: #b8aa8c;
-  --inv10-champagne-dark: #98876a;
-  --inv10-warm-gray: #77726b;
-  --inv10-text: #5d5852;
-  --inv10-text-soft: #8d8780;
+  --inv10-champagne-dark: #806f52;
+  --inv10-warm-gray: #625d57;
+  --inv10-text: #49443f;
+  --inv10-text-soft: #6d6761;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -22,7 +22,7 @@
 
 .invitation-10-route .invitation10-editorial section { position: relative; box-sizing: border-box; width: 100%; }
 .invitation-10-route .inv10-content { position: relative; z-index: 2; width: min(calc(100% - 48px), 760px); margin-inline: auto; }
-.invitation-10-route .inv10-kicker { font-family: "Manrope", sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.34em; text-transform: uppercase; color: var(--inv10-taupe); }
+.invitation-10-route .inv10-kicker { font-family: "Manrope", sans-serif; font-size: clamp(10px, 2.3vw, 12px); font-weight: 500; letter-spacing: 0.31em; text-transform: uppercase; color: var(--inv10-taupe); }
 
 .invitation-10-route .invitation10-editorial [data-inv10-reveal] {
   opacity: 0;
