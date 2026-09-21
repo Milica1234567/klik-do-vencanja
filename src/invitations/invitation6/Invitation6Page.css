@@ -1,0 +1,6 @@
+.invitation-6-route {
+  width: 100%;
+  min-height: 100svh;
+  overflow-x: clip;
+  isolation: isolate;
+}

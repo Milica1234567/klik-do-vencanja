@@ -76,19 +76,3 @@
   text-align: right;
 }
 
-.quote-line {
-  color: var(--canyon-clay);
-}
-
-.quote-line path {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-
-  animation: drawLine 3s ease forwards;
-}
-
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
-}

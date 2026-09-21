@@ -1,0 +1,14 @@
+.invitation-11-route .inv11-details { min-height: 100svh; padding: 120px 0 145px; background: var(--inv11-wine); }
+.invitation-11-route .inv11-details::before { content: ""; position: absolute; inset: 0; opacity: 0.25; background: url("../../assets/background.png") center / cover no-repeat; }
+.invitation-11-route .inv11-details header { text-align: left; }
+.invitation-11-route .inv11-details header .inv11-kicker { margin: 0 0 19px; color: var(--inv11-blush); }
+.invitation-11-route .inv11-details h2 { margin: 0; font-family: var(--inv11-font-display); font-size: clamp(38px, 9vw, 60px); font-weight: 400; color: var(--inv11-ivory); }
+.invitation-11-route .inv11-details__list { margin-top: 75px; border-bottom: 1px solid rgba(247, 240, 228, 0.18); }
+.invitation-11-route .inv11-details article { display: grid; grid-template-columns: 83px 1fr; gap: 22px; align-items: center; padding: 28px 0; border-top: 1px solid rgba(247, 240, 228, 0.18); text-align: left; }
+.invitation-11-route .inv11-details time { display: flex; align-items: flex-start; color: var(--inv11-cream); }
+.invitation-11-route .inv11-details time strong { font-family: var(--inv11-font-display); font-size: 52px; font-weight: 400; line-height: 0.8; }
+.invitation-11-route .inv11-details time span { margin: 1px 0 0 5px; font-family: var(--inv11-font-body); font-size: 8px; letter-spacing: 0.1em; }
+.invitation-11-route .inv11-details h3 { margin: 0 0 8px; font-family: var(--inv11-font-body); font-size: 9px; font-weight: 300; letter-spacing: 0.24em; text-transform: uppercase; color: var(--inv11-ivory); }
+.invitation-11-route .inv11-details article p { margin: 0; font-size: 16px; font-style: italic; color: rgba(247, 240, 228, 0.65); }
+
+@media (min-width: 650px) { .invitation-11-route .inv11-details article { grid-template-columns: 140px 1fr; padding: 35px 0; } .invitation-11-route .inv11-details time strong { font-size: 66px; } }

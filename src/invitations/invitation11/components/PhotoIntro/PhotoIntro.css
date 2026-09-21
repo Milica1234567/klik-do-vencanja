@@ -1,0 +1,55 @@
+.invitation-11-route .inv11-photo-intro {
+  height: 72svh;
+  min-height: 520px;
+  overflow: hidden;
+  background: var(--inv11-wine-dark);
+}
+.invitation-11-route .inv11-photo-intro img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 51% center;
+  filter: saturate(0.72) contrast(1.04);
+}
+.invitation-11-route .inv11-photo-intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 13, 10, 0.18);
+  pointer-events: none;
+}
+.invitation-11-route .inv11-photo-intro blockquote {
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  right: 24px;
+  bottom: 11%;
+  max-width: 470px;
+  margin: 0;
+  font-family: var(--inv11-font-display);
+  font-size: clamp(25px, 7vw, 43px);
+  font-style: italic;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--inv11-ivory);
+  text-shadow: 0 2px 18px rgba(38, 8, 8, 0.38);
+}
+
+@media (min-width: 700px) {
+  .invitation-11-route .inv11-photo-intro {
+    height: 78svh;
+    max-height: 760px;
+  }
+
+  .invitation-11-route .inv11-photo-intro blockquote {
+    left: 9%;
+    bottom: 13%;
+  }
+}
+
+@media (max-height: 700px) {
+  .invitation-11-route .inv11-photo-intro {
+    min-height: 430px;
+  }
+}

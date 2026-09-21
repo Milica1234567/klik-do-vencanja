@@ -1,0 +1,221 @@
+.invitation-3-route .inv3-ll-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.75rem, 2.5vh, 1.25rem);
+  min-height: 100dvh;
+  padding:
+    clamp(1rem, 4vh, 2rem)
+    clamp(0.75rem, 3vw, 1.5rem)
+    calc(clamp(1.25rem, 4vh, 2.25rem) + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--inv-bg, #fcfaf2);
+  transition: background-color 1s ease;
+}
+
+.invitation-3-route .inv3-ll-gate.is-revealing {
+  background: transparent;
+  pointer-events: none;
+}
+
+.invitation-3-route .inv3-ll-gate__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* True viewport center — no Framer vw / translate hacks */
+.invitation-3-route .inv3-ll-gate__anchor {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 2;
+  width: clamp(17rem, 72vw, 28rem);
+  transform: translate(-50%, -50%);
+}
+
+.invitation-3-route .inv3-ll-gate__sway {
+  width: 100%;
+  will-change: transform;
+}
+
+.invitation-3-route .inv3-ll-gate__figure {
+  width: 100%;
+  will-change: transform, opacity;
+  background: transparent;
+}
+
+.invitation-3-route .inv3-ll-gate__monogram-wrap {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-inline: clamp(0.75rem, 3vw, 1.5rem);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.invitation-3-route .inv3-ll-gate__monogram {
+  display: block;
+  width: clamp(6.75rem, 40vw, 11rem);
+  aspect-ratio: 331 / 425;
+  background-color: var(--inv-red, #9a1b1b);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.invitation-3-route .inv3-ll-gate__video-shell {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  background-color: var(--inv-bg, #fcfaf2);
+}
+
+.invitation-3-route .inv3-ll-gate__video-shell--blend {
+  mix-blend-mode: multiply;
+  background-color: var(--inv-bg, #fcfaf2);
+}
+
+.invitation-3-route .inv3-ll-gate__video-shell--alpha {
+  background: transparent;
+}
+
+.invitation-3-route .inv3-ll-gate__cta {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 13.5rem);
+  max-width: min(100%, 20rem);
+  min-height: 3.15rem;
+  padding: 0.72rem 2.4rem;
+  border: 1px solid var(--inv-red, #9a1b1b);
+  border-radius: 2px;
+  background: var(--inv-red, #9a1b1b);
+  color: #fff;
+  font-family: var(--inv-font-names, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1rem, 4.1vw, 1.12rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: none;
+  cursor: pointer;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.invitation-3-route .inv3-ll-gate__cta:hover {
+  background: #801616;
+  border-color: #801616;
+}
+
+.invitation-3-route .inv3-ll-gate__cta:focus-visible {
+  outline: 2px solid var(--inv-red, #9a1b1b);
+  outline-offset: 3px;
+}
+
+.invitation-3-route .invitation3-leto-ljubavi--gated .invitation3-shell__canvas {
+  min-height: 100dvh;
+}
+
+.invitation-3-route .invitation3-leto-ljubavi--gated .inv3-ll {
+  visibility: hidden;
+}
+
+.invitation-3-route .invitation3-leto-ljubavi--invite .inv3-ll {
+  visibility: visible;
+}
+
+.invitation-3-route .inv3-ll-gate__video {
+  display: block;
+  width: 100%;
+  min-height: 8rem;
+  height: auto;
+  background-color: var(--inv-bg, #fcfaf2);
+  object-fit: contain;
+  object-position: center 38%;
+  pointer-events: none;
+  user-select: none;
+  vertical-align: top;
+}
+
+@media (max-width: 719px) {
+  .invitation-3-route .inv3-ll-gate__stage {
+    background-color: var(--inv-bg, #fcfaf2);
+  }
+
+  .invitation-3-route .inv3-ll-gate__anchor {
+    top: 50%;
+    left: 50%;
+    width: min(92vw, 24rem);
+    transform: translate(-50%, -50%);
+  }
+
+  .invitation-3-route .inv3-ll-gate__figure {
+    background-color: var(--inv-bg, #fcfaf2);
+  }
+
+  .invitation-3-route .inv3-ll-gate__video-shell {
+    overflow: hidden;
+    background-color: var(--inv-bg, #fcfaf2);
+  }
+
+  .invitation-3-route .inv3-ll-gate__video-shell--blend {
+    mix-blend-mode: multiply;
+  }
+
+  .invitation-3-route .inv3-ll-gate__video {
+    width: 118%;
+    max-width: none;
+    /* Couple sits right in the clip — bias frame so they land in the middle */
+    margin-left: -14%;
+    margin-right: 0;
+    background-color: var(--inv-bg, #fcfaf2);
+    object-fit: cover;
+    object-position: 62% 40%;
+  }
+}
+
+@media (min-width: 720px) {
+  .invitation-3-route .inv3-ll-gate__anchor {
+    width: clamp(22rem, 50vw, 34rem);
+    top: 54%;
+  }
+
+  .invitation-3-route .inv3-ll-gate__monogram-wrap {
+    padding-top: max(0.25rem, env(safe-area-inset-top, 0px));
+  }
+
+  .invitation-3-route .inv3-ll-gate__monogram {
+    width: clamp(7rem, 22vw, 11.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-3-route .inv3-ll-gate__figure {
+    transform: none !important;
+  }
+}

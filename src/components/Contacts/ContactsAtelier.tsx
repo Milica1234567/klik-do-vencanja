@@ -88,7 +88,7 @@ const channels: {
 }[] = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com",
+    href: "https://www.instagram.com/klikdovencanja/",
     handle: "@klikdovencanja",
     icon: <IconInstagram />,
   },

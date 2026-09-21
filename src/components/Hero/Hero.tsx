@@ -10,22 +10,6 @@ function Hero() {
             počinje <span style={{ fontStyle: "italic" }}>pozivnicom</span>.
           </span>
         </p>
-        <svg
-          className="quote-line"
-          width="340"
-          height="18"
-          viewBox="0 -5 340 18"
-        >
-          <path
-            d="M-100 10 Q90 -15 335 10"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            pathLength="100"
-          />
-        </svg>
-        
       </div>
     </section>
   );

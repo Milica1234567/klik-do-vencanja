@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap");
+
+.invitation-11-route .invitation11-wine {
+  --inv11-wine: #541619;
+  --inv11-wine-light: #651e22;
+  --inv11-wine-dark: #3e0e12;
+  --inv11-paper: #f3ede2;
+  --inv11-ivory: #f7f0e4;
+  --inv11-cream: #e9ddcf;
+  --inv11-blush: #b98a85;
+  --inv11-olive: #79765f;
+  --inv11-ink: #4b403b;
+  --inv11-font-display: "Bodoni Moda", serif;
+  --inv11-font-body: "Manrope", sans-serif;
+  --inv11-font-script: "Parisienne", cursive;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--inv11-wine-dark);
+  color: var(--inv11-ivory);
+  font-family: var(--inv11-font-body);
+}
+
+.invitation-11-route .invitation11-wine section { position: relative; box-sizing: border-box; width: 100%; }
+.invitation-11-route .inv11-content { position: relative; z-index: 2; width: min(calc(100% - 48px), 720px); margin-inline: auto; }
+.invitation-11-route .inv11-kicker { font-family: var(--inv11-font-body); font-size: 8px; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; }
+
+.invitation-11-route .invitation11-wine [data-inv11-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1.25s cubic-bezier(0.22, 1, 0.36, 1), transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--inv11-delay, 0s);
+}
+
+.invitation-11-route .invitation11-wine [data-inv11-reveal].inv11-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-11-route .invitation11-wine [data-inv11-reveal] { opacity: 1; transform: none; transition: none; }
+}
