@@ -8,6 +8,11 @@ import EnvelopeRomance, {
   ENVELOPE_ROMANCE_ID,
   envelopeRomanceMeta,
 } from "./envelope-romance";
+import LetoLjubavi, { LETO_LJUBAVI_ID, letoLjubaviMeta } from "./leto-ljubavi";
+import PearlElegance, {
+  PEARL_ELEGANCE_ID,
+  pearlEleganceMeta,
+} from "./pearl-elegance";
 import PearlWhite, { PEARL_WHITE_ID, pearlWhiteMeta } from "./pearl-white";
 import RoseBlush, { ROSE_BLUSH_ID, roseBlushMeta } from "./rose-blush";
 import SoftFloral, { SOFT_FLORAL_ID, softFloralMeta } from "./soft-floral";
@@ -36,6 +41,22 @@ export const invitationTemplateRegistry: Record<
       sections: [...envelopeRomanceMeta.sections],
     },
     Component: EnvelopeRomance,
+  },
+  [LETO_LJUBAVI_ID]: {
+    meta: {
+      id: letoLjubaviMeta.id,
+      title: letoLjubaviMeta.title,
+      sections: [...letoLjubaviMeta.sections],
+    },
+    Component: LetoLjubavi,
+  },
+  [PEARL_ELEGANCE_ID]: {
+    meta: {
+      id: pearlEleganceMeta.id,
+      title: pearlEleganceMeta.title,
+      sections: [...pearlEleganceMeta.sections],
+    },
+    Component: PearlElegance,
   },
   [SOFT_FLORAL_ID]: {
     meta: {
@@ -89,6 +110,8 @@ export type {
 export { AssetLayer, LayerStage, TextLayer } from "./shared/layers";
 export { invitationBreakpoints, invitationMinTapPx } from "./shared/viewport";
 export { EnvelopeRomance, ENVELOPE_ROMANCE_ID };
+export { LetoLjubavi, LETO_LJUBAVI_ID };
+export { PearlElegance, PEARL_ELEGANCE_ID };
 export { SoftFloral, SOFT_FLORAL_ID };
 export { DustyBlueSeal, DUSTY_BLUE_SEAL_ID };
 export { RoseBlush, ROSE_BLUSH_ID };

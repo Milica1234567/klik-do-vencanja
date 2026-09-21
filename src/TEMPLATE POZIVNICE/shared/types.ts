@@ -47,12 +47,19 @@ export type InvitationHotel = {
   name: string;
   detailUrl?: string;
   ctaLabel?: string;
+  /** Google Maps place / search URL with pin */
+  mapUrl?: string;
 };
 
 export type InvitationMusic = {
   title: string;
+  artist?: string;
   /** Audio URL when ready; player UI can exist before source is set */
   src?: string;
+  /** YouTube video id for embedded player */
+  youtubeId?: string;
+  /** Skip intro — start at this second (lyrics / vocal entry) */
+  startSeconds?: number;
 };
 
 /**

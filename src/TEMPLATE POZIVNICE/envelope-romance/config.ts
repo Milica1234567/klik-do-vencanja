@@ -1,7 +1,6 @@
 /**
  * Design config for Envelope Romance.
- * Canva assets will plug into `assets` + `opener.layers` as separate files.
- * Until then the opener is reserved; Hero shows photo + text only.
+ * Starts on hero — opener animation removed.
  */
 
 import type { InvitationTemplateConfig } from "../shared/types";
@@ -65,13 +64,11 @@ export const envelopeRomanceConfig: InvitationTemplateConfig = {
   sections: [
     { id: "hero", component: "HeroSection" },
     { id: "story", component: "StorySection" },
-    { id: "music", component: "MusicSection" },
     { id: "parents", component: "ParentsSection" },
     { id: "countdown", component: "CountdownSection" },
     { id: "venue", component: "VenueSection" },
     { id: "timeline", component: "TimelineSection" },
     { id: "dress-code", component: "DressCodeSection" },
-    { id: "gifts", component: "GiftsSection" },
     { id: "hotels", component: "HotelsSection" },
     { id: "rsvp", component: "RsvpSection" },
     { id: "closing", component: "ClosingSection" },

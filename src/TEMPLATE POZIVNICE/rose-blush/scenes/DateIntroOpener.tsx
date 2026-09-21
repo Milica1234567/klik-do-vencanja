@@ -2,6 +2,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 import { invitationEase } from "../../shared/motion";
+import { useIsDesktopInvitation } from "../../shared/useIsDesktopInvitation";
+import { invitationBreakpoints } from "../../shared/viewport";
 
 const EMPTY_HOLD = 1.2;
 const DATE_STEP = 0.62;
@@ -40,6 +42,7 @@ function DateIntroOpener({
   onComplete,
 }: DateIntroOpenerProps) {
   const reduceMotion = useReducedMotion();
+  const isDesktop = useIsDesktopInvitation(invitationBreakpoints.md);
   const [leaving, setLeaving] = useState(false);
   const stack = useMemo(() => stackFromIso(eventDateIso), [eventDateIso]);
   const initials = [initialOne, "|", initialTwo] as const;
@@ -86,14 +89,18 @@ function DateIntroOpener({
       }}
       aria-label="Otvorite pozivnicu"
     >
-      <div className="qb-intro__grid">
-        <div className="qb-intro__date" aria-hidden="true">
+      <div className={`qb-intro__grid${isDesktop ? "" : " qb-intro__grid--mobile"}`}>
+        <div className={`qb-intro__date${isDesktop ? "" : " qb-intro__date--mobile"}`} aria-hidden="true">
           {stack.map((part, index) => (
             <motion.span
               key={`${part}-${index}`}
               className={`qb-intro__num qb-intro__num--${index}`}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={
+                isDesktop
+                  ? { opacity: 0, y: 18 }
+                  : { opacity: 0, x: -28 }
+              }
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{
                 duration: 0.7,
                 delay: dateStart + index * DATE_STEP,
@@ -105,29 +112,7 @@ function DateIntroOpener({
           ))}
         </div>
 
-        <p className="qb-intro__initials" aria-hidden="true">
-          {initials.map((token, index) => (
-            <motion.span
-              key={`${token}-${index}`}
-              className={
-                token === "|"
-                  ? "qb-intro__pipe"
-                  : "qb-intro__letter"
-              }
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.45,
-                delay: initialsStart + index * INITIAL_STEP,
-                ease: invitationEase,
-              }}
-            >
-              {token}
-            </motion.span>
-          ))}
-        </p>
-
-        <p className="qb-intro__script">
+        <p className={`qb-intro__script${isDesktop ? "" : " qb-intro__script--mobile"}`}>
           {INVITE_LINES.map((line, lineIndex) => {
             const lineDelay =
               writingStart +
@@ -156,6 +141,32 @@ function DateIntroOpener({
               </span>
             );
           })}
+        </p>
+
+        <p className={`qb-intro__initials${isDesktop ? "" : " qb-intro__initials--mobile"}`} aria-hidden="true">
+          {initials.map((token, index) => (
+            <motion.span
+              key={`${token}-${index}`}
+              className={
+                token === "|"
+                  ? "qb-intro__pipe"
+                  : "qb-intro__letter"
+              }
+              initial={
+                isDesktop
+                  ? { opacity: 0, y: 8 }
+                  : { opacity: 0, y: 16 }
+              }
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                delay: initialsStart + index * INITIAL_STEP,
+                ease: invitationEase,
+              }}
+            >
+              {token}
+            </motion.span>
+          ))}
         </p>
       </div>
     </motion.button>
