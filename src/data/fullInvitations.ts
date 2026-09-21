@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import RoseBlush from "../TEMPLATE POZIVNICE/rose-blush";
 import AnaIMarkoInvitation from "../pages/invitations/full/AnaIMarkoInvitation";
 
 /**
@@ -17,6 +18,10 @@ export const fullInvitationRegistry: Record<
   "ana-i-marko": {
     title: "Ana & Marko",
     Component: AnaIMarkoInvitation,
+  },
+  "rose-blush": {
+    title: "Jelena i Stefan",
+    Component: RoseBlush,
   },
 };
 

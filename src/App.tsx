@@ -6,7 +6,9 @@ import HomePage from "./pages/HomePage";
 import TemplateDetailPage from "./pages/TemplateDetailPage";
 import FullInvitationPage from "./pages/FullInvitationPage";
 import OrderPage from "./pages/OrderPage";
-import TemplatePreviewPage from "./pages/TemplatePreviewPage";
+import TemplatePreviewPage, {
+  TemplatePreviewIndexPage,
+} from "./pages/TemplatePreviewPage";
 import Invitation1Page from "./invitations/invitation1/Invitation1Page";
 import Invitation2Page from "./invitations/invitation2/Invitation2Page";
 import Invitation3Page from "./invitations/invitation3/Invitation3Page";
@@ -50,6 +52,7 @@ function App() {
         <Route path="/pozivnice/:slug" element={<TemplateDetailPage />} />
         <Route path="/pozivnice/:slug/puna" element={<FullInvitationPage />} />
         <Route path="/poruci/:slug" element={<OrderPage />} />
+        <Route path="/preview" element={<TemplatePreviewIndexPage />} />
         <Route path="/preview/:templateId" element={<TemplatePreviewPage />} />
         <Route path="/p/invitation-1" element={<Invitation1Page />} />
         <Route path="/p/invitation-2" element={<Invitation2Page />} />

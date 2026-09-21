@@ -1,7 +1,7 @@
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, type ReactNode } from "react";
 
-import { invitationTransition, slideVariants } from "./motion";
+import { slideInTransition, slideVariants } from "./motion";
 import "./SlideIn.css";
 
 type SlideInProps = {
@@ -11,37 +11,52 @@ type SlideInProps = {
   className?: string;
   delay?: number;
   amount?: number;
+  /** Re-animate when scrolling back into view (Leto-style). */
+  once?: boolean;
+  /** When false, blocks entrance until the opener has finished. */
+  active?: boolean;
 };
 
 /**
- * Scroll-triggered horizontal entrance for invitation copy/media.
- * Always full-width so content stays visually centered after the slide.
+ * Dramatic horizontal entrance from fully off-screen.
+ *
+ * Intersection is measured on a static wrapper so a large `x` transform
+ * cannot keep the element forever out of view (which would leave the page blank).
  */
 function SlideIn({
   children,
   from,
   className = "",
   delay = 0,
-  amount = 0.28,
+  amount = 0.22,
+  once = true,
+  active = true,
 }: SlideInProps) {
   const reduceMotion = useReducedMotion();
-  const classes = `invitation-slide-in ${className}`.trim();
+  const anchorRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(anchorRef, { amount, once, margin: "0px 0px -6% 0px" });
+  const classes = className
+    ? `invitation-slide-in__motion ${className}`
+    : "invitation-slide-in__motion";
 
   if (reduceMotion) {
-    return <div className={classes}>{children}</div>;
+    return (
+      <div className={`invitation-slide-in ${className}`.trim()}>{children}</div>
+    );
   }
 
   return (
-    <motion.div
-      className={classes}
-      variants={slideVariants(from)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ amount, once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ ...invitationTransition, delay }}
-    >
-      {children}
-    </motion.div>
+    <div ref={anchorRef} className="invitation-slide-in">
+      <motion.div
+        className={classes}
+        variants={slideVariants(from)}
+        initial="hidden"
+        animate={active && inView ? "visible" : "hidden"}
+        transition={{ ...slideInTransition, delay }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
 

@@ -6,8 +6,14 @@ export const invitationEase: [number, number, number, number] = [
 ];
 
 export const invitationTransition: Transition = {
-  duration: 0.9,
+  duration: 1.05,
   ease: invitationEase,
+};
+
+/** Stronger entrance for desktop / ceremonial beats */
+export const slideInTransition: Transition = {
+  duration: 1.25,
+  ease: [0.16, 1, 0.3, 1],
 };
 
 /**
@@ -37,18 +43,20 @@ export const revealScale: Variants = {
   exit: { opacity: 0, scale: 0.98 },
 };
 
-/** Text enters from the right edge of the viewport. */
+/**
+ * Full-viewport slide-ins — content flies in from off-screen.
+ * Measured against a static wrapper (see SlideIn) so IO still fires.
+ */
 export const revealFromRight: Variants = {
-  hidden: { opacity: 0, x: 36 },
+  hidden: { opacity: 0, x: "70vw" },
   visible: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 24 },
+  exit: { opacity: 0, x: "30vw" },
 };
 
-/** Text enters from the left edge of the viewport. */
 export const revealFromLeft: Variants = {
-  hidden: { opacity: 0, x: -36 },
+  hidden: { opacity: 0, x: "-70vw" },
   visible: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -24 },
+  exit: { opacity: 0, x: "-30vw" },
 };
 
 export function slideVariants(from: "left" | "right"): Variants {

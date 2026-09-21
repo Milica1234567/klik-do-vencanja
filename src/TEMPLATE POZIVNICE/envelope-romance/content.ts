@@ -1,8 +1,8 @@
 import type { InvitationContent } from "../shared/types";
-import couplePlaceholder from "./assets/couple-hero-placeholder.png";
+import couplePlaceholder from "./assets/couple-hero-placeholder.jpg";
 import inviteClosing from "./assets/invite-closing.jpg";
-import inviteFloral from "./assets/invite-floral.jpg";
-import inviteStory from "./assets/invite-story.jpg";
+import decoFloral from "./assets/deco-floral-watercolor.png";
+import decoRingsVeil from "./assets/deco-rings-veil.png";
 import inviteVenue from "./assets/invite-venue.jpg";
 
 /**
@@ -11,40 +11,40 @@ import inviteVenue from "./assets/invite-venue.jpg";
  */
 export const envelopeRomanceDemoContent: InvitationContent = {
   couple: {
-    partnerOne: "Ana",
-    partnerTwo: "Marko",
+    partnerOne: "Teodora",
+    partnerTwo: "Stefan",
     joiner: "&",
   },
   eventDateIso: "2026-09-12T17:00:00",
   eventDateLabel: "12. 09. 2026.",
   heroImage: {
     src: couplePlaceholder,
-    alt: "Ana i Marko",
+    alt: "Teodora i Stefan u prirodi",
   },
-  storyImage: {
-    src: inviteStory,
-    alt: "Ana i Marko u bašti",
-  },
+  storyImage: undefined,
   closingImage: {
     src: inviteClosing,
-    alt: "Venčano prstenje i cveće",
+    alt: "Teodora i Stefan",
   },
   quote:
-    "Ljubav je strpljiva, ljubav je dobrostiva. Sve veruje, svemu se nada, sve trpi.",
-  monogram: "A | M",
-  announcement: "Venčavamo se",
-  parentsNote:
-    "Uz blagoslov naših porodica, sa radošću vas pozivamo da budete deo našeg dana.",
+    "Sa velikom radošću vas pozivamo na naše venčanje. Biće nam čast i radost da taj dan proživimo zajedno sa vama, okruženi ljubavlju, smehom i onima koji nam najviše znače.",
+  monogram: "T | S",
+  announcement: undefined,
+  parentsNote: "Dve porodice. Jedna ljubav.",
   music: {
     title: "Perfect",
-    src: undefined,
+    artist: "Ed Sheeran",
+    youtubeId: "2Vv-BfVoq4g",
+    /** Skip instrumental intro — lyrics start ~0:20 */
+    startSeconds: 20,
   },
   venue: {
     title: "Svečanost",
     timeLabel: "17:00",
-    placeName: "Vila Bella",
-    address: "Avala, Beograd",
-    mapUrl: "https://maps.google.com",
+    placeName: "Sala Garden",
+    address: "Surčin, Beograd",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=Sala+Garden+Surcin+Beograd",
     mapCtaLabel: "Pogledaj lokaciju",
   },
   timeline: [
@@ -52,43 +52,37 @@ export const envelopeRomanceDemoContent: InvitationContent = {
       id: "gather",
       time: "15:00",
       title: "Okupljanje",
-      description: "Dobrodošlica uz osveženje",
     },
     {
       id: "ceremony",
       time: "17:00",
       title: "Ceremonija",
-      description: "Razmena zaveta u bašti",
     },
     {
       id: "toast",
       time: "18:30",
       title: "Zdravica",
-      description: "Čaša u čast ljubavi",
     },
     {
       id: "dinner",
       time: "19:30",
       title: "Večera",
-      description: "Svečana trpeza",
     },
     {
       id: "dance",
       time: "21:30",
       title: "Prvi ples",
-      description: "Naša pesma",
     },
     {
       id: "party",
       time: "22:30",
       title: "Proslava",
-      description: "Muzika do zore",
     },
   ],
   dressCode: {
     title: "Dress code",
-    label: "Svečano",
-    note: "Molimo vas da izbegavate belu boju.",
+    label: "Udobne cipele",
+    note: "i dobro raspoloženje",
   },
   gifts: {
     title: "Pokloni",
@@ -100,26 +94,32 @@ export const envelopeRomanceDemoContent: InvitationContent = {
       {
         id: "hotel-1",
         name: "Hotel Avala",
-        detailUrl: "#",
-        ctaLabel: "Više informacija",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Hotel+Avala+Belgrade",
+        detailUrl:
+          "https://www.google.com/maps/search/?api=1&query=Hotel+Avala+Belgrade",
+        ctaLabel: "Prikaži na mapi",
       },
       {
         id: "hotel-2",
-        name: "Boutique Residence",
-        detailUrl: "#",
-        ctaLabel: "Više informacija",
+        name: "Crowne Plaza Belgrade",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Crowne+Plaza+Belgrade",
+        detailUrl:
+          "https://www.google.com/maps/search/?api=1&query=Crowne+Plaza+Belgrade",
+        ctaLabel: "Prikaži na mapi",
       },
     ],
   },
   rsvp: {
     title: "Potvrdite dolazak",
     deadlineLabel: "do 1. avgusta 2026.",
-    ctaLabel: "Potvrdi ovde",
-    href: "#",
+    ctaLabel: "Pošalji potvrdu",
   },
   closingMessage: "Jedva čekamo da podelimo ovaj dan sa vama",
 };
 
-/** Decorative floral used across sections */
-export const envelopeRomanceFloral = inviteFloral;
+/** Decorative assets */
+export const envelopeRomanceFloral = decoFloral;
+export const envelopeRomanceParentsImage = decoRingsVeil;
 export const envelopeRomanceVenueImage = inviteVenue;
