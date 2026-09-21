@@ -4,6 +4,7 @@ import beigePinkWedding from "../assets/invitations/beige-pink-compresed.mp4";
 import beigePinkPoster from "../assets/invitations/beige-pink-poster-sm.jpg";
 import whiteGreenWedding from "../assets/invitations/white-green-elegant-compresed.mp4";
 import whiteGreenPoster from "../assets/invitations/white-green-poster-sm.jpg";
+import blushPhoto from "../TEMPLATE POZIVNICE/rose-blush/assets/photo-1.png";
 
 export const invitationTemplates: InvitationTemplate[] = [
   {
@@ -37,6 +38,22 @@ export const invitationTemplates: InvitationTemplate[] = [
     shortDescription:
       "Čista bela i sage zelenilo, romantičan, savremen ritam za baštanske i boho ceremonije.",
     // fullInvitationId added when this template’s full page is ready
+  },
+  {
+    id: "rose-blush",
+    slug: "rose-blush",
+    title: "Blush Wedding",
+    category: "wedding",
+    media: {
+      type: "image",
+      src: blushPhoto,
+      alt: "Jelena i Stefan — venčana pozivnica",
+    },
+    accentColor: "#c45c63",
+    priceLabel: "Od 150 €",
+    shortDescription:
+      "Nježna blush pozivnica za venčanje, sa lebdećim karticama, polaroidima i RSVP-om.",
+    fullInvitationId: "rose-blush",
   },
 ];
 
