@@ -1,3 +1,4 @@
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import InvitationShell from "../shared/InvitationShell";
@@ -9,12 +10,12 @@ import InviteAmbientMusic, {
   type InviteAmbientMusicHandle,
 } from "../envelope-romance/InviteAmbientMusic";
 import { PearlRevealContext } from "./reveal";
+import { PaperHold } from "./scrollMotion";
 import {
   CalendarSection,
   CinematicSection,
   ClosingSection,
   CountdownSection,
-  DressCodeSection,
   HeroSection,
   InviteSection,
   ProgramSection,
@@ -35,6 +36,16 @@ type PearlEleganceProps = {
   content?: InvitationContent;
 };
 
+function FloralBackdrop() {
+  const reduce = useReducedMotion() === true;
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, (value) => {
+    if (reduce) return 0;
+    return -Math.min(value * 0.35, window.innerHeight * 0.28);
+  });
+  return <motion.div className="pe-backdrop" style={{ y }} aria-hidden="true" />;
+}
+
 function isPearlContent(
   content: InvitationContent,
 ): content is PearlEleganceContent {
@@ -44,7 +55,7 @@ function isPearlContent(
 /**
  * Pearl Elegance template.
  * Premium pearl-adorned wedding invitation with cream + taupe sections
- * and soft, scroll-triggered slide-in motion. Fully data-driven via content.
+ * and scroll-linked paper layers. Fully data-driven via content.
  */
 function PearlElegance({ content }: PearlEleganceProps) {
   const data: PearlEleganceContent =
@@ -73,6 +84,7 @@ function PearlElegance({ content }: PearlEleganceProps) {
 
   return (
     <>
+      <FloralBackdrop />
       <PearlRevealContext.Provider value={!showOpener}>
         <InvitationShell
           templateId={PEARL_ELEGANCE_ID}
@@ -86,8 +98,9 @@ function PearlElegance({ content }: PearlEleganceProps) {
           <CountdownSection content={data} />
           <CinematicSection content={data} />
           <VenueSection content={data} />
-          <ProgramSection content={data} />
-          <DressCodeSection content={data} />
+          <PaperHold className="pe-paper-hold">
+            <ProgramSection content={data} />
+          </PaperHold>
           <RsvpSection content={data} />
           <ClosingSection content={data} />
         </InvitationShell>

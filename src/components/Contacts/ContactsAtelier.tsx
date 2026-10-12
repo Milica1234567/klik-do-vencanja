@@ -6,7 +6,7 @@ import "./ContactsAtelier.css";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
-const easePremium: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const easeInvite: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 function IconInstagram() {
   return (
@@ -141,7 +141,8 @@ function ContactsAtelier() {
     }
   };
 
-  const initial = reduceMotion ? false : { opacity: 0, y: 22 };
+  const fromBelow = reduceMotion ? false : { opacity: 0, y: 50 };
+  const fromAbove = reduceMotion ? false : { opacity: 0, y: -50 };
 
   return (
     <section
@@ -160,10 +161,10 @@ function ContactsAtelier() {
       <div className="contacts-atelier__inner">
         <motion.header
           className="contacts-atelier__intro"
-          initial={initial}
+          initial={fromBelow}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: easePremium }}
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.4, ease: easeInvite }}
         >
           <h2 className="contacts-atelier__title" id="contacts-atelier-title">
             Hajde da
@@ -178,10 +179,10 @@ function ContactsAtelier() {
           <motion.form
             className="contacts-atelier__letter"
             onSubmit={handleSubmit}
-            initial={initial}
+            initial={fromAbove}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.85, ease: easePremium, delay: 0.08 }}
+            transition={{ duration: 0.4, ease: easeInvite, delay: 0.06 }}
           >
             <label className="contacts-atelier__field">
               <span>Ime</span>
@@ -224,7 +225,7 @@ function ContactsAtelier() {
             <div className="contacts-atelier__actions">
               <button
                 type="submit"
-                className="contacts-atelier__send"
+                className="contacts-atelier__send ink-wipe"
                 disabled={status === "sending"}
               >
                 {status === "sending" ? "Šaljem…" : "Pošalji poruku"}
@@ -249,10 +250,10 @@ function ContactsAtelier() {
           <motion.aside
             className="contacts-atelier__salon"
             aria-label="Kanali"
-            initial={initial}
+            initial={fromAbove}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.85, ease: easePremium, delay: 0.16 }}
+            transition={{ duration: 0.4, ease: easeInvite, delay: 0.1 }}
           >
             <p className="contacts-atelier__salon-label">Ili nas pronađite</p>
             <ul className="contacts-atelier__channels">

@@ -1,0 +1,99 @@
+.signal {
+  padding: 1.15rem clamp(1.35rem, 4.5vw, 4.75rem) clamp(2rem, 4vw, 2.6rem);
+  background: #f4f1ea;
+  color: #241f1c;
+}
+
+.signal__label {
+  width: min(1480px, 100%);
+  margin: 0 auto 0.85rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6d645b;
+}
+
+.signal__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  border-top: 1px solid rgba(36, 31, 28, 0.14);
+}
+
+.signal button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: 0.85rem 1rem 0.9rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(36, 31, 28, 0.14);
+  background: transparent;
+  color: #241f1c;
+  text-align: left;
+  cursor: pointer;
+}
+
+.signal button + button {
+  padding-left: 1.15rem;
+  border-left: 1px solid rgba(36, 31, 28, 0.1);
+}
+
+.signal span {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(1.3rem, 1.55vw, 1.6rem);
+  line-height: 1;
+  transition: font-style 0.25s ease;
+}
+
+.signal__note {
+  width: min(1480px, 100%);
+  min-height: 2.6rem;
+  margin: 0.85rem auto 0;
+}
+
+.signal__note p {
+  margin: 0;
+  max-width: 28rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: #3a342f;
+}
+
+.signal button.is-on span {
+  font-style: italic;
+  box-shadow: inset 0 -1px 0 #241f1c;
+}
+
+.signal button:focus-visible {
+  outline: 2px solid #241f1c;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .signal__row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .signal button,
+  .signal button + button {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .signal button:nth-child(even) {
+    padding-left: 1rem;
+    border-left: 1px solid rgba(36, 31, 28, 0.1);
+  }
+}
+
+@media (hover: hover) {
+  .signal button:hover span {
+    font-style: italic;
+  }
+}

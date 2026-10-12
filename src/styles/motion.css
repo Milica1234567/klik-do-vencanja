@@ -1,0 +1,89 @@
+.ink-wipe {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.ink-wipe::before,
+.ink-wipe::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  width: 62%;
+  background: #2c362b;
+  z-index: -1;
+  pointer-events: none;
+  transition: transform 0.4s ease-in-out;
+}
+
+.ink-wipe::before {
+  left: 0;
+  transform: translateX(-125%) skewX(-16deg);
+}
+
+.ink-wipe::after {
+  right: 0;
+  transform: translateX(125%) skewX(-16deg);
+}
+
+.ink-wipe:hover::before,
+.ink-wipe:focus-visible::before {
+  transform: translateX(-8%) skewX(-16deg);
+}
+
+.ink-wipe:hover::after,
+.ink-wipe:focus-visible::after {
+  transform: translateX(8%) skewX(-16deg);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInText {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroDrift {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes cardScroll {
+  from {
+    object-position: center top;
+  }
+  to {
+    object-position: center 36%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-wipe::before,
+  .ink-wipe::after {
+    display: none;
+  }
+}

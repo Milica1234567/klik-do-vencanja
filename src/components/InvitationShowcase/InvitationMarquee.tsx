@@ -5,6 +5,7 @@ import {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { useReducedMotion } from "framer-motion";
 
@@ -84,6 +85,7 @@ const InvitationMarquee = forwardRef<
   const sequence = useMemo(() => buildSequence(templates), [templates]);
 
   const rootRef = useRef<HTMLDivElement>(null);
+  const [copies, setCopies] = useState(3);
   const trackRef = useRef<HTMLDivElement>(null);
   const sequenceRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
@@ -209,7 +211,15 @@ const InvitationMarquee = forwardRef<
       const trackStyles = getComputedStyle(track);
       const trackGap =
         Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0") || 0;
-      loopWidthRef.current = firstSequence.offsetWidth + trackGap;
+      const sequenceWidth = firstSequence.offsetWidth;
+      loopWidthRef.current = sequenceWidth + trackGap;
+
+      const viewport = rootRef.current?.clientWidth ?? 0;
+      if (sequenceWidth > 0 && viewport > 0) {
+        const unit = sequenceWidth + trackGap;
+        const needed = Math.max(2, Math.ceil(viewport / unit) + 1);
+        setCopies((current) => (current === needed ? current : needed));
+      }
 
       const item = itemRef.current;
       if (item) {
@@ -289,7 +299,11 @@ const InvitationMarquee = forwardRef<
     sequenceDomRef?: typeof sequenceRef,
     attachItemRef = false,
   ) => (
-    <div ref={sequenceDomRef} className="invitation-marquee__sequence">
+    <div
+      key={keyPrefix}
+      ref={sequenceDomRef}
+      className="invitation-marquee__sequence"
+    >
       {sequence.map((template, index) => (
         <div
           key={`${keyPrefix}-${template.id}-${index}`}
@@ -328,8 +342,13 @@ const InvitationMarquee = forwardRef<
   return (
     <div ref={rootRef} className="invitation-marquee">
       <div ref={trackRef} className="invitation-marquee__track">
-        {renderSequence("a", sequenceRef, true)}
-        {renderSequence("clone")}
+        {Array.from({ length: copies }, (_, index) =>
+          renderSequence(
+            index === 0 ? "a" : `c${index}`,
+            index === 0 ? sequenceRef : undefined,
+            index === 0,
+          ),
+        )}
       </div>
     </div>
   );

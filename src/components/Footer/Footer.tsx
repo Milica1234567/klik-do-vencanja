@@ -1,3 +1,4 @@
+import Reveal from "../motion/Reveal";
 import "./Footer.css";
 import Instagram from "../../assets/icons/instagram.png";
 import Facebook from "../../assets/icons/facebook.png";
@@ -30,7 +31,7 @@ const socials = [
 function Footer() {
   return (
     <footer className="footer" id="footer">
-      <div className="footer__inner">
+      <Reveal className="footer__inner" kind="up">
         <p className="footer__brand">Klik do venčanja</p>
 
         <p className="footer__tagline">
@@ -68,7 +69,7 @@ function Footer() {
         <p className="footer__copy">
           &copy; 2026 Klik do venčanja. Sva prava zadržana.
         </p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

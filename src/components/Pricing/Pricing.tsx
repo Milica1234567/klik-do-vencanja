@@ -1,3 +1,4 @@
+import Reveal from "../motion/Reveal";
 import "./Pricing.css";
 
 type PricingPlan = {
@@ -13,7 +14,7 @@ const pricingPlans: PricingPlan[] = [
   {
     name: "Essential",
     subtitle: "Za jednostavnu i elegantnu digitalnu pozivnicu",
-    price: "Od 90 €",
+    price: "Od 50 €",
     features: [
       "Personalizovane boje i tipografija",
       "Informacije o događaju",
@@ -26,7 +27,7 @@ const pricingPlans: PricingPlan[] = [
   {
     name: "Signature",
     subtitle: "Za potpuno i interaktivno iskustvo za goste",
-    price: "Od 150 €",
+    price: "Od 100 €",
     featured: true,
     features: [
       "Sve iz Essential paketa",
@@ -42,7 +43,7 @@ const pricingPlans: PricingPlan[] = [
   {
     name: "Exclusive",
     subtitle: "Za potpuno unikatan dizajn i dodatne funkcionalnosti",
-    price: "Od 250 €",
+    price: "Od 180 €",
     features: [
       "Sve iz Signature paketa",
       "Dizajn kreiran potpuno od nule",
@@ -74,7 +75,7 @@ function Pricing() {
   return (
     <section className="pricing" id="cenovnik">
       <div className="pricing_container">
-        <div className="pricing_heading">
+        <Reveal className="pricing_heading" kind="slide">
           <p className="pricing_overline">Paketi</p>
 
           <h2>Odaberite iskustvo koje odgovara vašoj priči</h2>
@@ -83,15 +84,15 @@ function Pricing() {
             Svaka pozivnica se prilagođava vašem događaju, stilu i detaljima
             koji vaš dan čine posebnim.
           </p>
-        </div>
+        </Reveal>
 
         <div className="pricing_grid">
-          {pricingPlans.map((plan) => (
+          {pricingPlans.map((plan, index) => (
+            <Reveal className="pricing_rise" kind="up" delay={index * 0.08} key={plan.name}>
             <article
               className={`pricing_card ${
                 plan.featured ? "pricing_card--featured" : ""
               } ${plan.custom ? "pricing_card--custom" : ""}`}
-              key={plan.name}
             >
               {plan.featured && (
                 <span className="pricing_badge">Najčešći izbor</span>
@@ -144,6 +145,7 @@ function Pricing() {
                 Pošaljite upit
               </a>
             </article>
+            </Reveal>
           ))}
         </div>
 

@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap");
 
 .invitation-6-route .invitation6-rose-blush {
-  --inv6-qb-page: #f6e9ea;
+  --inv6-qb-page: #f7ebee;
   --inv6-qb-white: #fffcfb;
-  --inv6-qb-rose: #c45c63;
-  --inv6-qb-rose-deep: #b24c54;
+  --inv6-qb-rose: #8f243c;
+  --inv6-qb-rose-deep: #6e1830;
   --inv6-qb-gold: #c4a15a;
-  --inv6-qb-ink: #3a3332;
-  --inv6-qb-ink-soft: #6c6362;
-  --inv6-qb-border-pink: #e4b4b6;
+  --inv6-qb-ink: #3a2a2e;
+  --inv6-qb-ink-soft: #6a5558;
+  --inv6-qb-border-pink: #e7c4cb;
   --inv6-qb-font-script: "Great Vibes", "Allura", cursive;
   --inv6-qb-font-gold: "Allura", "Great Vibes", cursive;
   --inv6-qb-font-display: "Playfair Display", "Cormorant Garamond", serif;
@@ -270,7 +270,7 @@
   background: var(--inv6-qb-white);
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 14px 32px rgba(154, 92, 96, 0.12);
+  box-shadow: 0 14px 32px rgba(110, 24, 48, 0.12);
   overflow: visible;
 }
 
@@ -300,7 +300,6 @@
   overflow: visible;
 }
 
-.invitation-6-route .inv6-qb-card--hero,
 .invitation-6-route .inv6-qb-card--quote {
   animation:
     inv6-qb-card-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) both,
@@ -318,7 +317,6 @@
   animation: inv6-qb-icon-float 6.4s ease-in-out 1.25s infinite;
 }
 
-.invitation-6-route .inv6-qb-card--hero::after,
 .invitation-6-route .inv6-qb-card--detail::after,
 .invitation-6-route .inv6-qb-card--quote::after {
   content: "";
@@ -616,7 +614,7 @@
   width: 8.4rem;
   padding: 0.45rem 0.45rem 1.25rem;
   background: #fff;
-  box-shadow: 0 10px 22px rgba(92, 60, 62, 0.16);
+  box-shadow: 0 10px 22px rgba(110, 24, 48, 0.16);
 }
 
 .invitation-6-route .inv6-qb-polaroid img {
@@ -945,15 +943,18 @@
 }
 
 .invitation-6-route .inv6-qb-rsvp-form input[type="text"],
-.invitation-6-route .inv6-qb-rsvp-form input[type="number"] {
+.invitation-6-route .inv6-qb-rsvp-form select {
   display: block;
   width: 100%;
   min-height: 44px;
   margin-top: 0.3rem;
   border: 1px solid var(--inv6-qb-border-pink);
+  border-radius: 0;
+  background: #fff;
   padding: 0.45rem 0.65rem;
   font-family: var(--inv6-qb-font-serif);
   font-size: 1rem;
+  color: var(--inv6-qb-ink);
 }
 
 .invitation-6-route .inv6-qb-rsvp-form fieldset {
@@ -1003,7 +1004,7 @@
   font-size: clamp(5.4rem, 20vw, 7.2rem);
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: rgba(196, 92, 99, 0.14);
+  color: rgba(143, 36, 60, 0.16);
   line-height: 1;
   pointer-events: none;
 }
@@ -1354,4 +1355,78 @@
     order: 2;
     z-index: 2;
   }
+}
+
+.invitation-6-route .inv6-qb-palette__title {
+  margin: 0;
+  color: var(--inv6-qb-rose);
+  font-family: var(--inv6-qb-font-script);
+  font-size: clamp(2.4rem, 10vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.invitation-6-route .inv6-qb-palette__note {
+  margin: 0.55rem 0 0;
+  color: var(--inv6-qb-ink);
+  font-family: var(--inv6-qb-font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.invitation-6-route .inv6-qb-palette__tones {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  width: 100%;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.invitation-6-route .inv6-qb-palette__tones li {
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+}
+
+.invitation-6-route .inv6-qb-palette__swatch {
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid var(--inv6-qb-border-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--inv6-qb-white), 0 0 0 4px var(--inv6-qb-gold);
+}
+
+.invitation-6-route .inv6-qb-palette__name {
+  color: var(--inv6-qb-ink-soft);
+  font-family: var(--inv6-qb-font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.invitation-6-route .inv6-qb-save__art {
+  width: 2.6rem;
+  margin: 0 auto 0.35rem;
+}
+
+.invitation-6-route .inv6-qb-save__title {
+  margin: 0;
+  color: var(--inv6-qb-rose);
+  font-family: var(--inv6-qb-font-script);
+  font-size: clamp(2.4rem, 10vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.invitation-6-route .inv6-qb-save__date {
+  margin: 0.55rem 0 1rem;
+  color: var(--inv6-qb-ink);
+  font-family: var(--inv6-qb-font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.2;
 }

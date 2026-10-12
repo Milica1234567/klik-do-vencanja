@@ -10,10 +10,10 @@ export const invitationTransition: Transition = {
   ease: invitationEase,
 };
 
-/** Stronger entrance for desktop / ceremonial beats */
+/** Quiet section entrance — fade and a short rise, no lateral travel. */
 export const slideInTransition: Transition = {
-  duration: 1.25,
-  ease: [0.16, 1, 0.3, 1],
+  duration: 0.7,
+  ease: [0.22, 1, 0.36, 1],
 };
 
 /**
@@ -59,8 +59,12 @@ export const revealFromLeft: Variants = {
   exit: { opacity: 0, x: "-30vw" },
 };
 
-export function slideVariants(from: "left" | "right"): Variants {
-  return from === "right" ? revealFromRight : revealFromLeft;
+export function slideVariants(_from: "left" | "right"): Variants {
+  return {
+    hidden: { opacity: 0, y: 14 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 8 },
+  };
 }
 
 /**

@@ -1,5 +1,5 @@
 import { useInView, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import showcaseAtmosphere from "../../assets/backgrounds/invitation-botanical-atmosphere-sm.jpg";
 import { invitationTemplates } from "../../data/invitations";
@@ -25,6 +25,24 @@ function InvitationShowcase({
   const hoverRef = useRef(false);
   const manualPauseRef = useRef(false);
   const modalOpenRef = useRef(false);
+
+  const carouselTemplates = useMemo(() => {
+    const mine = templates.filter((item) => {
+      const number = Number(item.id.replace("invitation-", ""));
+      return number >= 1 && number <= 6;
+    });
+    const hers = templates.filter((item) => {
+      const number = Number(item.id.replace("invitation-", ""));
+      return number >= 7;
+    });
+    const mixed = [];
+    const count = Math.max(mine.length, hers.length);
+    for (let index = 0; index < count; index += 1) {
+      if (mine[index]) mixed.push(mine[index]);
+      if (hers[index]) mixed.push(hers[index]);
+    }
+    return mixed;
+  }, [templates]);
 
   const isInView = useInView(sectionRef, { amount: 0.15, once: false });
   const reduceMotion = useReducedMotion();
@@ -143,7 +161,7 @@ function InvitationShowcase({
 
           <InvitationMarquee
             ref={marqueeRef}
-            templates={templates}
+            templates={carouselTemplates}
             mediaEnabled={mediaEnabled}
             isActive={isInView && !reduceMotion}
             onSelectTemplate={handleSelectTemplate}

@@ -9,6 +9,7 @@ export type LetoLjubaviContent = InvitationContent & {
     days: string[];
     dates: number[];
     highlight: number;
+    saveHint: string;
   };
   ceremony: InvitationContent["venue"] & {
     timePlace: string;
@@ -39,8 +40,8 @@ export const letoLjubaviDemoContent: LetoLjubaviContent = {
     partnerTwo: "Marko",
     joiner: "&",
   },
-  eventDateIso: "2026-07-23T15:00:00",
-  eventDateLabel: "23. 07. 2026.",
+  eventDateIso: "2027-07-24T15:00:00",
+  eventDateLabel: "24. 07. 2027.",
   ticker: "OVOG LETA ĆE BITI PUNO LJUBAVI!",
   greeting: "Dragi gosti!",
   intro:
@@ -48,8 +49,9 @@ export const letoLjubaviDemoContent: LetoLjubaviContent = {
   calendar: {
     month: "Jul",
     days: ["pon", "uto", "sre", "čet", "pet", "sub", "ned"],
-    dates: [20, 21, 22, 23, 24, 25, 26],
-    highlight: 23,
+    dates: [19, 20, 21, 22, 23, 24, 25],
+    highlight: 24,
+    saveHint: "Kliknite na 24. jul\ni sačuvajte ga u kalendaru.",
   },
   ceremony: {
     title: "Matičar",
@@ -77,7 +79,7 @@ export const letoLjubaviDemoContent: LetoLjubaviContent = {
   party: {
     title: "Svečanost",
     timeLabel: "16:00",
-    timePlace: "16:00 | 23.07.2026",
+    timePlace: "16:00 | 24.07.2027",
     placeName: "restoran «Vila Bella»",
     address: "Avala, Beograd",
     mapUrl:
@@ -92,7 +94,7 @@ export const letoLjubaviDemoContent: LetoLjubaviContent = {
   },
   tripIntro:
     "Pozivamo vas da nastavite slavlje na Fruškoj gori, na veoma živopisnom mestu.",
-  tripDates: "24.07.",
+  tripDates: "25.07.",
   tripPlace: "Iriški venac, Fruška gora",
   tripBody:
     "Tamo nas čekaju priroda, udobnost, razgovori do kasno u noć i još malo slavlja.",
@@ -104,7 +106,7 @@ export const letoLjubaviDemoContent: LetoLjubaviContent = {
   rsvp: {
     title: "Potvrdite dolazak",
     deadlineLabel:
-      "Molimo vas da potvrdite prisustvo do 1. avgusta 2026.",
+      "Molimo vas da potvrdite prisustvo do 1. avgusta 2027.",
     ctaLabel: "Pošalji potvrdu",
   },
   gifts: {

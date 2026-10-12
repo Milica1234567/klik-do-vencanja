@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 
@@ -36,7 +37,7 @@ function InvitationPreviewModal({
     return null;
   }
 
-  const { media, title, slug } = template;
+  const { media, title, slug, previewPath } = template;
   const detailPath = `/pozivnice/${slug}`;
 
   return createPortal(
@@ -45,6 +46,12 @@ function InvitationPreviewModal({
       role="dialog"
       aria-modal="true"
       aria-label={`Pregled pozivnice: ${title}`}
+      style={
+        {
+          "--invite-accent": template.accentColor ?? "#3e4a3c",
+          "--invite-paper": template.paperColor ?? "#f4f1ea",
+        } as CSSProperties
+      }
     >
       <button
         type="button"
@@ -64,7 +71,14 @@ function InvitationPreviewModal({
         </button>
 
         <div className="invitation-modal__media">
-          {media.type === "video" ? (
+          {previewPath ? (
+            <iframe
+              key={template.id}
+              className="invitation-modal__live"
+              src={`${previewPath}?embed=1`}
+              title={title}
+            />
+          ) : media.type === "video" ? (
             <video
               key={template.id}
               className="invitation-modal__video"
@@ -88,13 +102,22 @@ function InvitationPreviewModal({
 
         <p className="invitation-modal__title">{title}</p>
 
-        <Link
-          className="invitation-modal__cta"
-          to={detailPath}
-          onClick={onClose}
-        >
-          Pogledaj pozivnicu
-        </Link>
+        <div className="invitation-modal__actions">
+          <Link
+            className="invitation-modal__cta"
+            to={detailPath}
+            onClick={onClose}
+          >
+            Pogledaj celu pozivnicu
+          </Link>
+          <Link
+            className="invitation-modal__cta invitation-modal__cta--quiet"
+            to={`/poruci/${slug}`}
+            onClick={onClose}
+          >
+            Poruči
+          </Link>
+        </div>
       </div>
     </div>,
     document.body,

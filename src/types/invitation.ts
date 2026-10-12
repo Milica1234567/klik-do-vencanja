@@ -29,11 +29,18 @@ export type InvitationTemplate = {
   /** URL segment: /pozivnice/:slug */
   slug: string;
   title: string;
+  /** Name under the carousel card. */
+  cardName?: string;
   category: InvitationCategory;
   media: InvitationMedia;
+  /** Signature color for buttons and the detail-page tone. */
   accentColor?: string;
+  /** Light paper wash for the preview and the following page. */
+  paperColor?: string;
   priceLabel: string;
   shortDescription: string;
   /** Key into fullInvitationRegistry — omit until the full page exists. */
   fullInvitationId?: string;
+  /** Live invitation route, for example /p/invitation-1. */
+  previewPath?: string;
 };

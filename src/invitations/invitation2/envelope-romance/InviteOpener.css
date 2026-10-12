@@ -1,3 +1,8 @@
+html:has(.invitation-2-route .inv2-er-opener:not(.is-leaving)),
+html:has(.invitation-2-route .inv2-er-opener:not(.is-leaving)) body {
+  overflow: hidden;
+}
+
 .invitation-2-route .inv2-er-opener {
   position: fixed;
   inset: 0;
@@ -7,7 +12,7 @@
   overflow: hidden;
   background-color: var(--inv-cream, #faf6f0);
   opacity: 1;
-  transition: opacity 2.2s ease-in-out;
+  transition: opacity 1.55s ease;
   cursor: pointer;
   --inv-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --inv-font-script: "Great Vibes", "Segoe Script", cursive;
@@ -35,16 +40,25 @@
   pointer-events: auto;
 }
 
+@media (max-aspect-ratio: 3 / 4) {
+  .invitation-2-route .inv2-er-opener__stage {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+}
+
 .invitation-2-route .inv2-er-opener__stack {
   position: absolute;
   inset: 0;
-  transform-origin: 50% 50%;
+  transform-origin: 50% 48%;
   transform: scale(1);
-  transition: transform 2.2s cubic-bezier(0.22, 0.08, 0.2, 1);
+  transition: transform 2.4s cubic-bezier(0.45, 0.05, 0.2, 1);
 }
 
 .invitation-2-route .inv2-er-opener__stack.is-zoom {
-  transform: scale(1.18);
+  transform: scale(2.15);
 }
 
 .invitation-2-route .inv2-er-opener__video,

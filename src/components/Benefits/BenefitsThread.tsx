@@ -1,114 +1,59 @@
-import {
-  motion,
-  useReducedMotion,
-  type Variants,
-} from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { invitationProcessSteps } from "../../data/benefits";
+import Reveal from "../motion/Reveal";
 import "./BenefitsThread.css";
 
-const easePremium: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
-const headerGroup: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.04 },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: easePremium },
-  },
-};
-
-const railGroup: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
-  },
-};
-
-const stationReveal: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: easePremium },
-  },
-};
-
-/**
- * Horizontal process ribbon — how a digital invitation comes to life.
- */
 function BenefitsThread() {
-  const reduceMotion = useReducedMotion();
-  const initial = reduceMotion ? "visible" : "hidden";
+  const [active, setActive] = useState(2);
 
   return (
-    <section
-      className="benefits-thread"
-      id="benefits-thread"
-      aria-labelledby="benefits-thread-title"
-    >
-      <div className="benefits-thread__inner">
-        <motion.header
-          className="benefits-thread__header"
-          variants={headerGroup}
-          initial={initial}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-        >
-          <motion.p className="benefits-thread__eyebrow" variants={fadeUp}>
-            kako nastaje
-          </motion.p>
-          <motion.h2
-            className="benefits-thread__title"
-            id="benefits-thread-title"
-            variants={fadeUp}
-          >
-            Od prve ideje do <em>vaše</em> pozivnice
-          </motion.h2>
-        </motion.header>
+    <section className="idea" id="benefits-thread" aria-labelledby="benefits-thread-title">
+      <div className="idea__frame">
+        <div className="idea__head">
+          <p className="idea__kicker">Kako nastaje</p>
+          <Reveal as="h2" kind="fade" id="benefits-thread-title">
+            Od prve ideje <em>do vaše pozivnice.</em>
+          </Reveal>
+        </div>
+        <Reveal as="p" kind="fade" className="idea__lead" delay={0.08}>
+          Vi donosite ideju i informacije o događaju. Mi ih pretvaramo u gotovu
+          digitalnu pozivnicu.
+        </Reveal>
 
-        <motion.div
-          className="benefits-thread__ribbon"
-          variants={railGroup}
-          initial={initial}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-        >
-          <div className="benefits-thread__hairline" aria-hidden="true">
-            <span className="benefits-thread__hairline-fill" />
-          </div>
+        <div className="idea__score" role="tablist" aria-label="Koraci izrade">
+          {invitationProcessSteps.map((step, index) => (
+            <button
+              key={step.id}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              className={index === active ? "idea__moment is-on" : "idea__moment"}
+              onClick={() => setActive(index)}
+              onMouseEnter={() => setActive(index)}
+            >
+              {step.titleLines[0]}
+              <span>{step.titleLines[1]}</span>
+            </button>
+          ))}
+        </div>
 
-          <ul className="benefits-thread__stations">
-            {invitationProcessSteps.map((step, index) => {
-              const numeral = String(index + 1).padStart(2, "0");
-
-              return (
-                <motion.li
-                  key={step.id}
-                  className="benefits-thread__station"
-                  variants={stationReveal}
-                >
-                  <span className="benefits-thread__dot" aria-hidden="true" />
-                  <span className="benefits-thread__numeral" aria-hidden="true">
-                    {numeral}
-                  </span>
-                  <h3 className="benefits-thread__station-title">
-                    <span>{step.titleLines[0]}</span>
-                    <span>{step.titleLines[1]}</span>
-                  </h3>
-                  <p className="benefits-thread__station-body">{step.body}</p>
-                </motion.li>
-              );
-            })}
-          </ul>
-        </motion.div>
+        <div className="idea__stage">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={invitationProcessSteps[active].id}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4, ease }}
+            >
+              {invitationProcessSteps[active].body}
+            </motion.p>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

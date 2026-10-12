@@ -84,6 +84,92 @@ function isLetoContent(
 
 
 
+function addWeddingToCalendar() {
+
+  const title = "Venčanje Ane i Marka";
+
+  const details = "Matičar u 15:00, svečanost od 16:00. Vila Bella, Avala.";
+
+  const location = "Matičar Stari Grad, Makedonska 42, Beograd";
+
+  const apple = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  if (apple) {
+
+    const ics = [
+
+      "BEGIN:VCALENDAR",
+
+      "VERSION:2.0",
+
+      "PRODID:-//Klik do vencanja//Leto ljubavi//SR",
+
+      "CALSCALE:GREGORIAN",
+
+      "METHOD:PUBLISH",
+
+      "BEGIN:VEVENT",
+
+      "UID:leto-ljubavi-20270724@klikdovencanja",
+
+      "DTSTAMP:20270724T110000Z",
+
+      "DTSTART:20270724T130000Z",
+
+      "DTEND:20270724T230000Z",
+
+      "SUMMARY:Venčanje Ane i Marka",
+
+      "DESCRIPTION:Matičar u 15:00, svečanost od 16:00. Vila Bella, Avala.",
+
+      "LOCATION:Matičar Stari Grad\\, Makedonska 42\\, Beograd",
+
+      "END:VEVENT",
+
+      "END:VCALENDAR",
+
+    ].join("\r\n");
+
+    const file = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+
+    const url = URL.createObjectURL(file);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download = "vencanje-ana-marko.ics";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    return;
+
+  }
+
+  const url = new URL("https://calendar.google.com/calendar/render");
+
+  url.searchParams.set("action", "TEMPLATE");
+
+  url.searchParams.set("text", title);
+
+  url.searchParams.set("dates", "20270724T130000Z/20270724T230000Z");
+
+  url.searchParams.set("details", details);
+
+  url.searchParams.set("location", location);
+
+  window.open(url.toString(), "_blank", "noopener,noreferrer");
+
+}
+
+
+
 function MapButton({ href, label }: { href?: string; label: string }) {
 
   return (
@@ -791,13 +877,25 @@ function LetoLjubavi({
 
               date === data.calendar.highlight ? (
 
-                <span key={date} className="inv3-ll__cal-date inv3-ll__cal-date--heart">
+                <button
+
+                  key={date}
+
+                  type="button"
+
+                  className="inv3-ll__cal-date inv3-ll__cal-date--heart"
+
+                  onClick={addWeddingToCalendar}
+
+                  aria-label="Dodaj venčanje, subota 24. jul 2027, u kalendar"
+
+                >
 
                   <doodles.Heart className="inv3-ll__cal-heart" />
 
                   <span>{date}</span>
 
-                </span>
+                </button>
 
               ) : (
 
@@ -812,6 +910,8 @@ function LetoLjubavi({
             )}
 
           </div>
+
+          <p className="inv3-ll__script inv3-ll__cal-note">{data.calendar.saveHint}</p>
 
         </ScrollReveal>
 

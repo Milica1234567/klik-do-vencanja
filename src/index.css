@@ -1,5 +1,5 @@
 :root {
-  --color-bg: #f7f1e6;
+  --color-bg: #f7f4ef;
   --color-warm-beige: #caa290;
   --color-dusty-rose: #c4a69b;
   --color-terracotta: #c26d53;
@@ -23,6 +23,29 @@ html {
   overflow-x: clip;
 }
 
+html.invite-embed,
+html.invite-embed body {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+html.invite-embed .inv2-er-opener__fit {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-width: 0;
+}
+
+html.invite-embed::-webkit-scrollbar,
+html.invite-embed body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -30,7 +53,7 @@ body {
   overflow-x: clip;
   font-family: var(--font-body);
   font-weight: 400;
-  background-color: var(--color-bg);
+  background-color: #f4f1ea;
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

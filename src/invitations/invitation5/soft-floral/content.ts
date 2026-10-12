@@ -1,8 +1,9 @@
 import type { InvitationContent } from "../shared/types";
-import backgroundImage from "./assets/background.png";
-import heroFloralImage from "./assets/hero-floral.png";
+import bloomImage from "./assets/veil-bloom.jpg";
+import silkImage from "./assets/veil-silk.jpg";
+import stemsImage from "./assets/veil-stems.jpg";
 
-export { backgroundImage, heroFloralImage };
+export { bloomImage, silkImage, stemsImage };
 
 export const softFloralDemoContent: InvitationContent = {
   couple: {
@@ -10,14 +11,14 @@ export const softFloralDemoContent: InvitationContent = {
     partnerTwo: "Stefan",
     joiner: "i",
   },
-  eventDateIso: "2026-09-12T15:00:00",
-  eventDateLabel: "12. septembar 2026.",
+  eventDateIso: "2027-09-12T15:00:00",
+  eventDateLabel: "12. septembar 2027.",
   heroImage: {
-    src: heroFloralImage,
+    src: stemsImage,
     alt: "Jelena i Stefan — pozivnica",
   },
   closingImage: {
-    src: heroFloralImage,
+    src: stemsImage,
     alt: "Jelena i Stefan — završna fotografija",
   },
   venue: {
@@ -28,16 +29,16 @@ export const softFloralDemoContent: InvitationContent = {
   },
   rsvp: {
     title: "RSVP",
-    deadlineLabel: "Molimo vas da potvrdite dolazak do 1. avgusta 2026.",
+    deadlineLabel: "Molimo vas da potvrdite dolazak do 1. avgusta 2027.",
     ctaLabel: "Potvrdite dolazak",
   },
   timeline: [
-    { id: "ceremony", time: "15:00", title: "ceremonija", icon: "rings" },
-    { id: "drinks", time: "16:00", title: "kokteli", icon: "champagne" },
-    { id: "photos", time: "17:00", title: "fotografisanje", icon: "camera" },
-    { id: "dinner", time: "19:00", title: "večera", icon: "dinner" },
-    { id: "party", time: "22:00", title: "zabava", icon: "party" },
-    { id: "end", time: "00:00", title: "kraj", icon: "moon" },
+    { id: "ceremony", time: "15:00", title: "Ceremonija", icon: "rings" },
+    { id: "drinks", time: "16:00", title: "Kokteli", icon: "champagne" },
+    { id: "photos", time: "17:00", title: "Fotografisanje", icon: "camera" },
+    { id: "dinner", time: "19:00", title: "Večera", icon: "dinner" },
+    { id: "party", time: "22:00", title: "Zabava", icon: "party" },
+    { id: "end", time: "00:00", title: "Kraj", icon: "moon" },
   ],
   dressCode: {
     title: "Dress code",

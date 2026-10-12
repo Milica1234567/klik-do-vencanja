@@ -1,97 +1,77 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-import ScrollReveal from "../../shared/ScrollReveal";
-import {
-  invitationEase,
-  invitationTransition,
-  revealFade,
-} from "../../shared/motion";
 import type { InvitationContent } from "../../shared/types";
 import { TimelineIcon } from "../components/TimelineIcons";
-import SectionScrollShadow from "../components/SectionScrollShadow";
 
 type TimelineSectionProps = {
   content: InvitationContent;
 };
 
+type TimelineItem = NonNullable<InvitationContent["timeline"]>[number];
+
+type DayItemProps = {
+  item: TimelineItem;
+  reduceMotion: boolean;
+};
+
+function DayItem({ item, reduceMotion }: DayItemProps) {
+  const ref = useRef<HTMLLIElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["center end", "center start"],
+  });
+  const emphasis = useTransform(scrollYProgress, [0.43, 0.5, 0.57], reduceMotion ? [0, 0, 0] : [0, 1, 0]);
+  const color = useTransform(emphasis, [0, 1], ["rgba(244, 239, 232, 0.72)", "#f7f1ea"]);
+  const borderColor = useTransform(emphasis, [0, 1], ["rgba(244, 239, 232, 0.35)", "#f7f1ea"]);
+  const backgroundColor = useTransform(emphasis, [0, 1], ["rgba(0, 0, 0, 0.15)", "rgba(247, 241, 234, 0.14)"]);
+
+  return (
+    <li className="inv5-sf-day__item" ref={ref}>
+      <motion.span className="inv5-sf-day__time" style={{ color }}>
+        {item.time}
+      </motion.span>
+      <motion.span className="inv5-sf-day__mark" style={{ borderColor, backgroundColor }}>
+        <TimelineIcon name={item.icon} className="inv5-sf-day__icon" />
+      </motion.span>
+      <motion.span className="inv5-sf-day__label" style={{ color }}>
+        {item.title ?? ""}
+      </motion.span>
+    </li>
+  );
+}
+
 function TimelineSection({ content }: TimelineSectionProps) {
   const { timeline } = content;
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const lineScale = useTransform(scrollYProgress, [0.12, 0.82], reduceMotion ? [1, 1] : [0, 1]);
 
   if (!timeline?.length) return null;
 
   return (
-    <ScrollReveal as="section" className="inv5-sf-section" variants={revealFade}>
-      <article
-        className="inv5-sf-timeline-section"
-        data-section="timeline"
-        aria-label="Dan venčanja"
-      >
-        <SectionScrollShadow>
-          <motion.div
-            className="inv5-sf-striped-frame"
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.85, ease: invitationEase }}
-          >
-            <div className="inv5-sf-striped-frame__inner inv5-sf-striped-frame__inner--timeline">
-              <h2 className="inv5-sf-heading inv5-sf-heading--timeline">Dan venčanja</h2>
-              <span className="inv5-sf-ornament" aria-hidden="true">
-                <span className="inv5-sf-ornament__line" />
-                <span className="inv5-sf-ornament__diamond" />
-                <span className="inv5-sf-ornament__line" />
-              </span>
+    <section className="inv5-sf-day" data-section="timeline" aria-label="Dan venčanja" ref={ref}>
+      <div className="inv5-sf-day__veil" aria-hidden="true" />
 
-              <ol className="inv5-sf-timeline">
-                {timeline.map((item, index) => (
-                  <motion.li
-                    key={item.id}
-                    className="inv5-sf-timeline__item"
-                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{
-                      ...invitationTransition,
-                      delay: reduceMotion ? 0 : index * 0.08,
-                      ease: invitationEase,
-                    }}
-                  >
-                    <span className="inv5-sf-timeline__time">{item.time}</span>
+      <div className="inv5-sf-day__copy">
+        <h2 className="inv5-sf-day__title">Dan venčanja</h2>
+        <p className="inv5-sf-day__script">redosled dana</p>
 
-                    <motion.span
-                      className="inv5-sf-timeline__icon-wrap"
-                      animate={reduceMotion ? undefined : { y: [0, -2.5, 0] }}
-                      transition={
-                        reduceMotion
-                          ? undefined
-                          : {
-                              duration: 2.6,
-                              repeat: Infinity,
-                              delay: index * 0.2,
-                              ease: "easeInOut",
-                            }
-                      }
-                    >
-                      <TimelineIcon
-                        name={item.icon}
-                        className="inv5-sf-timeline__icon"
-                      />
-                    </motion.span>
-
-                    {item.title ? (
-                      <span className="inv5-sf-timeline__title">{item.title}</span>
-                    ) : (
-                      <span className="inv5-sf-timeline__title" aria-hidden="true" />
-                    )}
-                  </motion.li>
-                ))}
-              </ol>
-            </div>
-          </motion.div>
-        </SectionScrollShadow>
-      </article>
-    </ScrollReveal>
+        <div className="inv5-sf-day__list">
+          <span className="inv5-sf-day__track" aria-hidden="true" />
+          <motion.span className="inv5-sf-day__line" style={{ scaleY: lineScale }} aria-hidden="true" />
+          <ol>
+            {timeline.map((item) => (
+              <DayItem key={item.id} item={item} reduceMotion={reduceMotion} />
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
   );
 }
 

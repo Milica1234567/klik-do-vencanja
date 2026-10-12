@@ -33,7 +33,9 @@ function TemplateDetailPage() {
     template;
   const poster = media.type === "video" ? media.poster : media.src;
   const categoryLabel = invitationCategoryLabels[category];
-  const fullPath = `/pozivnice/${template.slug}/puna`;
+  const livePath =
+    template.previewPath ??
+    (template.fullInvitationId ? `/pozivnice/${template.slug}/puna` : undefined);
   const orderPath = `/poruci/${template.slug}`;
 
   return (
@@ -42,9 +44,10 @@ function TemplateDetailPage() {
       <main
         className="template-detail"
         style={
-          accentColor
-            ? ({ "--template-accent": accentColor } as CSSProperties)
-            : undefined
+          {
+            "--template-accent": accentColor ?? "#3e4a3c",
+            "--template-paper": template.paperColor ?? "#f4f1ea",
+          } as CSSProperties
         }
       >
         <div className="template-detail__shell">
@@ -53,50 +56,15 @@ function TemplateDetailPage() {
           </Link>
 
           <div className="template-detail__stage">
-            <div className="template-detail__copy">
-              <p className="template-detail__eyebrow">{categoryLabel}</p>
-              <h1 className="template-detail__title">{title}</h1>
-
-              <div className="template-detail__price-block">
-                <span className="template-detail__price-label">Cena</span>
-                <p className="template-detail__price">{priceLabel}</p>
-              </div>
-
-              <p className="template-detail__lede">{shortDescription}</p>
-
-              <p className="template-detail__note">
-                Personalizacija teksta, boja i rasporeda, sve na jednom mestu,
-                spremno za deljenje gostima.
-              </p>
-
-              <div className="template-detail__actions">
-                {template.fullInvitationId ? (
-                  <a
-                    className="template-detail__cta"
-                    href={fullPath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Pogledaj celu pozivnicu
-                  </a>
-                ) : (
-                  <p className="template-detail__soon">
-                    Kompletna pozivnica za ovaj template stiže uskoro.
-                  </p>
-                )}
-
-                <Link
-                  className="template-detail__cta template-detail__cta--secondary"
-                  to={orderPath}
-                >
-                  Poruci
-                </Link>
-              </div>
-            </div>
-
             <div className="template-detail__preview">
               <div className="template-detail__preview-frame">
-                {media.type === "video" ? (
+                {template.previewPath ? (
+                  <iframe
+                    className="template-detail__live"
+                    src={`${template.previewPath}?embed=1`}
+                    title={title}
+                  />
+                ) : media.type === "video" ? (
                   <video
                     className="template-detail__media"
                     src={media.src}
@@ -114,6 +82,47 @@ function TemplateDetailPage() {
                     alt={title}
                   />
                 ) : null}
+              </div>
+            </div>
+
+            <div className="template-detail__copy">
+              <p className="template-detail__eyebrow">{categoryLabel}</p>
+              <h1 className="template-detail__title">{title}</h1>
+
+              <div className="template-detail__price-block">
+                <span className="template-detail__price-label">Cena</span>
+                <p className="template-detail__price">{priceLabel}</p>
+              </div>
+
+              <p className="template-detail__lede">{shortDescription}</p>
+
+              <p className="template-detail__note">
+                Personalizacija teksta, boja i rasporeda, sve na jednom mestu,
+                spremno za deljenje gostima.
+              </p>
+
+              <div className="template-detail__actions">
+                {livePath ? (
+                  <a
+                    className="template-detail__cta"
+                    href={livePath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Pogledaj celu pozivnicu
+                  </a>
+                ) : (
+                  <p className="template-detail__soon">
+                    Kompletna pozivnica za ovaj template stiže uskoro.
+                  </p>
+                )}
+
+                <Link
+                  className="template-detail__cta template-detail__cta--secondary"
+                  to={orderPath}
+                >
+                  Poruci
+                </Link>
               </div>
             </div>
           </div>

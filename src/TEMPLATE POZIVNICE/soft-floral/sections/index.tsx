@@ -5,5 +5,6 @@ export { default as MomentsSection } from "./MomentsSection";
 export { default as RsvpSection } from "./RsvpSection";
 export { default as TimelineSection } from "./TimelineSection";
 export { default as DetailsSection } from "./DetailsSection";
+export { default as CountdownSection } from "./CountdownSection";
 export { default as ClosingSection } from "./ClosingSection";
 

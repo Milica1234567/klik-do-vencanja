@@ -71,9 +71,11 @@ function EnvelopeRomance({
         <CountdownSection content={content} />
         <VenueSection content={content} />
         <TimelineSection content={content} />
-        <DressCodeSection content={content} />
-        <HotelsSection content={content} />
-        <RsvpSection content={content} />
+        <div className="er-finale">
+          <DressCodeSection content={content} />
+          <HotelsSection content={content} />
+          <RsvpSection content={content} />
+        </div>
         <ClosingSection content={content} />
       </InvitationShell>
 

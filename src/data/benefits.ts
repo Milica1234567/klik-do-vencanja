@@ -30,32 +30,32 @@ export type ProcessStep = {
   body: string;
 };
 
-/** Horizontal process ribbon — creation journey, not benefit list. */
+/** Atelier narrative — from the couple's idea to a finished digital invitation. */
 export const invitationProcessSteps: ProcessStep[] = [
   {
     id: "style",
-    titleLines: ["Odaberite", "pozivnicu"],
-    body: "Pronađite dizajn koji najbolje odražava stil vašeg događaja i postavlja ton cele proslave.",
+    titleLines: ["Vaša", "ideja"],
+    body: "Počinje od osećaja proslave: tona, ritma i onoga što želite da gosti ponesu sa sobom.",
   },
   {
     id: "details",
-    titleLines: ["Prilagodite", "svaki detalj"],
-    body: "Dodajte imena, datum, lokaciju, fotografije i sve ono što vašu pozivnicu čini jedinstvenom.",
+    titleLines: ["Vaš", "događaj"],
+    body: "Imena, datum, mesto i detalji koje nam poverite postaju osnova pozivnice.",
   },
   {
     id: "create",
-    titleLines: ["Kreirajte", "bez ograničenja"],
-    body: "Rasporedite sadržaj onako kako želite i oblikujte pozivnicu prema svom ukusu.",
+    titleLines: ["Naša", "izrada"],
+    body: "Mi oblikujemo digitalno iskustvo oko vaše priče. Vi ne prolazite kroz alat i ne sklapate je sami.",
   },
   {
     id: "preview",
-    titleLines: ["Pregledajte", "i usavršite"],
-    body: "Pre nego što je podelite, pregledajte svaki detalj i uverite se da izgleda baš onako kako ste zamislili.",
+    titleLines: ["Zajednička", "dorada"],
+    body: "Zajedno pregledamo svaki detalj pre nego što pozivnica krene ka gostima.",
   },
   {
     id: "share",
-    titleLines: ["Podelite", "i pratite odgovore"],
-    body: "Pošaljite jedan link svim gostima i u svakom trenutku pratite RSVP odgovore na jednom mestu.",
+    titleLines: ["Jedan", "link"],
+    body: "Gosti dobijaju jedan link. Odgovori se skupljaju na jednom mestu, bez dodatnih poruka.",
   },
 ];
 

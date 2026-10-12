@@ -15,8 +15,8 @@ export const envelopeRomanceDemoContent: InvitationContent = {
     partnerTwo: "Stefan",
     joiner: "&",
   },
-  eventDateIso: "2026-09-12T17:00:00",
-  eventDateLabel: "12. 09. 2026.",
+  eventDateIso: "2027-09-12T17:00:00",
+  eventDateLabel: "12. 09. 2027.",
   heroImage: {
     src: couplePlaceholder,
     alt: "Teodora i Stefan u prirodi",
@@ -113,7 +113,7 @@ export const envelopeRomanceDemoContent: InvitationContent = {
   },
   rsvp: {
     title: "Potvrdite dolazak",
-    deadlineLabel: "do 1. avgusta 2026.",
+    deadlineLabel: "do 1. avgusta 2027.",
     ctaLabel: "Pošalji potvrdu",
   },
   closingMessage: "Jedva čekamo da podelimo ovaj dan sa vama",

@@ -30,8 +30,8 @@ function InvitationCardComponent({
   const hoveringRef = useRef(false);
   const [playing, setPlaying] = useState(false);
 
-  const { media, title, category, accentColor } = template;
-  const label = invitationCategoryLabels[category];
+  const { media, title, category, accentColor, cardName } = template;
+  const label = cardName ?? invitationCategoryLabels[category];
   const isVideo = media.type === "video";
 
   const stillSrc = isVideo
@@ -123,7 +123,7 @@ function InvitationCardComponent({
         type="button"
         className="invitation-card__hit"
         onClick={() => onSelectTemplate?.(template)}
-        aria-label={`Otvori pregled: ${title}`}
+        aria-label={`Otvori pregled: ${cardName ?? title}`}
       >
         <div className="invitation-card__frame">
           {stillSrc ? (

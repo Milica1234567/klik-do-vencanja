@@ -1,8 +1,9 @@
-import Benefits from "../components/Benefits/Benefits";
-import BenefitsThread from "../components/Benefits/BenefitsThread";
+import FilmMoment from "../components/FilmMoment/FilmMoment";
 import Hero from "../components/Hero/Hero";
 import InvitationShowcase from "../components/InvitationShowcase/InvitationShowcase";
-import SectionHandoff from "../components/layout/SectionHandoff";
+import Passage from "../components/Passage/Passage";
+import ReturnedCopy from "../components/ReturnedCopy/ReturnedCopy";
+import Unveil from "../components/Unveil/Unveil";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import ContactsAtelier from "../components/Contacts/ContactsAtelier";
@@ -11,13 +12,14 @@ import Pricing from "../components/Pricing/Pricing";
 function HomePage() {
   return (
     <>
-      <Header />
-      <main>
+      <main className="home-stack">
+        <Header />
         <Hero />
-        <BenefitsThread />
+        <Passage />
         <InvitationShowcase />
-        <SectionHandoff />
-        <Benefits />
+        <Unveil />
+        <FilmMoment />
+        <ReturnedCopy />
         <Pricing />
         <ContactsAtelier />
       </main>

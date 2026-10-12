@@ -174,8 +174,9 @@
   column-gap: 0.35em;
   row-gap: 0;
   max-width: 100%;
+  color: #faf6f0;
   font-family: var(--inv-font-script);
-  font-size: clamp(2.4rem, 12vw, 4.4rem);
+  font-size: clamp(2.05rem, 8vw, 2.7rem);
   font-weight: 400;
   line-height: 1.05;
   text-shadow: 0 2px 18px rgba(46, 42, 40, 0.4);
@@ -202,7 +203,7 @@
   }
 
   .invitation-2-route .inv2-er-hero__names {
-    font-size: clamp(3.2rem, 6vw, 4.6rem);
+    font-size: clamp(2.35rem, 4vw, 2.9rem);
   }
 }
 
@@ -277,7 +278,7 @@
   margin: 0;
   max-width: 28rem;
   font-family: var(--inv-font-body);
-  font-size: clamp(1.05rem, 3.8vw, 1.28rem);
+  font-size: clamp(1rem, 3.2vw, 1.15rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1.75;
@@ -348,7 +349,7 @@
 .invitation-2-route .inv2-er-title {
   margin: 0;
   font-family: var(--inv-font-display);
-  font-size: clamp(2.1rem, 8vw, 3.1rem);
+  font-size: clamp(1.65rem, 5.2vw, 2.05rem);
   font-weight: 500;
   line-height: 1.1;
   color: var(--inv-ink);
@@ -363,7 +364,7 @@
   padding-inline: 0.25rem;
   max-width: 28rem;
   font-family: var(--inv-font-display);
-  font-size: clamp(1.05rem, 3.8vw, 1.35rem);
+  font-size: clamp(1.02rem, 3.4vw, 1.2rem);
   font-style: italic;
   font-weight: 400;
   line-height: 1.55;
@@ -373,7 +374,7 @@
 .invitation-2-route .inv2-er-script {
   margin: 0;
   font-family: var(--inv-font-script);
-  font-size: clamp(1.65rem, 6vw, 2.25rem);
+  font-size: clamp(1.45rem, 4.6vw, 1.85rem);
   line-height: 1.2;
   color: color-mix(in srgb, var(--inv-wine) 72%, var(--inv-ink));
 }
@@ -696,7 +697,7 @@
 
 .invitation-2-route .inv2-er-countdown__value {
   font-family: var(--inv-font-display);
-  font-size: clamp(1.45rem, 6vw, 2rem);
+  font-size: clamp(1.4rem, 4.8vw, 1.75rem);
   font-weight: 500;
   line-height: 1;
   color: var(--inv-ink);
@@ -712,14 +713,14 @@
 .invitation-2-route .inv2-er-venue__time {
   margin: 0;
   font-family: var(--inv-font-display);
-  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  font-size: clamp(1.5rem, 4.4vw, 1.85rem);
   font-weight: 500;
 }
 
 .invitation-2-route .inv2-er-venue__place {
   margin: 0.35rem 0 0.5rem;
   font-family: var(--inv-font-script);
-  font-size: clamp(1.7rem, 6vw, 2.3rem);
+  font-size: clamp(1.45rem, 4.4vw, 1.8rem);
   color: color-mix(in srgb, var(--inv-wine) 75%, var(--inv-ink));
 }
 
@@ -754,8 +755,12 @@
 }
 
 .invitation-2-route .inv2-er-venue__meta {
+  position: relative;
+  z-index: 2;
   padding-inline: var(--inv2-er-gutter, 1.25rem);
-  margin-top: clamp(1.15rem, 3.2vw, 1.75rem);
+  margin-top: 0.35rem;
+  padding-top: 0;
+  background: none;
 }
 
 /* ——— Dress code ——— */
@@ -771,14 +776,14 @@
 .invitation-2-route .inv2-er-dresscode__script {
   margin: 0;
   font-family: var(--inv-font-script);
-  font-size: clamp(2.4rem, 11vw, 4rem);
+  font-size: clamp(1.55rem, 5vw, 1.9rem);
   line-height: 1.05;
   color: var(--inv-cream);
   text-wrap: balance;
 }
 
 .invitation-2-route .inv2-er-dresscode__script--accent {
-  font-size: clamp(2rem, 9vw, 3.35rem);
+  font-size: clamp(1.4rem, 4.4vw, 1.75rem);
   color: color-mix(in srgb, var(--inv-cream) 82%, var(--inv-petal));
 }
 
@@ -866,20 +871,26 @@
 }
 
 .invitation-2-route .inv2-er-hotels__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.1rem minmax(0, 1fr);
+  column-gap: 0.7rem;
+  align-items: start;
   width: 100%;
-  padding: 1.1rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--inv-cream) 22%, transparent);
-  border-radius: 0.4rem;
-  text-align: center;
+  padding: 1.15rem 0 0.2rem;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
   box-sizing: border-box;
 }
 
 .invitation-2-route .inv2-er-hotels__name {
-  margin: 0 0 0.55rem;
+  margin: 0;
   font-family: var(--inv-font-display);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 500;
-  text-align: center;
+  text-align: left;
+  letter-spacing: 0.04em;
 }
 
 .invitation-2-route .inv2-er-closing {
@@ -900,7 +911,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 8%;
 }
 
 .invitation-2-route .inv2-er-closing__veil {
@@ -946,12 +957,12 @@
   display: grid;
   gap: 1rem;
   text-align: center;
-  padding: clamp(1.35rem, 4vw, 1.75rem);
-  border-radius: 1rem;
-  background: color-mix(in srgb, #fff 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--inv-cream) 22%, transparent);
-  box-shadow: 0 1rem 2.5rem color-mix(in srgb, #000 18%, transparent);
-  backdrop-filter: blur(8px);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .invitation-2-route .inv2-er-rsvp-wrap {
@@ -1120,7 +1131,7 @@
   }
 
   .invitation-2-route .inv2-er-story__invite {
-    font-size: 1.65rem;
+    font-size: 1.15rem;
     max-width: 34rem;
   }
 
@@ -1133,16 +1144,16 @@
   }
 
   .invitation-2-route .inv2-er-title {
-    font-size: clamp(2.8rem, 4vw, 3.75rem);
+    font-size: clamp(1.85rem, 2.4vw, 2.15rem);
   }
 
   .invitation-2-route .inv2-er-quote {
     max-width: 36rem;
-    font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+    font-size: clamp(1.08rem, 1.4vw, 1.2rem);
   }
 
   .invitation-2-route .inv2-er-script {
-    font-size: clamp(2.2rem, 3vw, 3rem);
+    font-size: clamp(1.6rem, 2vw, 1.9rem);
   }
 
   .invitation-2-route .inv2-er-body {
@@ -1164,15 +1175,15 @@
   }
 
   .invitation-2-route .inv2-er-countdown__value {
-    font-size: clamp(2rem, 2.6vw, 2.6rem);
+    font-size: 1.85rem;
   }
 
   .invitation-2-route .inv2-er-venue__time {
-    font-size: clamp(2.4rem, 3vw, 3.1rem);
+    font-size: 1.9rem;
   }
 
   .invitation-2-route .inv2-er-venue__place {
-    font-size: clamp(2.3rem, 3vw, 3rem);
+    font-size: 1.85rem;
   }
 
   .invitation-2-route .inv2-er-venue__bleed img {
@@ -1180,15 +1191,15 @@
   }
 
   .invitation-2-route .inv2-er-timeline__time {
-    font-size: 1.35rem;
+    font-size: 1.12rem;
   }
 
   .invitation-2-route .inv2-er-timeline__title {
-    font-size: 1.55rem;
+    font-size: 1.2rem;
   }
 
   .invitation-2-route .inv2-er-hotels__name {
-    font-size: 1.55rem;
+    font-size: 1.25rem;
   }
 
   .invitation-2-route .inv2-er-music__embed {
@@ -1202,6 +1213,517 @@
 
   .invitation-2-route .inv2-er-section--tight-y {
     padding-block: clamp(1.75rem, 4vh, 3rem);
+  }
+}
+
+/* ——— Scroll scenes ——— */
+
+.invitation-2-route .inv2-er-hero__photo img {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.invitation-2-route .inv2-er-story__date-num {
+  will-change: transform;
+}
+
+.invitation-2-route .inv2-er-together {
+  position: relative;
+  height: 172vh;
+  background: var(--inv-wine);
+}
+
+.invitation-2-route .inv2-er-together__frame {
+  position: relative;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 4;
+  background: var(--inv-wine);
+}
+
+.invitation-2-route .inv2-er-together__photo,
+.invitation-2-route .inv2-er-together__panel,
+.invitation-2-route .inv2-er-together__copy {
+  position: absolute;
+  inset: 0;
+}
+
+.invitation-2-route .inv2-er-together__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.invitation-2-route .inv2-er-together__panel {
+  background: var(--inv-wine);
+}
+
+.invitation-2-route .inv2-er-together__copy {
+  z-index: 2;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.55rem;
+  height: 100%;
+  padding: 0.85rem 0.4rem;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--inv-cream);
+  pointer-events: none;
+}
+
+.invitation-2-route .inv2-er-together__title {
+  margin: 0;
+  font-family: var(--inv-font-display);
+  font-size: clamp(1.2rem, 5.4vw, 1.85rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.invitation-2-route .inv2-er-together__note {
+  margin: 0;
+  max-width: 100%;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--inv-cream) 88%, transparent);
+}
+
+.invitation-2-route .inv2-er-together__mark {
+  margin: 0.2rem 0 0;
+  font-family: var(--inv-font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  color: color-mix(in srgb, var(--inv-cream) 72%, #c6a36a);
+}
+
+.invitation-2-route .inv2-er-roll {
+  display: inline-flex;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.invitation-2-route .inv2-er-digit {
+  position: relative;
+  display: inline-block;
+  width: 0.68em;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.invitation-2-route .inv2-er-digit__rest,
+.invitation-2-route .inv2-er-digit__out,
+.invitation-2-route .inv2-er-digit__in {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1em;
+  text-align: center;
+}
+
+.invitation-2-route .inv2-er-digit__out {
+  animation: inv2-er-digit-out 440ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.invitation-2-route .inv2-er-digit__in {
+  animation: inv2-er-digit-in 440ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes inv2-er-digit-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes inv2-er-digit-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.invitation-2-route .inv2-er-venue__bleed img {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.invitation-2-route .inv2-er-timeline__item {
+  transform-origin: center center;
+}
+
+.invitation-2-route .inv2-er-timeline-scene {
+  overflow: visible;
+  padding-bottom: 0;
+  padding-inline: 0;
+}
+
+.invitation-2-route .inv2-er-timeline-scene .inv2-er-section__inner {
+  padding-inline: clamp(1.15rem, 5vw, 4rem);
+  box-sizing: border-box;
+}
+
+.invitation-2-route .inv2-er-overture {
+  position: relative;
+  height: 188vh;
+  background: var(--inv-cream);
+}
+
+.invitation-2-route .inv2-er-overture__pin {
+  position: relative;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--inv-cream);
+}
+
+.invitation-2-route .inv2-er-overture__date {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 44%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  padding: 0.5rem 1.15rem 1.4rem;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--inv-ink);
+}
+
+.invitation-2-route .inv2-er-overture__invite {
+  margin: 0 auto;
+  max-width: 34rem;
+  font-size: clamp(0.86rem, 2.4vw, 1.02rem);
+  line-height: 1.45;
+}
+
+.invitation-2-route .inv2-er-overture__nums {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  margin: 0;
+  font-family: var(--inv-font-display);
+  font-size: clamp(2.1rem, 7vw, 2.7rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  color: var(--inv-wine);
+}
+
+.invitation-2-route .inv2-er-overture__nums span {
+  display: block;
+}
+
+.invitation-2-route .inv2-er-overture__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.invitation-2-route .inv2-er-overture__photo img {
+  display: block;
+  width: 100%;
+  height: 118%;
+  object-fit: cover;
+  object-position: center 38%;
+  transform-origin: center 42%;
+}
+
+.invitation-2-route .inv2-er-overture__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgba(46, 42, 40, 0.28) 100%);
+  pointer-events: none;
+}
+
+.invitation-2-route .inv2-er-overture__names {
+  position: absolute;
+  left: 0.8rem;
+  right: 0.8rem;
+  top: 58%;
+  margin: 0;
+}
+
+.invitation-2-route .inv2-er-overture__together .inv2-er-together__copy {
+  align-content: end;
+  padding-bottom: 1.15rem;
+  transform-origin: center bottom;
+}
+
+.invitation-2-route .inv2-er-overture__together .inv2-er-together__title {
+  font-size: clamp(1.05rem, 4.2vw, 1.65rem);
+}
+
+.invitation-2-route .inv2-er-overture__together .inv2-er-together__note {
+  font-size: 0.74rem;
+}
+
+.invitation-2-route .inv2-er-overture__together {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  background: var(--inv-wine);
+}
+
+.invitation-2-route .inv2-er-overture.is-still {
+  height: auto;
+}
+
+.invitation-2-route .inv2-er-overture.is-still .inv2-er-overture__pin {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.invitation-2-route .inv2-er-overture.is-still .inv2-er-overture__photo {
+  position: relative;
+  height: 72svh;
+  order: -1;
+  clip-path: none !important;
+}
+
+.invitation-2-route .inv2-er-overture.is-still .inv2-er-overture__date {
+  position: relative;
+  top: auto;
+  padding-block: 2rem 1.6rem;
+}
+
+.invitation-2-route .inv2-er-overture.is-still .inv2-er-overture__together {
+  position: relative;
+  height: min(100svh, 40rem);
+  clip-path: none !important;
+}
+
+.invitation-2-route .inv2-er-section--cream > .inv2-er-flood {
+  position: relative;
+  height: 0;
+  width: 100%;
+  margin: 0;
+  background: var(--inv-wine);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.invitation-2-route .inv2-er-finale {
+  background: transparent;
+  color: var(--inv-cream);
+}
+
+.invitation-2-route .inv2-er-finale .inv2-er-section--wine {
+  background: var(--inv-wine);
+}
+
+@media (max-width: 767px) {
+  .invitation-2-route .inv2-er-overture__together .inv2-er-together__copy {
+    padding-bottom: 4.8rem;
+  }
+}
+
+.invitation-2-route .inv2-er-dresscode {
+  overflow-x: clip;
+  padding-inline: 0;
+  padding-block: 0.65rem 2rem;
+}
+
+.invitation-2-route .inv2-er-dresscode .inv2-er-section__inner,
+.invitation-2-route .inv2-er-dresscode__inner {
+  max-width: none;
+  width: 100%;
+  gap: 0.8rem;
+}
+
+.invitation-2-route .inv2-er-dress__stage {
+  position: relative;
+  width: 100%;
+  padding-block: 0.4rem 0.2rem;
+}
+
+.invitation-2-route .inv2-er-dress__display {
+  margin: 0;
+  padding-inline: 0.85rem;
+  font-family: var(--inv-font-display);
+  font-size: clamp(1.05rem, 3.4vw, 1.4rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: normal;
+  color: var(--inv-cream);
+}
+
+.invitation-2-route .inv2-er-dress__script {
+  position: relative;
+  z-index: 1;
+  margin: 0.15rem 0 0;
+  padding-inline: 1rem;
+  font-family: var(--inv-font-script);
+  font-size: clamp(1.35rem, 4.2vw, 1.7rem);
+  line-height: 1.05;
+  color: color-mix(in srgb, var(--inv-cream) 90%, #c6a36a);
+}
+
+.invitation-2-route .inv2-er-hotels {
+  gap: 0;
+}
+
+.invitation-2-route [data-section="hotels"] .inv2-er-section__inner {
+  width: min(100%, 22rem);
+  justify-items: start;
+}
+
+.invitation-2-route [data-section="hotels"] .inv2-er-title {
+  text-align: left;
+}
+
+.invitation-2-route .inv2-er-hotels__num {
+  position: static;
+  grid-row: 1 / span 3;
+  margin-top: 0.12rem;
+  font-family: var(--inv-font-display);
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--inv-cream);
+  opacity: 0.42;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.invitation-2-route .inv2-er-hotels__name,
+.invitation-2-route .inv2-er-hotels__rule,
+.invitation-2-route .inv2-er-hotels__link {
+  grid-column: 2;
+}
+
+.invitation-2-route .inv2-er-hotels__rule {
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  margin: 0.7rem 0 0.15rem;
+  background: #c6a36a;
+  transition: width 0.4s ease;
+}
+
+.invitation-2-route .inv2-er-hotels__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--inv-cream) 86%, transparent);
+}
+
+.invitation-2-route .inv2-er-hotels__item:hover .inv2-er-hotels__num,
+.invitation-2-route .inv2-er-hotels__item:focus-within .inv2-er-hotels__num,
+.invitation-2-route .inv2-er-hotels__item:active .inv2-er-hotels__num {
+  opacity: 0.78;
+}
+
+.invitation-2-route .inv2-er-hotels__item:hover .inv2-er-hotels__rule,
+.invitation-2-route .inv2-er-hotels__item:focus-within .inv2-er-hotels__rule,
+.invitation-2-route .inv2-er-hotels__item:active .inv2-er-hotels__rule {
+  width: 7.5rem;
+}
+
+.invitation-2-route .inv2-er-rsvp__thanks {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.invitation-2-route .inv2-er-rsvp__seal {
+  width: 4.6rem;
+  height: auto;
+  animation: inv2-er-seal-stamp 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes inv2-er-seal-stamp {
+  0% {
+    transform: scale(1.36);
+    filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.28));
+  }
+  68% {
+    transform: scale(0.96);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.2));
+  }
+}
+
+.invitation-2-route .inv2-er-closing__copy {
+  align-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-2-route .inv2-er-overture {
+    height: auto;
+  }
+
+  .invitation-2-route .inv2-er-overture__pin {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .invitation-2-route .inv2-er-overture__photo {
+    position: relative;
+    height: 72svh;
+    order: -1;
+    clip-path: none !important;
+  }
+
+  .invitation-2-route .inv2-er-overture__date {
+    position: relative;
+    top: auto;
+  }
+
+  .invitation-2-route .inv2-er-overture__together {
+    position: relative;
+    height: min(100svh, 40rem);
+    clip-path: none !important;
+  }
+
+  .invitation-2-route .inv2-er-together {
+    height: auto;
+  }
+
+  .invitation-2-route .inv2-er-together__frame {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: min(100svh, 42rem);
+  }
+
+  .invitation-2-route .inv2-er-digit__out,
+  .invitation-2-route .inv2-er-digit__in,
+  .invitation-2-route .inv2-er-rsvp__seal {
+    animation: none;
+  }
+
+  .invitation-2-route .inv2-er-hero__photo img,
+  .invitation-2-route .inv2-er-story__date-num,
+  .invitation-2-route .inv2-er-venue__bleed img {
+    will-change: auto;
   }
 }
 

@@ -1,9 +1,7 @@
-import { motion, useReducedMotion } from "framer-motion";
-import { useMemo } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useMemo, useRef } from "react";
 
 import { downloadCalendarEvent } from "../../shared/downloadCalendarEvent";
-import ScrollReveal from "../../shared/ScrollReveal";
-import { invitationEase, revealFade } from "../../shared/motion";
 import type { InvitationContent } from "../../shared/types";
 
 type CalendarSectionProps = {
@@ -64,7 +62,6 @@ function resolveEventEnd(content: InvitationContent): Date {
 
   const end = new Date(start);
   end.setHours(hours, minutes, 0, 0);
-  // Midnight (or earlier than start) means next calendar day
   if (end.getTime() <= start.getTime()) {
     end.setDate(end.getDate() + 1);
   }
@@ -73,10 +70,13 @@ function resolveEventEnd(content: InvitationContent): Date {
 
 function CalendarSection({ content }: CalendarSectionProps) {
   const reduceMotion = useReducedMotion();
-  const calendar = useMemo(
-    () => buildMonthGrid(content.eventDateIso),
-    [content.eventDateIso],
-  );
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const ring = useTransform(scrollYProgress, [0.18, 0.62], reduceMotion ? [1, 1] : [0, 1]);
+  const calendar = useMemo(() => buildMonthGrid(content.eventDateIso), [content.eventDateIso]);
 
   const coupleTitle = [
     content.couple.partnerOne,
@@ -84,9 +84,7 @@ function CalendarSection({ content }: CalendarSectionProps) {
     content.couple.partnerTwo,
   ].join(" ");
 
-  const location = [content.venue?.placeName, content.venue?.address]
-    .filter(Boolean)
-    .join(", ");
+  const location = [content.venue?.placeName, content.venue?.address].filter(Boolean).join(", ");
 
   const saveWeddingDate = () => {
     downloadCalendarEvent({
@@ -100,16 +98,8 @@ function CalendarSection({ content }: CalendarSectionProps) {
   };
 
   return (
-    <ScrollReveal as="section" className="sf-section" variants={revealFade}>
-      <motion.div
-        className="sf-calendar-float"
-        data-section="calendar"
-        aria-label="Sačuvajte datum"
-        initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.85, ease: invitationEase }}
-      >
+    <section className="sf-calendar-scene" data-section="calendar" aria-label="Sačuvajte datum" ref={ref}>
+      <div className="sf-calendar-float">
         <p className="sf-calendar__eyebrow">Sačuvajte datum</p>
         <h2 className="sf-calendar__month-title">
           {calendar.monthName} {calendar.year}
@@ -118,11 +108,7 @@ function CalendarSection({ content }: CalendarSectionProps) {
         <div className="sf-calendar" role="grid" aria-readonly="true">
           <div className="sf-calendar__weekdays" role="row">
             {WEEKDAYS.map((day, index) => (
-              <span
-                key={`${day}-${index}`}
-                className="sf-calendar__weekday"
-                role="columnheader"
-              >
+              <span key={`${day}-${index}`} className="sf-calendar__weekday" role="columnheader">
                 {day}
               </span>
             ))}
@@ -142,7 +128,17 @@ function CalendarSection({ content }: CalendarSectionProps) {
                     aria-label={`Sačuvaj dan venčanja ${day}. ${calendar.monthName} u kalendar telefona`}
                     onClick={saveWeddingDate}
                   >
-                    {day}
+                    <svg className="sf-calendar__ring" viewBox="0 0 48 48" aria-hidden="true">
+                      <circle className="sf-calendar__ring-track" cx="24" cy="24" r="20" />
+                      <motion.circle
+                        className="sf-calendar__ring-draw"
+                        cx="24"
+                        cy="24"
+                        r="20"
+                        style={{ pathLength: ring }}
+                      />
+                    </svg>
+                    <span>{day}</span>
                   </button>
                 );
               }
@@ -150,12 +146,7 @@ function CalendarSection({ content }: CalendarSectionProps) {
               return (
                 <span
                   key={`cell-${index}`}
-                  className={[
-                    "sf-calendar__day",
-                    day ? "" : "sf-calendar__day--empty",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
+                  className={["sf-calendar__day", day ? "" : "sf-calendar__day--empty"].filter(Boolean).join(" ")}
                   role="gridcell"
                 >
                   {day ?? ""}
@@ -166,8 +157,8 @@ function CalendarSection({ content }: CalendarSectionProps) {
         </div>
 
         <p className="sf-calendar__hint">Dodirnite datum da sačuvate</p>
-      </motion.div>
-    </ScrollReveal>
+      </div>
+    </section>
   );
 }
 

@@ -21,7 +21,7 @@
     ),
     radial-gradient(
       ellipse at center,
-      rgba(194, 109, 83, 0.18),
+      color-mix(in srgb, var(--invite-accent, #3e4a3c) 28%, transparent),
       transparent 65%
     );
 }
@@ -29,18 +29,21 @@
 .invitation-modal__panel {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   width: min(100%, 420px);
+  max-height: calc(100dvh - 1.5rem);
   padding: 1.1rem 1.1rem 1.35rem;
   border-radius: 28px;
   background:
     linear-gradient(
       165deg,
-      #fffaf3 0%,
-      color-mix(in srgb, #c4a69b 16%, #f7f1e6) 100%
+      color-mix(in srgb, var(--invite-paper, #f4f1ea) 55%, #fff) 0%,
+      var(--invite-paper, #f4f1ea) 100%
     );
   box-shadow:
     0 30px 80px rgba(46, 42, 40, 0.28),
-    0 0 0 1px rgba(196, 166, 155, 0.28);
+    0 0 0 1px color-mix(in srgb, var(--invite-accent, #3e4a3c) 32%, transparent);
 }
 
 .invitation-modal__close {
@@ -69,19 +72,29 @@
 }
 
 .invitation-modal__media {
+  flex: 1 1 auto;
+  width: min(100%, 380px);
+  height: min(70dvh, calc(100dvh - 12rem));
+  min-height: 0;
+  margin-inline: auto;
   overflow: hidden;
   border-radius: 20px;
-  aspect-ratio: 9 / 16;
   background: #f7f1e6;
   box-shadow:
     0 16px 36px rgba(46, 42, 40, 0.14),
     inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 
-.invitation-modal__video {
+.invitation-modal__video,
+.invitation-modal__live {
   display: block;
   width: 100%;
   height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.invitation-modal__video {
   object-fit: cover;
 }
 
@@ -92,7 +105,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-align: center;
-  color: color-mix(in srgb, #2e2a28 60%, #c4a69b);
+  color: var(--invite-accent, #3e4a3c);
 }
 
 .invitation-modal__cta {
@@ -104,8 +117,8 @@
   margin: 1rem auto 0;
   padding: 0.55rem 1.35rem;
   border-radius: 999px;
-  background: color-mix(in srgb, #c26d53 88%, #2e2a28);
-  color: #faf6f0;
+  background: var(--invite-accent, #3e4a3c);
+  color: #f7f3ee;
   font-family: var(--font-body, "Montserrat", sans-serif);
   font-size: 0.68rem;
   font-weight: 500;
@@ -117,9 +130,32 @@
     transform 0.3s ease;
 }
 
+.invitation-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 1rem;
+  margin-top: 1rem;
+}
+
+.invitation-modal__cta {
+  margin: 0;
+}
+
+.invitation-modal__cta--quiet {
+  background: transparent;
+  color: var(--invite-accent, #3e4a3c);
+  box-shadow: inset 0 0 0 1px var(--invite-accent, #3e4a3c);
+}
+
 .invitation-modal__cta:hover {
-  background: #c26d53;
+  background: color-mix(in srgb, var(--invite-accent, #3e4a3c) 82%, #1a1210);
   transform: translateY(-1px);
+}
+
+.invitation-modal__cta--quiet:hover {
+  background: var(--invite-accent, #3e4a3c);
+  color: #f7f3ee;
 }
 
 @media (max-width: 600px) {
@@ -138,7 +174,9 @@
 
   .invitation-modal__media {
     border-radius: 16px;
-    max-height: min(68dvh, 520px);
+    width: 100%;
+    height: min(68dvh, calc(100dvh - 11rem));
+    max-height: none;
   }
 
   .invitation-modal__video {

@@ -21,7 +21,6 @@ export const pearlEleganceConfig: InvitationTemplateConfig = {
     { id: "cinematic", component: "CinematicSection" },
     { id: "venue", component: "VenueSection" },
     { id: "program", component: "ProgramSection" },
-    { id: "dress-code", component: "DressCodeSection" },
     { id: "rsvp", component: "RsvpSection" },
     { id: "closing", component: "ClosingSection" },
   ],

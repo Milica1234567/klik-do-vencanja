@@ -49,6 +49,10 @@ function Header({ variant = "landing" }: HeaderProps) {
           <Link to="/" onClick={closeMenu}>
             Početna
           </Link>
+          <Link to="/katalog" onClick={closeMenu}>
+            Katalog
+          </Link>
+          {!isPage ? <span className="header_nav-gap" aria-hidden="true" /> : null}
           <Link to="/#invitation-showcase" onClick={closeMenu}>
             Demo
           </Link>
@@ -59,45 +63,13 @@ function Header({ variant = "landing" }: HeaderProps) {
             Kontakt
           </Link>
         </nav>
-      </div>
 
-      {!isPage ? (
-        <>
-          <div className="header_content">
-            <h1>
-              Digitalne pozivnice
-              <br />
-              <span className="header_span_cursive">za posebne trenutke</span>
-            </h1>
-            <p className="header_span_p">
-              Elegantne, interaktivne i potpuno personalizovane <br /> pozivnice
-              za sve tipove proslava
-            </p>
-          </div>
-          <div>
-            <a href="#demo" className="scroll-indicator" aria-label="Scroll down">
-              <svg width="28" height="42" viewBox="0 0 28 42">
-                <path
-                  d="M4 12 L14 22 L24 12"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 22 L14 32 L24 22"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-        </>
-      ) : null}
+        {!isPage && (
+          <Link className="header_talk" to="/#contacts-atelier" onClick={closeMenu}>
+            Razgovor
+          </Link>
+        )}
+      </div>
     </section>
   );
 }

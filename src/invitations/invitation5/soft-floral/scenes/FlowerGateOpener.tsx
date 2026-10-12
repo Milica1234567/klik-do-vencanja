@@ -1,26 +1,9 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-import { invitationEase } from "../../shared/motion";
-import { useIsDesktopInvitation } from "../../shared/useIsDesktopInvitation";
-import { invitationBreakpoints } from "../../shared/viewport";
-import peoniesImage from "../assets/peonies.png";
+import callaImage from "../assets/calla-gate.png";
 
-const EXIT_DURATION = 2.75;
-const FADE_DURATION = 2;
-const BREATHE_DURATION = 5.2;
-const gateExitEase: [number, number, number, number] = [0.33, 0.86, 0.25, 1];
-const flowerWidths = ["50%", "64%", "43%", "50%"];
-const creamWidths = ["50%", "36%", "57%", "50%"];
-const mobileImageShift = ["0%", "-8%", "5%", "0%"];
-const breatheTimes = [0, 0.38, 0.72, 1];
-const breatheTransition = {
-  duration: BREATHE_DURATION,
-  times: breatheTimes,
-  ease: invitationEase,
-  repeat: Infinity,
-  repeatType: "loop" as const,
-};
+const LIFT = 1.15;
 
 type FlowerGateOpenerProps = {
   partnerOne: string;
@@ -34,17 +17,18 @@ type FlowerGateOpenerProps = {
 function FlowerGateOpener({
   partnerOne,
   partnerTwo,
-  joiner = "i",
   onOpen,
   onComplete,
   leaving,
 }: FlowerGateOpenerProps) {
   const reduceMotion = useReducedMotion();
-  const isDesktop = useIsDesktopInvitation(invitationBreakpoints.md);
-  const usePanelBreathe = isDesktop && !reduceMotion;
-  const useImageBreathe = !isDesktop && !reduceMotion;
-  const exitDuration = reduceMotion ? 0.2 : EXIT_DURATION;
-  const fadeDuration = reduceMotion ? 0.15 : FADE_DURATION;
+  const finishedRef = useRef(false);
+  const initial = (name: string) => name.trim().charAt(0).toLocaleUpperCase("sr-Latn");
+  const finish = () => {
+    if (!leaving || finishedRef.current) return;
+    finishedRef.current = true;
+    onComplete();
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -54,13 +38,14 @@ function FlowerGateOpener({
   }, []);
 
   useEffect(() => {
-    if (reduceMotion && leaving) {
-      onComplete();
-    }
-  }, [leaving, onComplete, reduceMotion]);
+    if (!leaving) return;
+    const ms = reduceMotion ? 180 : Math.round(LIFT * 1000) + 80;
+    const id = window.setTimeout(finish, ms);
+    return () => window.clearTimeout(id);
+  }, [leaving, reduceMotion]);
 
   return (
-    <motion.button
+    <button
       type="button"
       className="inv5-sf-gate"
       onClick={() => {
@@ -68,97 +53,35 @@ function FlowerGateOpener({
       }}
       aria-label="Otvorite pozivnicu"
     >
-      <motion.div
-        className="inv5-sf-gate__panel inv5-sf-gate__panel--flowers"
-        aria-hidden="true"
-        initial={false}
-        animate={
-          leaving
-            ? { x: "-100%" }
-            : usePanelBreathe
-              ? { x: "0%", width: flowerWidths }
-              : { x: "0%", width: "50%" }
-        }
-        transition={
-          leaving
-            ? { duration: exitDuration, ease: gateExitEase }
-            : usePanelBreathe
-              ? {
-                  duration: BREATHE_DURATION,
-                  times: breatheTimes,
-                  ease: invitationEase,
-                }
-              : { duration: 0 }
-        }
-        onAnimationComplete={() => {
-          if (leaving) onComplete();
-        }}
-      >
-        <motion.img
-          className="inv5-sf-gate__image"
-          src={peoniesImage}
-          alt=""
-          draggable={false}
-          animate={
-            useImageBreathe && !leaving
-              ? { x: mobileImageShift }
-              : { x: "0%" }
-          }
-          transition={
-            useImageBreathe && !leaving ? breatheTransition : { duration: 0 }
-          }
-        />
-      </motion.div>
-
-      <motion.div
-        className="inv5-sf-gate__panel inv5-sf-gate__panel--plain"
-        aria-hidden="true"
-        initial={false}
-        animate={
-          leaving
-            ? { x: "100%" }
-            : usePanelBreathe
-              ? { x: "0%", width: creamWidths }
-              : { x: "0%", width: "50%" }
-        }
-        transition={
-          leaving
-            ? { duration: exitDuration, ease: gateExitEase }
-            : usePanelBreathe
-              ? {
-                  duration: BREATHE_DURATION,
-                  times: breatheTimes,
-                  ease: invitationEase,
-                }
-              : { duration: 0 }
-        }
-      />
-
       <motion.span
-        className="inv5-sf-gate__copy"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: leaving ? 0 : 1, y: leaving ? 0 : 0 }}
-        transition={{
-          opacity: {
-            duration: leaving ? fadeDuration : 0.8,
-            ease: leaving ? gateExitEase : invitationEase,
-            delay: leaving ? 0 : 0.25,
-          },
-          y: {
-            duration: 0.8,
-            ease: invitationEase,
-            delay: leaving ? 0 : 0.25,
-          },
-        }}
+        className="inv5-sf-gate__veil"
+        initial={false}
+        animate={
+          leaving
+            ? { y: "-112%" }
+            : reduceMotion
+              ? { y: "0%" }
+              : { y: ["0%", "-1.2%", "0.4%", "0%"] }
+        }
+        transition={
+          leaving
+            ? { duration: reduceMotion ? 0.2 : LIFT, ease: [0.7, 0, 0.2, 1] }
+            : reduceMotion
+              ? { duration: 0 }
+              : { duration: 8, repeat: Infinity, ease: "easeInOut", times: [0, 0.35, 0.7, 1] }
+        }
       >
-        <span className="inv5-sf-gate__names">
-          <span className="inv5-sf-gate__name">{partnerOne}</span>
-          <span className="inv5-sf-gate__joiner">{joiner}</span>
-          <span className="inv5-sf-gate__name">{partnerTwo}</span>
+        <img className="inv5-sf-gate__image" src={callaImage} alt="" draggable={false} />
+        <span className="inv5-sf-gate__seal">
+          <span className="inv5-sf-gate__mark" aria-hidden="true">
+            <span>{initial(partnerOne)}</span>
+            <span className="inv5-sf-gate__mark-bar" />
+            <span>{initial(partnerTwo)}</span>
+          </span>
+          <span className="inv5-sf-gate__hint">Otvorite</span>
         </span>
-        <span className="inv5-sf-gate__hint">Dodirnite da otvorite pozivnicu</span>
       </motion.span>
-    </motion.button>
+    </button>
   );
 }
 

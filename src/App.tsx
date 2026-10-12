@@ -1,8 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import "./App.css";
 import HomePage from "./pages/HomePage";
+import CatalogPage from "./pages/CatalogPage";
 import TemplateDetailPage from "./pages/TemplateDetailPage";
 import FullInvitationPage from "./pages/FullInvitationPage";
 import OrderPage from "./pages/OrderPage";
@@ -20,8 +22,23 @@ import Invitation8Page from "./invitations/invitation8/Invitation8Page";
 import Invitation9Page from "./invitations/invitation9/Invitation9Page";
 import Invitation10Page from "./invitations/invitation10/Invitation10Page";
 import Invitation11Page from "./invitations/invitation11/Invitation11Page";
+import Invitation12Page from "./invitations/invitation12/Invitation12Page";
+import Invitation13Page from "./invitations/invitation13/Invitation13Page";
+import MemoriesPage from "./pages/memories/MemoriesPage";
 
 /** Scroll to hash targets after client-side navigation (e.g. /#pricing). */
+function EmbedMode() {
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const embed = new URLSearchParams(search).get("embed") === "1";
+    document.documentElement.classList.toggle("invite-embed", embed);
+    return () => document.documentElement.classList.remove("invite-embed");
+  }, [search]);
+
+  return null;
+}
+
 function ScrollToHash() {
   const { pathname, hash } = useLocation();
 
@@ -43,12 +60,38 @@ function ScrollToHash() {
   return null;
 }
 
+function RouteWash() {
+  const { pathname } = useLocation();
+  const reduceMotion = useReducedMotion();
+  const marketing =
+    pathname === "/" ||
+    /^\/pozivnice\/[^/]+$/.test(pathname) ||
+    /^\/poruci\/[^/]+$/.test(pathname);
+
+  if (!marketing || reduceMotion) return null;
+
+  return (
+    <motion.div
+      key={pathname}
+      className="route-wash"
+      aria-hidden="true"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 0 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    />
+  );
+}
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToHash />
+      <EmbedMode />
+      <RouteWash />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/katalog" element={<CatalogPage />} />
+        <Route path="/katalog/:slug" element={<CatalogPage />} />
         <Route path="/pozivnice/:slug" element={<TemplateDetailPage />} />
         <Route path="/pozivnice/:slug/puna" element={<FullInvitationPage />} />
         <Route path="/poruci/:slug" element={<OrderPage />} />
@@ -65,6 +108,9 @@ function App() {
         <Route path="/p/invitation-9" element={<Invitation9Page />} />
         <Route path="/p/invitation-10" element={<Invitation10Page />} />
         <Route path="/p/invitation-11" element={<Invitation11Page />} />
+        <Route path="/p/invitation-12" element={<Invitation12Page />} />
+        <Route path="/p/invitation-13" element={<Invitation13Page />} />
+        <Route path="/uspomene" element={<MemoriesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

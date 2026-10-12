@@ -160,7 +160,7 @@ export const pearlEleganceDemoContent: PearlEleganceContent = {
   },
   heroImage: {
     src: coupleHero,
-    alt: "Milica i Miloš, pinky promise sa vereničkim prstenom",
+    alt: "Dve ruke koje se pružaju jedna ka drugoj, sa vereničkim prstenom",
   },
 
   invite: {
@@ -245,7 +245,7 @@ export const pearlEleganceDemoContent: PearlEleganceContent = {
   closing: {
     script: "Sa ljubavlju",
     quote:
-      "I tako počinje zauvek — dva srca, jedan dom, i čitav život ispisan zajedno.",
+      "I tako počinje zauvek. Dva srca, jedan dom, i čitav život ispisan zajedno.",
     signature: "Milica & Miloš",
   },
 };

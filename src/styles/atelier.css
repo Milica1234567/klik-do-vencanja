@@ -1,0 +1,36 @@
+:root {
+  --at-ivory: #f4efe6;
+  --at-paper: #f7f4ef;
+  --at-white: #fbf9f6;
+  --at-stone: #d8d2c8;
+  --at-greige: #b7b0a6;
+  --at-ink: #241f1c;
+  --at-muted: #3a342f;
+  --at-line: rgba(36, 31, 28, 0.16);
+  --at-sage: #c5ceba;
+  --at-sage-deep: #6d7564;
+  --at-charcoal: #1c1916;
+  --at-deep: #12100e;
+  --at-espresso: #2a2724;
+  --at-title: clamp(1.9rem, 2.55vw, 2.4rem);
+  --at-serif: "Instrument Serif", Georgia, serif;
+  --at-sans: "Outfit", sans-serif;
+  --at-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#benefits-thread,
+#film,
+#invitation-showcase,
+#benefits,
+#cenovnik,
+#contacts-atelier {
+  scroll-margin-top: 5.2rem;
+}
+
+.route-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background: var(--at-ivory);
+}

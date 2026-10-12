@@ -80,9 +80,10 @@ function OrderPage() {
       <main
         className="order-page"
         style={
-          accentColor
-            ? ({ "--order-accent": accentColor } as CSSProperties)
-            : undefined
+          {
+            "--order-accent": accentColor ?? "#3e4a3c",
+            "--order-paper": template.paperColor ?? "#f4f1ea",
+          } as CSSProperties
         }
       >
         <div className="order-page__shell">
@@ -150,89 +151,95 @@ function OrderPage() {
                     value={`Nova porudžbina: ${template.title}`}
                   />
 
-                  <label className="order-page__field">
-                    <span>Ime i prezime</span>
-                    <input
-                      type="text"
-                      name="ime"
-                      required
-                      autoComplete="name"
-                      placeholder="Ana i Marko"
-                    />
-                  </label>
-
-                  <div className="order-page__row">
+                  <fieldset className="order-page__group">
+                    <legend>Kako da vas nađemo</legend>
                     <label className="order-page__field">
-                      <span>Email</span>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        autoComplete="email"
-                        placeholder="vas@email.com"
-                      />
-                    </label>
-
-                    <label className="order-page__field">
-                      <span>Telefon</span>
-                      <input
-                        type="tel"
-                        name="telefon"
-                        required
-                        autoComplete="tel"
-                        placeholder="+381 …"
-                      />
-                    </label>
-                  </div>
-
-                  <label className="order-page__field">
-                    <span>Datum događaja</span>
-                    <input type="date" name="datumDogadjaja" required />
-                  </label>
-
-                  <div className="order-page__row">
-                    <label className="order-page__field">
-                      <span>Tip događaja</span>
-                      <select name="tipDogadjaja" defaultValue={category}>
-                        {eventTypeOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {invitationCategoryLabels[option]}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-
-                    <label className="order-page__field">
-                      <span>Pozivnica</span>
+                      <span>Ime i prezime</span>
                       <input
                         type="text"
-                        name="pozivnica"
-                        value={template.title}
-                        readOnly
-                        className="order-page__field-locked"
-                        aria-readonly="true"
+                        name="ime"
+                        required
+                        autoComplete="name"
+                        placeholder="Ana i Marko"
                       />
                     </label>
-                  </div>
 
-                  <label className="order-page__field">
-                    <span>Grad / lokacija (opciono)</span>
-                    <input
-                      type="text"
-                      name="lokacija"
-                      autoComplete="address-level2"
-                      placeholder="Beograd"
-                    />
-                  </label>
+                    <div className="order-page__row">
+                      <label className="order-page__field">
+                        <span>Email</span>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          autoComplete="email"
+                          placeholder="vas@email.com"
+                        />
+                      </label>
 
-                  <label className="order-page__field order-page__field--tall">
-                    <span>Napomena (opciono)</span>
-                    <textarea
-                      name="napomena"
-                      rows={4}
-                      placeholder="Ton, boje, posebni zahtevi…"
-                    />
-                  </label>
+                      <label className="order-page__field">
+                        <span>Telefon</span>
+                        <input
+                          type="tel"
+                          name="telefon"
+                          required
+                          autoComplete="tel"
+                          placeholder="+381 …"
+                        />
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  <fieldset className="order-page__group">
+                    <legend>Događaj</legend>
+                    <label className="order-page__field">
+                      <span>Datum događaja</span>
+                      <input type="date" name="datumDogadjaja" required />
+                    </label>
+
+                    <div className="order-page__row">
+                      <label className="order-page__field">
+                        <span>Tip događaja</span>
+                        <select name="tipDogadjaja" defaultValue={category}>
+                          {eventTypeOptions.map((option) => (
+                            <option key={option} value={option}>
+                              {invitationCategoryLabels[option]}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+
+                      <label className="order-page__field">
+                        <span>Pozivnica</span>
+                        <input
+                          type="text"
+                          name="pozivnica"
+                          value={template.title}
+                          readOnly
+                          className="order-page__field-locked"
+                          aria-readonly="true"
+                        />
+                      </label>
+                    </div>
+
+                    <label className="order-page__field">
+                      <span>Grad / lokacija (opciono)</span>
+                      <input
+                        type="text"
+                        name="lokacija"
+                        autoComplete="address-level2"
+                        placeholder="Beograd"
+                      />
+                    </label>
+
+                    <label className="order-page__field order-page__field--tall">
+                      <span>Napomena (opciono)</span>
+                      <textarea
+                        name="napomena"
+                        rows={4}
+                        placeholder="Ton, boje, posebni zahtevi…"
+                      />
+                    </label>
+                  </fieldset>
 
                   <div className="order-page__actions">
                     <button
