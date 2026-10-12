@@ -24,7 +24,9 @@ export type UploadSession = {
   proof: string;
 };
 
-const apiBase = (import.meta.env.VITE_MEMORIES_API_URL ?? "").replace(/\/$/, "");
+const PRODUCTION_API = "https://digital-invitations-preview-production.up.railway.app";
+const configuredApi = (import.meta.env.VITE_MEMORIES_API_URL ?? "").trim().replace(/\/$/, "");
+const apiBase = configuredApi || (import.meta.env.PROD ? PRODUCTION_API : "");
 const GUEST_KEY = "memories-guest-key";
 const SAVED_KEY = "memories-pending-uploads";
 const CHUNK_BYTES = 8 * 1024 * 1024;
