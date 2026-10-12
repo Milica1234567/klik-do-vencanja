@@ -35,6 +35,8 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          VITE_MEMORIES_API_URL: ${{ vars.VITE_MEMORIES_API_URL }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact

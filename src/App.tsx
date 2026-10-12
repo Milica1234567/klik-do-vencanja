@@ -20,6 +20,7 @@ import Invitation8Page from "./invitations/invitation8/Invitation8Page";
 import Invitation9Page from "./invitations/invitation9/Invitation9Page";
 import Invitation10Page from "./invitations/invitation10/Invitation10Page";
 import Invitation11Page from "./invitations/invitation11/Invitation11Page";
+import MemoriesPage from "./pages/memories/MemoriesPage";
 
 /** Scroll to hash targets after client-side navigation (e.g. /#pricing). */
 function ScrollToHash() {
@@ -65,6 +66,7 @@ function App() {
         <Route path="/p/invitation-9" element={<Invitation9Page />} />
         <Route path="/p/invitation-10" element={<Invitation10Page />} />
         <Route path="/p/invitation-11" element={<Invitation11Page />} />
+        <Route path="/uspomene" element={<MemoriesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
