@@ -18,10 +18,9 @@ type SlideInProps = {
 };
 
 /**
- * Dramatic horizontal entrance from fully off-screen.
- *
- * Intersection is measured on a static wrapper so a large `x` transform
- * cannot keep the element forever out of view (which would leave the page blank).
+ * Soft fade-up as a section enters view.
+ * Intersection is measured on a static wrapper so the motion layer
+ * cannot keep the element out of view.
  */
 function SlideIn({
   children,

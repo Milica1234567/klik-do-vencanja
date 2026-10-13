@@ -1,6 +1,6 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-import { invitationEase } from "../../shared/motion";
 import type { InvitationContent } from "../../shared/types";
 import couplePlaceholder from "../assets/couple-hero-placeholder.jpg";
 
@@ -9,30 +9,31 @@ type HeroSectionProps = {
 };
 
 function HeroSection({ content }: HeroSectionProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
+  const ref = useRef<HTMLElement>(null);
   const { couple, heroImage } = content;
   const joiner = couple.joiner ?? "&";
   const photoSrc = heroImage?.src ?? couplePlaceholder;
-  const photoAlt =
-    heroImage?.alt ?? `${couple.partnerOne} i ${couple.partnerTwo}`;
+  const photoAlt = heroImage?.alt ?? `${couple.partnerOne} i ${couple.partnerTwo}`;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const photoScale = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [1.025, 1]);
 
   return (
-    <section className="er-hero" data-section="hero" aria-label="Naslovnica">
+    <section className="er-hero" data-section="hero" aria-label="Naslovnica" ref={ref}>
       <div className="er-hero__photo">
-        <img src={photoSrc} alt={photoAlt} draggable={false} />
+        <motion.img
+          src={photoSrc}
+          alt={photoAlt}
+          draggable={false}
+          style={{ scale: photoScale }}
+        />
         <div className="er-hero__photo-veil" aria-hidden="true" />
       </div>
 
-      <motion.div
-        className="er-hero__reveal"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 1.5,
-          ease: invitationEase,
-          delay: 0.2,
-        }}
-      >
+      <div className="er-hero__reveal">
         <h1 className="er-hero__names">
           <span className="er-hero__name">{couple.partnerOne}</span>
           <span className="er-hero__joiner" aria-hidden="true">
@@ -40,7 +41,7 @@ function HeroSection({ content }: HeroSectionProps) {
           </span>
           <span className="er-hero__name">{couple.partnerTwo}</span>
         </h1>
-      </motion.div>
+      </div>
     </section>
   );
 }

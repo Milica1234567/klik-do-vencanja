@@ -1,9 +1,5 @@
 import type { ComponentType } from "react";
 
-import DustyBlueSeal, {
-  DUSTY_BLUE_SEAL_ID,
-  dustyBlueSealMeta,
-} from "./dusty-blue-seal";
 import EnvelopeRomance, {
   ENVELOPE_ROMANCE_ID,
   envelopeRomanceMeta,
@@ -13,7 +9,6 @@ import PearlElegance, {
   PEARL_ELEGANCE_ID,
   pearlEleganceMeta,
 } from "./pearl-elegance";
-import PearlWhite, { PEARL_WHITE_ID, pearlWhiteMeta } from "./pearl-white";
 import RoseBlush, { ROSE_BLUSH_ID, roseBlushMeta } from "./rose-blush";
 import SoftFloral, { SOFT_FLORAL_ID, softFloralMeta } from "./soft-floral";
 import type {
@@ -66,14 +61,6 @@ export const invitationTemplateRegistry: Record<
     },
     Component: SoftFloral,
   },
-  [DUSTY_BLUE_SEAL_ID]: {
-    meta: {
-      id: dustyBlueSealMeta.id,
-      title: dustyBlueSealMeta.title,
-      sections: [...dustyBlueSealMeta.sections],
-    },
-    Component: DustyBlueSeal,
-  },
   [ROSE_BLUSH_ID]: {
     meta: {
       id: roseBlushMeta.id,
@@ -81,14 +68,6 @@ export const invitationTemplateRegistry: Record<
       sections: [...roseBlushMeta.sections],
     },
     Component: RoseBlush,
-  },
-  [PEARL_WHITE_ID]: {
-    meta: {
-      id: pearlWhiteMeta.id,
-      title: pearlWhiteMeta.title,
-      sections: [...pearlWhiteMeta.sections],
-    },
-    Component: PearlWhite,
   },
 };
 
@@ -113,6 +92,4 @@ export { EnvelopeRomance, ENVELOPE_ROMANCE_ID };
 export { LetoLjubavi, LETO_LJUBAVI_ID };
 export { PearlElegance, PEARL_ELEGANCE_ID };
 export { SoftFloral, SOFT_FLORAL_ID };
-export { DustyBlueSeal, DUSTY_BLUE_SEAL_ID };
 export { RoseBlush, ROSE_BLUSH_ID };
-export { PearlWhite, PEARL_WHITE_ID };

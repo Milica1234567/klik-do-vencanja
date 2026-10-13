@@ -136,7 +136,7 @@
 
 .ll__art--tower {
   display: block;
-  width: min(100%, 20.5rem);
+  width: 100%;
   max-width: 100%;
   margin: 0.35rem auto 0.75rem;
 }
@@ -152,7 +152,7 @@
 
 .ll__art--finale {
   display: block;
-  width: min(100%, 26.5rem);
+  width: 100%;
   max-width: 100%;
   height: auto;
   margin: 0.65rem auto 0.75rem;
@@ -224,7 +224,7 @@
   font-weight: 400;
   line-height: 1.1;
   text-align: right;
-  padding-right: 0.5rem;
+  padding-right: 0;
 }
 
 .ll__cal-grid {
@@ -258,10 +258,20 @@
   width: 3rem;
   height: 2.75rem;
   margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
   color: #fff;
+  font-family: inherit;
   font-size: 0.92rem;
   font-weight: 700;
   line-height: 1;
+  cursor: pointer;
+}
+
+.ll__cal-date--heart:focus-visible {
+  outline: 2px solid var(--inv-red);
+  outline-offset: 3px;
 }
 
 .ll__cal-heart {
@@ -278,6 +288,14 @@
   position: relative;
   z-index: 1;
   padding-top: 0.12rem;
+}
+
+.ll__cal-note {
+  margin: 0.95rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: pre-line;
 }
 
 .ll-btn {
@@ -380,17 +398,17 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(8rem, 10.5rem) minmax(0, 1fr);
   align-items: center;
-  column-gap: 0.85rem;
-  width: calc(100% + 1.25rem);
-  max-width: calc(100% + 1.25rem);
-  margin-inline: -0.625rem;
+  column-gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
 }
 
 .ll-house__half {
   display: block;
-  width: auto;
-  height: clamp(9.5rem, 42vw, 12.5rem);
-  max-width: none;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
   pointer-events: none;
 }
 
@@ -423,9 +441,11 @@
 /* —— Luster + gosti —— */
 .ll-dance {
   position: relative;
-  width: 100%;
+  width: 87%;
   max-width: 100%;
+  min-width: 0;
   margin-top: 1rem;
+  margin-inline: auto;
   padding-top: 0.75rem;
 }
 
@@ -433,6 +453,7 @@
   display: block;
   width: 100%;
   max-width: 100%;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -440,18 +461,20 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   width: 100%;
+  min-width: 0;
   margin-top: -0.65rem;
-  padding-inline: 0.15rem;
+  padding-inline: 0;
 }
 
 .ll-dance__guests,
 .ll-dance__cheers {
   flex: 1 1 0;
-  width: auto;
-  height: clamp(8.75rem, 38vw, 11.25rem);
-  max-width: 48%;
+  min-width: 0;
+  width: calc(50% - 0.225rem);
+  max-width: calc(50% - 0.225rem);
+  height: auto;
   object-fit: contain;
   object-position: bottom center;
   transform-origin: bottom center;
@@ -472,8 +495,8 @@
 
 .ll-frame {
   position: relative;
-  width: min(100%, 16.5rem);
-  aspect-ratio: 604 / 865;
+  width: min(100%, 20rem);
+  aspect-ratio: 7 / 8;
   display: grid;
   place-items: center;
   margin-inline: auto;
@@ -484,7 +507,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   pointer-events: none;
 }
 
@@ -496,13 +519,15 @@
   align-content: center;
   justify-items: center;
   gap: 0.5rem;
-  width: 58%;
-  padding: 3.1rem 0.25rem 3rem;
+  width: 52%;
+  padding: 2.15rem 0.2rem 1.9rem;
   text-align: center;
 }
 
 .ll-frame__copy .ll__box-aside {
   margin-top: 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
 }
 
 /* —— Nazdravljanje —— */
@@ -534,19 +559,19 @@
 .ll-toast__slot--tl {
   --toast-w: 24%;
   top: 10%;
-  left: 34%;
+  left: 47.4%;
 }
 
 .ll-toast__slot--wine {
   --toast-w: 32%;
   top: 20%;
-  left: 86%;
+  left: 83%;
 }
 
 .ll-toast__slot--flute {
   --toast-w: 30%;
   top: 34%;
-  left: 10%;
+  left: 16%;
 }
 
 .ll-toast__slot--flute .ll-toast__item {
@@ -556,13 +581,13 @@
 .ll-toast__slot--br {
   --toast-w: 32%;
   top: 58%;
-  left: 88%;
+  left: 83%;
 }
 
 .ll-toast__slot--bottle {
   --toast-w: 34%;
   top: 72%;
-  left: 8%;
+  left: 18%;
 }
 
 .ll-toast__slot--clink {
@@ -637,49 +662,69 @@
 }
 
 .ll-rsvp__intro {
-  margin: 0 0 1.35rem;
+  margin: 0 0 0.35rem;
   font-size: clamp(1.55rem, 6.2vw, 1.9rem);
   line-height: 1.2;
 }
 
+.ll-rsvp__bow {
+  display: block;
+  width: 7.5rem;
+  height: auto;
+  margin: 0.1rem auto 1.15rem;
+}
+
 .ll-rsvp__form {
   display: grid;
-  gap: 0.95rem;
+  gap: 1.05rem;
   width: 100%;
-  max-width: 18.5rem;
+  max-width: none;
   margin-inline: auto;
   text-align: left;
 }
 
-.ll-rsvp__line {
+.ll-rsvp__panel {
   display: grid;
-  gap: 0.25rem;
+  gap: 1.05rem;
 }
 
-.ll-rsvp__line--short .ll-rsvp__input {
-  max-width: 4.5rem;
+.ll-rsvp__hint {
+  margin: 0.15rem 0 0.15rem;
+  color: var(--inv-red);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.ll-rsvp__line {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.ll-rsvp__label,
+.ll-rsvp__legend {
+  color: var(--inv-ink);
 }
 
 .ll-rsvp__label {
-  font-family: var(--inv-font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--inv-ink);
+  font-family: var(--inv-font-serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .ll-rsvp__input {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.35rem 0 0.45rem;
+  padding: 0.4rem 0 0.5rem;
   border: none;
   border-bottom: 1px solid rgba(26, 26, 26, 0.28);
   border-radius: 0;
   background: transparent;
   color: var(--inv-ink);
   font-family: var(--inv-font-serif);
-  font-size: 0.94rem;
+  font-size: 1.05rem;
   line-height: 1.4;
 }
 
@@ -688,52 +733,137 @@
   border-bottom-color: var(--inv-red);
 }
 
+.ll-rsvp__note {
+  resize: none;
+  min-height: 3.4rem;
+}
+
 .ll-rsvp__attend {
-  margin: 0.1rem 0 0;
+  margin: 0;
   padding: 0;
   border: none;
+  text-align: center;
 }
 
-.ll-rsvp__attend .ll-rsvp__label {
-  display: block;
-  margin-bottom: 0.4rem;
+.ll-rsvp__legend {
+  margin: 0 auto 0.75rem;
+  font-family: var(--inv-font-script);
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1;
 }
 
-.ll-rsvp__tick {
+.ll-rsvp__choices {
   display: grid;
-  grid-template-columns: 1rem 1fr;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.4rem;
-  font-family: var(--inv-font-serif);
-  font-size: 0.92rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.ll-rsvp__choice {
+  position: relative;
+  display: block;
   cursor: pointer;
 }
 
-.ll-rsvp__tick input {
+.ll-rsvp__choice input {
   position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
   opacity: 0;
-  pointer-events: none;
 }
 
-.ll-rsvp__tick-box {
-  display: block;
-  width: 0.9rem;
-  height: 0.9rem;
+.ll-rsvp__choice span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  border: 1px solid rgba(26, 26, 26, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--inv-ink);
+  font-family: var(--inv-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ll-rsvp__choice input:checked + span {
+  border-color: var(--inv-red);
+  background: var(--inv-red);
+  color: #fff;
+}
+
+.ll-rsvp__choice input:focus-visible + span {
+  outline: 2px solid var(--inv-red);
+  outline-offset: 3px;
+}
+
+.ll-rsvp__guests {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0 0.55rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.28);
+}
+
+.ll-rsvp__stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ll-rsvp__stepper button {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
   border: 1px solid rgba(26, 26, 26, 0.35);
   border-radius: 50%;
   background: transparent;
+  color: var(--inv-ink);
+  font-family: var(--inv-font-serif);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.ll-rsvp__tick input:checked + .ll-rsvp__tick-box {
+.ll-rsvp__stepper button:hover {
   border-color: var(--inv-red);
-  background: var(--inv-red);
-  box-shadow: inset 0 0 0 2px var(--inv-bg);
+  color: var(--inv-red);
+}
+
+.ll-rsvp__count {
+  width: 2.2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--inv-ink);
+  font-family: var(--inv-font-serif);
+  font-size: 1.15rem;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.ll-rsvp__count::-webkit-outer-spin-button,
+.ll-rsvp__count::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.ll-rsvp__count:focus {
+  outline: none;
 }
 
 .ll-rsvp__submit {
-  width: 100%;
-  margin-top: 0.5rem;
+  width: auto;
+  justify-self: center;
+  margin-top: 0.65rem;
+  padding-inline: 1.9rem;
   border: none;
   cursor: pointer;
 }
@@ -764,20 +894,9 @@
     --ll-gap: 3.65rem;
   }
 
-  .ll__art--finale {
-    width: min(100%, 28rem);
-  }
-
   .ll-house__stage {
-    width: calc(100% + 2rem);
-    max-width: calc(100% + 2rem);
-    margin-inline: -1rem;
     grid-template-columns: minmax(0, 1fr) minmax(8.5rem, 11rem) minmax(0, 1fr);
-    column-gap: 1rem;
-  }
-
-  .ll-house__half {
-    height: clamp(11rem, 34vw, 14rem);
+    column-gap: 0.85rem;
   }
 }
 

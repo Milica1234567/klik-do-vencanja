@@ -5,7 +5,6 @@ import {
   CinematicSection,
   ClosingSection,
   CountdownSection,
-  DressCodeSection,
   InviteSection,
   RsvpSection,
   VenueSection,
@@ -19,7 +18,6 @@ export {
   CinematicSection,
   VenueSection,
   ProgramSection,
-  DressCodeSection,
   RsvpSection,
   ClosingSection,
 };

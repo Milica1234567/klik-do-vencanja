@@ -6,7 +6,6 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-import AmMonogram from "./AmMonogram";
 import { letoAssets } from "./media";
 import "./LetoIntroGate.css";
 
@@ -21,8 +20,6 @@ const ZOOM_MS = 1550;
 const REVEAL_MS = 580;
 const OPEN_MS = ZOOM_MS + REVEAL_MS;
 
-const SWAY_DURATION = 14;
-
 const slowEase: [number, number, number, number] = [0.22, 0.03, 0.12, 1];
 const zoomEase: [number, number, number, number] = [0.22, 0.08, 0.18, 1];
 
@@ -31,16 +28,14 @@ function isMobileGate() {
 }
 
 function getZoomPlan() {
-  if (isMobileGate()) {
-    return {
-      scale: 4.1,
-      // Optical center of the couple after object-position shift
-      origin: "50% 28%",
-    };
-  }
+  const mobile = isMobileGate();
+  const originY = mobile ? 0.34 : 0.3;
+  const figure = document.querySelector(".ll-gate__figure");
+  const rect = figure?.getBoundingClientRect();
   return {
-    scale: 5.4,
-    origin: "52% 24%",
+    scale: mobile ? 3.3 : 4,
+    origin: `50% ${Math.round(originY * 100)}%`,
+    y: rect ? (0.5 - originY) * rect.height : 0,
   };
 }
 
@@ -50,11 +45,24 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [videoSrc, setVideoSrc] = useState(letoAssets.introDanceWebm);
   const [useBlend, setUseBlend] = useState(false);
-  const [zoomOrigin, setZoomOrigin] = useState("50% 28%");
-  const [zoomScale, setZoomScale] = useState(4.1);
+  const [zoomOrigin, setZoomOrigin] = useState("50% 34%");
+  const [zoomScale, setZoomScale] = useState(3.3);
+  const [zoomY, setZoomY] = useState(0);
   const leaving = phase !== "idle";
+  const [writeMark, setWriteMark] = useState(false);
 
   const swayX = useMotionValue(0);
+
+  useEffect(() => {
+    if (reduce !== false) return;
+    let cancelled = false;
+    void document.fonts.ready.then(() => {
+      if (!cancelled) setWriteMark(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [reduce]);
 
   useEffect(() => {
     const useMp4 = () => {
@@ -117,22 +125,7 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
       return;
     }
 
-    // No horizontal sway on phones — keeps dancers optically centered
-    if (isMobileGate()) {
-      swayX.set(0);
-      return;
-    }
-
-    const controls = animate(swayX, [-18, 18], {
-      duration: SWAY_DURATION,
-      repeat: Infinity,
-      repeatType: "mirror",
-      ease: "easeInOut",
-    });
-
-    return () => {
-      controls.stop();
-    };
+    swayX.set(0);
   }, [leaving, reduce, swayX]);
 
   const open = () => {
@@ -146,6 +139,7 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
     const plan = getZoomPlan();
     setZoomOrigin(plan.origin);
     setZoomScale(plan.scale);
+    setZoomY(plan.y);
     setPhase("zoom");
     onOpen();
 
@@ -170,17 +164,6 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
       transition={{ duration: 0.7, ease: slowEase }}
     >
       <div className="ll-gate__stage">
-        {!leaving ? (
-          <motion.div
-            className="ll-gate__monogram-wrap"
-            initial={reduce ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: reduce ? 0 : 0.2, ease: slowEase }}
-          >
-            <AmMonogram className="ll-gate__monogram" />
-          </motion.div>
-        ) : null}
-
         <div className="ll-gate__anchor">
           <motion.div className="ll-gate__sway" style={{ x: swayX }}>
             <motion.div
@@ -188,8 +171,12 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
               style={{ transformOrigin: zoomOrigin }}
               animate={
                 phase === "zoom" || phase === "reveal"
-                  ? { scale: zoomScale, opacity: phase === "reveal" ? 0 : 1 }
-                  : { scale: 1, opacity: 1 }
+                  ? {
+                      scale: zoomScale,
+                      y: zoomY,
+                      opacity: phase === "reveal" ? 0 : 1,
+                    }
+                  : { scale: 1, y: 0, opacity: 1 }
               }
               transition={
                 phase === "zoom" || phase === "reveal"
@@ -219,6 +206,9 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
               </div>
             </motion.div>
           </motion.div>
+          {!leaving ? (
+            <p className={`ll-gate__mark${writeMark ? " is-writing" : ""}`}>A&amp;M</p>
+          ) : null}
         </div>
       </div>
 
@@ -227,14 +217,14 @@ function LetoIntroGate({ onOpen, onFinished }: LetoIntroGateProps) {
           type="button"
           className="ll-gate__cta"
           onClick={open}
-          aria-label="Otvori pozivnicu"
+          aria-label="Klikni i zapleši sa nama"
           initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: reduce ? 0 : 0.4, ease: slowEase }}
           whileHover={reduce ? undefined : { scale: 1.04 }}
           whileTap={reduce ? undefined : { scale: 0.98 }}
         >
-          Klikni i uđi u ples
+          Klikni i zapleši sa nama
         </motion.button>
       ) : null}
     </motion.section>

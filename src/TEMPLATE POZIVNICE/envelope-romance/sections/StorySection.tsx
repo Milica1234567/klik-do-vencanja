@@ -14,7 +14,7 @@ type StorySectionProps = {
 function parseEventParts(iso: string) {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) {
-    return { day: "12", month: "09", year: "2026" };
+    return { day: "12", month: "09", year: "2027" };
   }
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
