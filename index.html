@@ -61,13 +61,23 @@
       content="Elegantna postavka sa pozivnicom za venčanje, cvećem i voštanim pečatom"
     />
     <script>
-      // Every entry, including the site root and GitHub Pages 404 recovery,
-      // stays on /uspomene before the app renders.
+      // Restore the original SPA URL encoded by public/404.html.
       (function (location) {
-        var path = location.pathname.replace(/\/+$/, "") || "/";
-        if (path === "/index.html") path = "/";
-        if (path === "/uspomene" && !location.search.startsWith("?/")) return;
-        window.history.replaceState(null, "", "/uspomene");
+        if (location.search.startsWith("?/")) {
+          var restoredUrl = location.search
+            .slice(1)
+            .split("&")
+            .map(function (part) {
+              return part.replace(/~and~/g, "&");
+            })
+            .join("?");
+
+          window.history.replaceState(
+            null,
+            "",
+            location.pathname.slice(0, -1) + restoredUrl + location.hash,
+          );
+        }
       })(window.location);
     </script>
     <link
