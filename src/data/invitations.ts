@@ -4,7 +4,7 @@ import beigePinkWedding from "../assets/invitations/beige-pink-compresed.mp4";
 import beigePinkPoster from "../assets/invitations/beige-pink-poster-sm.jpg";
 import whiteGreenWedding from "../assets/invitations/white-green-elegant-compresed.mp4";
 import whiteGreenPoster from "../assets/invitations/white-green-poster-sm.jpg";
-import blushPhoto from "../TEMPLATE POZIVNICE/rose-blush/assets/photo-1.png";
+import blushPhoto from "../TEMPLATE POZIVNICE/rose-blush/assets/art/couple.png";
 
 export const invitationTemplates: InvitationTemplate[] = [
   {
