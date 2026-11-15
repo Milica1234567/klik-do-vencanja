@@ -1,9 +1,4 @@
 import type { InvitationContent } from "../shared/types";
-import photo1 from "./assets/photo-1.png";
-import photo2 from "./assets/photo-2.png";
-import photo3 from "./assets/photo-3.png";
-
-export const blushPhotos = [photo1, photo2, photo3] as const;
 
 export const roseBlushDemoContent: InvitationContent = {
   couple: {
@@ -11,8 +6,8 @@ export const roseBlushDemoContent: InvitationContent = {
     partnerTwo: "Stefan",
     joiner: "i",
   },
-  eventDateIso: "2026-09-12T17:00:00",
-  eventDateLabel: "Subota 12. septembar 2026.",
+  eventDateIso: "2027-09-12T17:00:00",
+  eventDateLabel: "Nedelja 12. septembar 2027.",
   quote:
     "Sa vama želimo da proslavimo dan koji ćemo pamtiti ceo život.",
   announcement: "Venčavamo se",
@@ -57,15 +52,15 @@ export const roseBlushDemoContent: InvitationContent = {
   },
   rsvp: {
     title: "Potvrdite dolazak",
-    deadlineLabel: "Molimo vas da potvrdite dolazak do 1. avgusta 2026.",
+    deadlineLabel: "Molimo vas da potvrdite dolazak do 1. avgusta 2027.",
     ctaLabel: "Potvrdi",
   },
   closingMessage: "Jelena i Stefan",
 };
 
 export const roseBlushDateParts = {
-  weekday: "Subota",
+  weekday: "Nedelja",
   day: "12",
   month: "Septembar",
-  year: "2026",
+  year: "2027",
 };

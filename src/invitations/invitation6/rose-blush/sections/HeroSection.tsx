@@ -1,5 +1,3 @@
-import ScrollReveal from "../../shared/ScrollReveal";
-import { revealScale } from "../../shared/motion";
 import type { InvitationContent } from "../../shared/types";
 import { blushArt } from "../art";
 import CardOrnaments from "../components/CardOrnaments";
@@ -16,13 +14,7 @@ function HeroSection({ content }: HeroSectionProps) {
   const date = roseBlushDateParts;
 
   return (
-    <ScrollReveal
-      as="section"
-      className="inv6-qb-section"
-      variants={revealScale}
-      amount={0.08}
-      once
-    >
+    <section className="inv6-qb-section">
       <div className="inv6-qb-hero" data-section="hero">
         <article className="inv6-qb-card inv6-qb-card--hero">
           <CardOrnaments set="hero" />
@@ -49,7 +41,7 @@ function HeroSection({ content }: HeroSectionProps) {
           <LineArt src={blushArt.rings} className="inv6-qb-tiara" />
         </article>
       </div>
-    </ScrollReveal>
+    </section>
   );
 }
 

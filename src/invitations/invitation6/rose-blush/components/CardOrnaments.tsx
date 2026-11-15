@@ -14,22 +14,16 @@ const SETS: Record<
   hero: [
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--tl" },
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--tr-corner" },
-    { src: blushArt.lavender, className: "inv6-qb-orn inv6-qb-orn--bl" },
-    { src: blushArt.bouquet, className: "inv6-qb-orn inv6-qb-orn--br-spray" },
   ],
   detail: [
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--tl" },
-    { src: blushArt.spray, className: "inv6-qb-orn inv6-qb-orn--tr" },
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--br" },
-    { src: blushArt.lavender, className: "inv6-qb-orn inv6-qb-orn--bl" },
     { src: blushArt.butterfly, className: "inv6-qb-orn inv6-qb-orn--mr" },
   ],
   reception: [
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--tl" },
-    { src: blushArt.spray, className: "inv6-qb-orn inv6-qb-orn--br-spray" },
   ],
   dress: [
-    { src: blushArt.spray, className: "inv6-qb-orn inv6-qb-orn--tl-spray" },
     { src: blushArt.floralCorner, className: "inv6-qb-orn inv6-qb-orn--br-vine" },
   ],
   quote: [

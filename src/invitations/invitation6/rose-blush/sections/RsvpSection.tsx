@@ -13,11 +13,21 @@ type RsvpSectionProps = {
 
 type Attendance = "yes" | "no" | "";
 
+const GUEST_OPTIONS = [
+  { value: 1, label: "1 gost" },
+  { value: 2, label: "2 gosta" },
+  { value: 3, label: "3 gosta" },
+  { value: 4, label: "4 gosta" },
+  { value: 5, label: "5 gostiju" },
+  { value: 6, label: "6 gostiju" },
+] as const;
+
 function RsvpSection({ content }: RsvpSectionProps) {
   const { rsvp } = content;
   const [guestName, setGuestName] = useState("");
   const [attendance, setAttendance] = useState<Attendance>("");
-  const [plusGuests, setPlusGuests] = useState(0);
+  const [partySize, setPartySize] = useState(1);
+  const [companions, setCompanions] = useState("");
   const [status, setStatus] = useState<"idle" | "open" | "done">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -33,8 +43,18 @@ function RsvpSection({ content }: RsvpSectionProps) {
       setError("Izaberite da li dolazite.");
       return;
     }
+    if (attendance === "yes" && partySize > 1 && !companions.trim()) {
+      setError("Unesite imena gostiju.");
+      return;
+    }
     setError(null);
     setStatus("done");
+  };
+
+  const decline = () => {
+    setAttendance("no");
+    setPartySize(1);
+    setCompanions("");
   };
 
   return (
@@ -83,29 +103,42 @@ function RsvpSection({ content }: RsvpSectionProps) {
                   type="radio"
                   name="inv6-qb-attendance"
                   checked={attendance === "no"}
-                  onChange={() => {
-                    setAttendance("no");
-                    setPlusGuests(0);
-                  }}
+                  onChange={decline}
                 />
                 Ne
               </label>
             </fieldset>
             {attendance === "yes" ? (
-              <label>
-                Plus 1 ili više (dodatni gosti)
-                <input
-                  type="number"
-                  min={0}
-                  max={10}
-                  inputMode="numeric"
-                  value={plusGuests}
-                  onChange={(event) => {
-                    const next = Number(event.target.value);
-                    setPlusGuests(Number.isNaN(next) ? 0 : Math.max(0, Math.min(10, next)));
-                  }}
-                />
-              </label>
+              <>
+                <label>
+                  Broj gostiju
+                  <select
+                    value={partySize}
+                    onChange={(event) => {
+                      const next = Number(event.target.value);
+                      setPartySize(next);
+                      if (next < 2) setCompanions("");
+                    }}
+                  >
+                    {GUEST_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {partySize > 1 ? (
+                  <label>
+                    Imena gostiju
+                    <input
+                      type="text"
+                      value={companions}
+                      onChange={(event) => setCompanions(event.target.value)}
+                      placeholder="Imena pratnje"
+                    />
+                  </label>
+                ) : null}
+              </>
             ) : null}
             {error ? <p className="inv6-qb-rsvp-error">{error}</p> : null}
             <button type="submit" className="inv6-qb-btn">

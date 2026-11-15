@@ -1,82 +1,64 @@
-import { motion, useReducedMotion } from "framer-motion";
-
 import ScrollReveal from "../../shared/ScrollReveal";
-import { invitationEase, revealFromRight, revealUp } from "../../shared/motion";
-import { useIsDesktopInvitation } from "../../shared/useIsDesktopInvitation";
-import type { InvitationContent } from "../../shared/types";
-import { invitationBreakpoints } from "../../shared/viewport";
-import CardOrnaments from "../components/CardOrnaments";
-import { blushPhotos } from "../content";
+import { revealFade } from "../../shared/motion";
+import { blushArt } from "../art";
+import LineArt from "../components/LineArt";
 
-type GallerySectionProps = {
-  content: InvitationContent;
-};
+function saveWeddingDate() {
+  const title = "Venčanje Jelene i Stefana";
+  const details = "Ceremonija u 17:00. Villa Botanica, Beograd.";
+  const location = "Villa Botanica, Beograd";
+  const apple = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-function GallerySection({ content }: GallerySectionProps) {
-  const isDesktop = useIsDesktopInvitation(invitationBreakpoints.md);
-  const reduceMotion = useReducedMotion();
-  const quoteClassName = isDesktop
-    ? "qb-card qb-card--quote"
-    : "qb-card qb-card--quote qb-card--quote-mobile";
-  const galleryClassName = isDesktop
-    ? "qb-gallery"
-    : "qb-gallery qb-gallery--mobile";
-  const polaroidsClassName = isDesktop
-    ? "qb-polaroids"
-    : "qb-polaroids qb-polaroids--mobile";
+  if (apple) {
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Klik do vencanja//Rose blush//SR",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      "UID:rose-blush-20270912@klikdovencanja",
+      "DTSTAMP:20270912T150000Z",
+      "DTSTART:20270912T150000Z",
+      "DTEND:20270912T220000Z",
+      "SUMMARY:Venčanje Jelene i Stefana",
+      "DESCRIPTION:Ceremonija u 17:00. Villa Botanica, Beograd.",
+      "LOCATION:Villa Botanica\\, Beograd",
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+    const file = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "vencanje-jelena-stefan.ics";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    return;
+  }
 
+  const url = new URL("https://calendar.google.com/calendar/render");
+  url.searchParams.set("action", "TEMPLATE");
+  url.searchParams.set("text", title);
+  url.searchParams.set("dates", "20270912T150000Z/20270912T220000Z");
+  url.searchParams.set("details", details);
+  url.searchParams.set("location", location);
+  window.open(url.toString(), "_blank", "noopener,noreferrer");
+}
+
+function GallerySection() {
   return (
-    <ScrollReveal
-      as="section"
-      className="qb-section qb-section--gallery"
-      variants={isDesktop ? revealFromRight : revealUp}
-      amount={isDesktop ? 0.08 : 0.18}
-      once
-    >
-      <div className={galleryClassName} data-section="gallery">
-        <div className={polaroidsClassName}>
-          {blushPhotos.map((src, index) => (
-            <motion.figure
-              key={src}
-              className={`qb-polaroid qb-polaroid--${index + 1}`}
-              initial={
-                reduceMotion
-                  ? false
-                  : isDesktop
-                    ? { opacity: 0, y: -86, scale: 1.08 }
-                    : { opacity: 0, y: 28, scale: 0.96 }
-              }
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: isDesktop ? 0.25 : 0.12 }}
-              transition={
-                isDesktop
-                  ? {
-                      type: "spring",
-                      stiffness: 118,
-                      damping: 13,
-                      delay: 0.12 + index * 0.18,
-                    }
-                  : {
-                      duration: 0.85,
-                      delay: index * 0.12,
-                      ease: invitationEase,
-                    }
-              }
-            >
-              <img src={src} alt="" draggable={false} loading="eager" />
-            </motion.figure>
-          ))}
-        </div>
-
-        <article className={quoteClassName}>
-          <CardOrnaments set="quote" />
-          <span className="qb-quote-mark" aria-hidden="true">
-            “
-          </span>
-          <p className="qb-quote-text">{content.quote}</p>
-          <span className="qb-quote-rule" aria-hidden="true" />
-        </article>
-      </div>
+    <ScrollReveal as="section" className="qb-section" variants={revealFade} amount={0.2} once>
+      <article className="qb-card qb-card--detail qb-save" data-section="save">
+        <LineArt src={blushArt.butterfly} className="qb-save__art" />
+        <h2 className="qb-save__title">Sačuvajte dan</h2>
+        <p className="qb-save__date">12. septembar</p>
+        <button type="button" className="qb-btn" onClick={saveWeddingDate}>
+          Dodaj u kalendar
+        </button>
+      </article>
     </ScrollReveal>
   );
 }

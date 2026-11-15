@@ -78,14 +78,16 @@
   padding-inline: clamp(1.35rem, 10vw, 2.5rem);
 }
 
-.invitation-4-route [data-invitation-template="invitation4-pearl-elegance"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+.invitation-4-route .inv4-pe-backdrop {
+  position: fixed;
   z-index: 0;
+  top: -45vh;
+  left: 0;
+  width: 100%;
+  height: 190vh;
   pointer-events: none;
-  background:
-    url("./assets/page-backdrop.png") center / cover no-repeat;
+  background: url("./assets/page-backdrop.png") 22% 78% / cover no-repeat;
+  will-change: transform;
 }
 
 .invitation-4-route [data-invitation-template="invitation4-pearl-elegance"] .invitation4-shell__canvas {
@@ -93,20 +95,17 @@
   z-index: 1;
   width: min(100%, calc(100% - 0.25rem));
   margin-inline: auto;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow:
-    0 16px 40px -18px rgba(var(--inv4-pe-shadow), 0.4),
-    0 6px 16px -8px rgba(var(--inv4-pe-shadow), 0.22);
+  overflow: visible;
 }
 
 @media (max-width: 639px) {
   .invitation-4-route [data-invitation-template="invitation4-pearl-elegance"] {
-    padding-inline: clamp(1.5rem, 12vw, 2.75rem);
+    padding-inline: 0;
   }
 
   .invitation-4-route [data-invitation-template="invitation4-pearl-elegance"] .invitation4-shell__canvas {
-    width: min(100%, 22.5rem);
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -121,23 +120,16 @@
     padding-block: clamp(1.5rem, 5vh, 3.5rem);
   }
 
-  .invitation-4-route [data-invitation-template="invitation4-pearl-elegance"]::before {
+  .invitation-4-route .inv4-pe-backdrop {
     left: 50%;
-    right: auto;
-    top: 0;
-    bottom: 0;
     width: min(100%, 52rem);
-    transform: translateX(-50%);
+    margin-left: calc(min(100%, 52rem) * -0.5);
   }
 
   .invitation-4-route [data-invitation-template="invitation4-pearl-elegance"] .invitation4-shell__canvas {
     max-width: 560px;
     margin-inline: auto;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow:
-      0 30px 70px -30px rgba(var(--inv4-pe-shadow), 0.45),
-      0 8px 24px -12px rgba(var(--inv4-pe-shadow), 0.3);
+    overflow: visible;
   }
 }
 
@@ -159,14 +151,14 @@
   position: relative;
   width: 100%;
   max-width: 100%;
-  padding: clamp(2rem, 6vh, 3.5rem) clamp(1rem, 4vw, 2.5rem)
-    calc(clamp(2rem, 6vh, 3.5rem) + env(safe-area-inset-bottom, 0px));
+  padding: clamp(2.75rem, 8vh, 4.5rem) clamp(1.15rem, 4vw, 2.75rem)
+    calc(clamp(2.75rem, 8vh, 4.5rem) + env(safe-area-inset-bottom, 0px));
   overflow-x: clip;
   box-sizing: border-box;
 }
 
 .invitation-4-route .inv4-pe-section--tight {
-  padding-block: clamp(1.35rem, 4vh, 2.25rem);
+  padding-block: clamp(2rem, 5.5vh, 3rem);
 }
 
 .invitation-4-route .inv4-pe-section--cream {
@@ -198,7 +190,7 @@
   max-width: 38rem;
   margin-inline: auto;
   display: grid;
-  gap: 1rem;
+  gap: 1.45rem;
   justify-items: center;
   text-align: center;
   box-sizing: border-box;
@@ -216,31 +208,33 @@
 
 .invitation-4-route .inv4-pe-heading {
   display: grid;
-  gap: 0.1rem;
+  gap: 0.7rem;
   justify-items: center;
 }
 
 .invitation-4-route .inv4-pe-section[data-section="invite"] {
   padding-top: clamp(1.1rem, 3.5vh, 1.75rem);
-  padding-bottom: clamp(2.4rem, 7vh, 3.4rem);
+  padding-bottom: clamp(6.5rem, 16vw, 8.25rem);
   margin-top: 0;
   overflow: visible;
   z-index: 1;
 }
 
 .invitation-4-route .inv4-pe-section[data-section="invite"] .inv4-pe-section__inner {
-  gap: 0.85rem;
+  position: relative;
+  z-index: 5;
+  gap: 1.5rem;
 }
 
 .invitation-4-route .inv4-pe-section[data-section="invite"] .inv4-pe-heading {
   position: relative;
   z-index: 5;
-  gap: 0;
-  margin: 0.35rem 0 0.15rem;
+  gap: 1rem;
+  margin: 0.35rem 0 0.35rem;
 }
 
 .invitation-4-route .inv4-pe-section[data-section="invite"] .inv4-pe-title {
-  line-height: 1;
+  line-height: 1.15;
 }
 
 .invitation-4-route .inv4-pe-section[data-section="calendar"] {
@@ -248,9 +242,16 @@
   z-index: 2;
 }
 
+.invitation-4-route .inv4-pe-section[data-section="countdown"] {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  background: transparent;
+}
+
 .invitation-4-route .inv4-pe-section[data-section="invite"] .inv4-pe-script {
-  margin-top: 0.05rem;
-  line-height: 0.92;
+  margin-top: 0.2rem;
+  line-height: 1.15;
 }
 
 .invitation-4-route .inv4-pe-title {
@@ -259,7 +260,7 @@
   font-weight: 600;
   font-size: clamp(2rem, 7.5vw, 2.85rem);
   letter-spacing: 0.04em;
-  line-height: 1.05;
+  line-height: 1.2;
   text-transform: uppercase;
   color: var(--inv4-pe-ink);
 }
@@ -272,7 +273,7 @@
   margin: 0;
   font-family: var(--inv4-pe-font-script);
   font-size: clamp(1.6rem, 6vw, 2.3rem);
-  line-height: 1;
+  line-height: 1.25;
   color: color-mix(in srgb, var(--inv4-pe-taupe) 80%, var(--inv4-pe-ink));
 }
 
@@ -284,7 +285,7 @@
   margin: 0;
   max-width: 30rem;
   font-size: clamp(0.92rem, 3.2vw, 1.02rem);
-  line-height: 1.65;
+  line-height: 1.85;
   color: color-mix(in srgb, var(--inv4-pe-ink) 76%, transparent);
 }
 
@@ -357,11 +358,11 @@
 }
 
 .invitation-4-route .inv4-pe-lily--invite {
-  right: -0.85rem;
+  right: -0.35rem;
   top: auto;
-  bottom: 0.15rem;
-  z-index: 3;
-  width: clamp(6.6rem, 36vw, 9.6rem);
+  bottom: 0.35rem;
+  z-index: 1;
+  width: clamp(5.2rem, 22vw, 7.4rem);
   transform: rotate(-18deg);
 }
 
@@ -567,7 +568,7 @@
     clamp(1.15rem, 4.2vw, 1.7rem)
     clamp(0.95rem, 4vw, 1.45rem)
     clamp(1.65rem, 5.5vw, 2.2rem);
-  background: var(--inv4-pe-cream);
+  background: transparent;
   overflow: visible;
   box-sizing: border-box;
 }
@@ -603,7 +604,6 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  will-change: transform;
 }
 
 .invitation-4-route .inv4-pe-hero__backdrop {
@@ -639,7 +639,6 @@
     0 36px 64px -18px rgba(20, 14, 8, 0.48),
     0 64px 100px -24px rgba(20, 14, 8, 0.32);
   background: #2a241c;
-  will-change: transform, opacity, filter;
 }
 
 .invitation-4-route .inv4-pe-hero__media {
@@ -653,8 +652,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 55%;
-  will-change: transform;
+  object-position: center 38%;
 }
 
 .invitation-4-route .inv4-pe-hero__veil {
@@ -680,7 +678,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0;
   padding: clamp(1.45rem, 5.5vw, 2.2rem) clamp(1rem, 4vw, 1.5rem)
     clamp(1.35rem, 5.5vw, 2rem);
@@ -688,17 +686,24 @@
 }
 
 .invitation-4-route .inv4-pe-hero__names {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  width: max-content;
+  max-width: calc(100% - 1.25rem);
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 0.12em 0.22em;
+  gap: 0.02em;
+  text-align: center;
 }
 
 .invitation-4-route .inv4-pe-hero__name {
   font-family: var(--inv4-pe-font-script);
-  font-size: clamp(2.6rem, 11vw, 4.2rem);
+  font-size: clamp(3.8rem, 17vw, 6.2rem);
   font-weight: 400;
   line-height: 0.95;
   color: #fdfaf3;
@@ -709,7 +714,7 @@
 
 .invitation-4-route .inv4-pe-hero__joiner {
   font-family: var(--inv4-pe-font-display);
-  font-size: clamp(1.1rem, 4.5vw, 1.55rem);
+  font-size: clamp(1.45rem, 5.5vw, 2rem);
   font-style: italic;
   font-weight: 500;
   line-height: 1;
@@ -732,7 +737,7 @@
 
 .invitation-4-route .inv4-pe-hero__cd-col {
   display: grid;
-  gap: 0.28rem;
+  gap: 0.5rem;
   justify-items: center;
 }
 
@@ -794,7 +799,11 @@
 
 @media (min-width: 768px) {
   .invitation-4-route .inv4-pe-hero__name {
-    font-size: clamp(3rem, 6.5vw, 4.5rem);
+    font-size: clamp(4.8rem, 8vw, 7rem);
+  }
+
+  .invitation-4-route .inv4-pe-hero__joiner {
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
   }
 }
 
@@ -814,93 +823,59 @@
 
 .invitation-4-route .inv4-pe-section[data-section="program"] {
   overflow: visible;
+  padding-bottom: clamp(0.9rem, 2.2vh, 1.35rem);
+  background: transparent;
 }
 
-.invitation-4-route .inv4-pe-program__body {
-  position: relative;
-  width: min(100%, 26rem);
-  margin: 2rem auto 0;
-  overflow: visible;
+.invitation-4-route .inv4-pe-section[data-section="dress-code"] {
+  padding-top: clamp(0.9rem, 2.2vh, 1.35rem);
 }
 
-/* The photoreal necklace is in-flow and defines the body height */
-.invitation-4-route .inv4-pe-program__winding {
-  position: relative;
-  z-index: 0;
-  display: block;
-  width: min(28%, 6.6rem);
-  margin-inline: auto;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 14px rgba(20, 14, 6, 0.35));
-}
-
-/* Times overlay the necklace, left and right of the central strand */
 .invitation-4-route .inv4-pe-program__list {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  width: min(100%, 22rem);
+  margin: 1.5rem auto 0;
+  padding: 0;
   list-style: none;
-  margin: 0;
-  padding: 1.5% 0.2rem 2%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-.invitation-4-route .inv4-pe-program__item {
-  position: relative;
-  width: 38%;
-  box-sizing: border-box;
-}
-
-.invitation-4-route .inv4-pe-program__item--left {
-  margin-right: auto;
-  text-align: center;
-}
-
-.invitation-4-route .inv4-pe-program__item--right {
-  margin-left: auto;
-  text-align: center;
-}
-
-.invitation-4-route .inv4-pe-program__item:nth-child(4) {
-  width: 40%;
-}
-
-@media (max-width: 639px) {
-  .invitation-4-route .invitation4-pearl-elegance .inv4-pe-program__item:nth-child(4) {
-    width: 32%;
-    margin-left: 66%;
-  }
-}
-
-.invitation-4-route .inv4-pe-program__item:last-child {
-  transform: translateY(-0.9rem);
+.invitation-4-route .inv4-pe-program__item + .inv4-pe-program__item {
+  border-top: 1px solid color-mix(in srgb, var(--inv4-pe-gold) 45%, transparent);
 }
 
 .invitation-4-route .inv4-pe-program__slide {
   display: grid;
-  gap: 0.3rem;
-  justify-items: center;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1.35rem;
+  padding: 1.25rem 0.15rem;
+  text-align: left;
+}
+
+.invitation-4-route .inv4-pe-section[data-section="program"] .inv4-pe-title,
+.invitation-4-route .inv4-pe-program__time,
+.invitation-4-route .inv4-pe-program__label {
+  color: #2a241c;
+}
+
+.invitation-4-route .inv4-pe-section[data-section="program"] .inv4-pe-script {
+  color: #5c4b32;
 }
 
 .invitation-4-route .inv4-pe-program__time {
   font-family: var(--inv4-pe-font-display);
-  font-size: clamp(1.6rem, 6vw, 2.1rem);
-  font-weight: 500;
+  font-size: clamp(1.45rem, 5.2vw, 1.85rem);
+  font-weight: 600;
   line-height: 1;
-  color: var(--inv4-pe-ivory);
+  color: #2a241c;
 }
 
 .invitation-4-route .inv4-pe-program__label {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  line-height: 1.35;
-  max-width: 100%;
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
   text-wrap: balance;
-  color: color-mix(in srgb, var(--inv4-pe-ivory) 80%, transparent);
+  color: #2a241c;
 }
 
 /* ——— Invite copy ——— */
@@ -908,13 +883,13 @@
 .invitation-4-route .inv4-pe-editorial {
   position: relative;
   z-index: 2;
-  max-width: 19rem;
+  max-width: min(18.5rem, calc(100% - 3.5rem));
   margin: 0.55rem auto 1.4rem;
   font-family: var(--inv4-pe-font-display);
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1.18rem, 4.8vw, 1.48rem);
-  line-height: 1.55;
+  line-height: 1.75;
   color: var(--inv4-pe-ink);
   text-wrap: pretty;
 }
@@ -943,7 +918,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.55rem;
   padding: 0.35rem clamp(0.35rem, 2.5vw, 0.75rem) 1.8rem;
 }
 
@@ -997,7 +972,7 @@
 }
 
 .invitation-4-route .inv4-pe-section[data-section="venue"] .inv4-pe-section__inner {
-  gap: 1.15rem;
+  gap: 1.6rem;
 }
 
 .invitation-4-route .inv4-pe-locale {
@@ -1005,7 +980,7 @@
   z-index: 2;
   display: grid;
   justify-items: center;
-  gap: 0.18rem;
+  gap: 0.55rem;
   width: min(100%, 20rem);
   margin: 0.55rem auto 1.2rem;
   text-align: center;
@@ -1034,7 +1009,7 @@
   font-family: var(--inv4-pe-font-script);
   font-size: clamp(2.5rem, 10.5vw, 3.5rem);
   font-weight: 400;
-  line-height: 0.92;
+  line-height: 1.15;
   color: var(--inv4-pe-ink);
 }
 
@@ -1043,7 +1018,7 @@
   font-family: var(--inv4-pe-font-display);
   font-style: italic;
   font-size: clamp(1.05rem, 4vw, 1.25rem);
-  line-height: 1.4;
+  line-height: 1.6;
   color: color-mix(in srgb, var(--inv4-pe-ink) 78%, transparent);
 }
 
@@ -1059,7 +1034,7 @@
   font-family: var(--inv4-pe-font-display);
   font-style: italic;
   font-size: clamp(1.1rem, 4.6vw, 1.45rem);
-  line-height: 1.45;
+  line-height: 1.7;
   color: var(--inv4-pe-taupe-deep);
   text-wrap: balance;
 }
@@ -1095,7 +1070,7 @@
   height: clamp(20rem, 62vh, 32rem);
   overflow: hidden;
   isolation: isolate;
-  background: var(--inv4-pe-cream);
+  background: transparent;
 }
 
 .invitation-4-route .inv4-pe-cinematic__img {
@@ -1105,7 +1080,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center 48%;
-  will-change: transform;
 }
 
 .invitation-4-route .inv4-pe-cinematic__veil {
@@ -1129,7 +1103,7 @@
   width: min(90%, 26rem);
   font-family: var(--inv4-pe-font-script);
   font-size: clamp(1.8rem, 8vw, 2.6rem);
-  line-height: 1.1;
+  line-height: 1.35;
   color: var(--inv4-pe-ivory);
   text-shadow: 0 2px 14px rgba(30, 24, 14, 0.55);
 }
@@ -1143,7 +1117,7 @@
 
 .invitation-4-route .inv4-pe-rsvp__form {
   display: grid;
-  gap: 1.1rem;
+  gap: 1.45rem;
   padding: clamp(1.5rem, 6vw, 2.25rem) clamp(1.25rem, 5vw, 1.75rem);
   background: var(--inv4-pe-ivory);
   border: 1px solid color-mix(in srgb, var(--inv4-pe-sand) 45%, transparent);
@@ -1154,7 +1128,7 @@
 
 .invitation-4-route .inv4-pe-field {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.7rem;
   border: 0;
   margin: 0;
   padding: 0;
@@ -1197,6 +1171,10 @@
   gap: 0.6rem;
 }
 
+.invitation-4-route .inv4-pe-field--choice .inv4-pe-choice {
+  margin-top: 1rem;
+}
+
 .invitation-4-route .inv4-pe-choice__option {
   position: relative;
   display: block;
@@ -1215,9 +1193,10 @@
   align-items: center;
   justify-content: center;
   min-height: 2.9rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.7rem 0.9rem;
   text-align: center;
   font-size: 0.74rem;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: var(--inv4-pe-ink);
   background: color-mix(in srgb, var(--inv4-pe-cream) 55%, #fff);
@@ -1251,6 +1230,32 @@
   color: var(--inv4-pe-ink-soft);
 }
 
+.invitation-4-route .inv4-pe-rsvp,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-title,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-body,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-field__label,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-field__input,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-choice__pill,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-rsvp__note,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-btn {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-script {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 4vw, 1.55rem);
+  letter-spacing: 0.46em;
+  line-height: 1.2;
+}
+
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-field__input,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-choice__pill,
+.invitation-4-route .inv4-pe-rsvp .inv4-pe-btn {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 /* ——— Countdown ——— */
 
 .invitation-4-route .inv4-pe-countdown__wrap {
@@ -1262,15 +1267,19 @@
   margin: 0;
   display: grid;
   justify-items: center;
-  gap: 0.1rem;
+  gap: 0.45rem;
+  width: min(100%, 16.5rem);
+  padding: 1.35rem 1.15rem 1.4rem;
+  background: color-mix(in srgb, var(--inv4-pe-cream) 92%, transparent);
+  box-shadow: 0 18px 36px -26px rgba(42, 36, 28, 0.55);
 }
 
 .invitation-4-route .inv4-pe-countdown__lead {
   font-family: var(--inv4-pe-font-script);
   font-size: clamp(1.5rem, 6.5vw, 2rem);
   line-height: 1;
-  color: var(--inv4-pe-gold);
-  margin-bottom: 0.15rem;
+  color: #6e5830;
+  margin-bottom: 0.45rem;
 }
 
 .invitation-4-route .inv4-pe-countdown__number {
@@ -1279,35 +1288,38 @@
   font-size: clamp(4rem, 20vw, 6.2rem);
   line-height: 1;
   letter-spacing: 0;
-  color: var(--inv4-pe-taupe-deep);
+  color: #2f2922;
   margin: 0;
 }
 
 .invitation-4-route .inv4-pe-countdown__unit {
   display: block;
-  margin-top: 0.65rem;
+  margin-top: 1rem;
   font-family: var(--inv4-pe-font-body);
-  font-size: 0.82rem;
-  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
   text-transform: none;
-  line-height: 1.45;
-  color: var(--inv4-pe-ink-soft);
+  line-height: 1.55;
+  color: #3f362c;
   max-width: 18rem;
 }
 
 .invitation-4-route .inv4-pe-countdown__arrived {
   margin: 0;
+  width: min(100%, 16.5rem);
+  padding: 1.35rem 1.15rem 1.4rem;
+  background: color-mix(in srgb, var(--inv4-pe-cream) 92%, transparent);
   font-family: var(--inv4-pe-font-display);
   font-style: italic;
   font-size: clamp(1.5rem, 6vw, 2.1rem);
-  color: var(--inv4-pe-taupe-deep);
+  color: #2f2922;
   text-wrap: balance;
 }
 
 /* ——— Closing quote ——— */
 
 .invitation-4-route .inv4-pe-closing .inv4-pe-section__inner {
-  gap: clamp(1rem, 4vw, 1.5rem);
+  gap: clamp(1.4rem, 4vw, 2rem);
 }
 
 .invitation-4-route .inv4-pe-closing__script {
@@ -1321,7 +1333,7 @@
   font-family: var(--inv4-pe-font-display);
   font-style: italic;
   font-size: clamp(1.25rem, 5.2vw, 1.7rem);
-  line-height: 1.55;
+  line-height: 1.75;
   color: var(--inv4-pe-ink);
   text-wrap: balance;
 }
@@ -1330,13 +1342,17 @@
   margin: 0;
   font-family: var(--inv4-pe-font-script);
   font-size: clamp(2rem, 9vw, 2.8rem);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--inv4-pe-taupe-deep);
 }
 
 @media (min-width: 768px) {
   .invitation-4-route .inv4-pe-section__inner {
-    gap: 1.15rem;
+    gap: 1.7rem;
+  }
+
+  .invitation-4-route .inv4-pe-body {
+    max-width: 34rem;
   }
 
   .invitation-4-route .inv4-pe-cinematic {
@@ -1502,5 +1518,178 @@
 @media (prefers-reduced-motion: reduce) {
   .invitation-4-route .inv4-pe-intro__skip {
     display: none;
+  }
+}
+
+/* Scroll layers. Settled sections keep the same layout; motion is the scroll itself. */
+
+.invitation-4-route .inv4-pe-hero {
+  z-index: 1;
+}
+
+.invitation-4-route .inv4-pe-hero__ground-shadow {
+  opacity: 0.9;
+}
+
+.invitation-4-route .inv4-pe-section[data-section="invite"],
+.invitation-4-route .inv4-pe-section[data-section="venue"],
+.invitation-4-route .inv4-pe-rsvp {
+  position: relative;
+  z-index: 2;
+}
+
+.invitation-4-route .inv4-pe-cinematic {
+  z-index: 1;
+}
+
+.invitation-4-route .inv4-pe-cinematic__mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.invitation-4-route .inv4-pe-paper-hold {
+  position: relative;
+  z-index: 1;
+}
+
+.invitation-4-route .inv4-pe-closing {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.invitation-4-route .inv4-pe-final-sheet {
+  position: relative;
+  z-index: 2;
+}
+
+.invitation-4-route .inv4-pe-final-under {
+  position: relative;
+  z-index: 1;
+}
+
+.invitation-4-route .inv4-pe-lily-float {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.invitation-4-route .inv4-pe-calendar__pearls {
+  position: absolute;
+  left: 50%;
+  bottom: 0.2rem;
+  overflow: hidden;
+}
+
+.invitation-4-route .inv4-pe-calendar__pearls .inv4-pe-calendar__drop {
+  position: static;
+  transform: none;
+}
+
+.invitation-4-route .inv4-pe-program__head {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: transparent;
+}
+
+.invitation-4-route .inv4-pe-program__item {
+  position: relative;
+}
+
+.invitation-4-route .inv4-pe-program__item + .inv4-pe-program__item {
+  border-top: 0;
+}
+
+.invitation-4-route .inv4-pe-program__rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--inv4-pe-gold) 45%, transparent);
+  transform-origin: left center;
+}
+
+.invitation-4-route .inv4-pe-closing__signature-mask {
+  overflow: hidden;
+}
+
+@media (max-width: 639px) {
+  .invitation-4-route .inv4-pe-section {
+    padding-inline: 1.35rem;
+  }
+
+  .invitation-4-route .inv4-pe-hero {
+    height: 100svh;
+    min-height: 100svh;
+    padding: 0;
+  }
+
+  .invitation-4-route .inv4-pe-hero__stage,
+  .invitation-4-route .inv4-pe-hero__lift {
+    height: 100%;
+    min-height: 100svh;
+  }
+
+  .invitation-4-route .inv4-pe-hero__ground-shadow {
+    display: none;
+  }
+
+  .invitation-4-route .inv4-pe-hero__card {
+    height: 100%;
+    min-height: 100svh;
+    aspect-ratio: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .invitation-4-route .inv4-pe-hero__content {
+    padding-bottom: 4.6rem;
+  }
+
+  .invitation-4-route .inv4-pe-hero__scroll {
+    bottom: max(0.85rem, env(safe-area-inset-bottom));
+  }
+
+  .invitation-4-route .inv4-pe-hero__scroll-chevron {
+    border-color: rgba(253, 250, 243, 0.88);
+  }
+
+  .invitation-4-route .inv4-pe-rsvp__wrap {
+    width: 100%;
+  }
+
+  .invitation-4-route .inv4-pe-rsvp__form {
+    padding: 1.35rem 1.15rem 1.2rem;
+  }
+
+  .invitation-4-route .inv4-pe-rsvp .inv4-pe-script {
+    letter-spacing: 0.32em;
+  }
+
+  .invitation-4-route .inv4-pe-field__input {
+    font-size: 1rem;
+  }
+
+  .invitation-4-route .inv4-pe-choice {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .invitation-4-route .inv4-pe-choice__pill {
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .invitation-4-route .inv4-pe-rsvp .inv4-pe-btn {
+    min-height: 3.15rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 }

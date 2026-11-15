@@ -13,6 +13,7 @@ import {
   DressCodeSection,
   GallerySection,
   HeroSection,
+  PaletteSection,
   ReceptionSection,
   RsvpSection,
   TimelineSection,
@@ -53,11 +54,12 @@ function RoseBlush({ content = roseBlushDemoContent }: RoseBlushProps) {
         <div className="qb-page">
           <FlyingButterflies />
           <HeroSection content={content} />
-          <GallerySection content={content} />
           <CountdownSection content={content} />
           <TimelineSection content={content} />
+          <GallerySection />
           <ReceptionSection content={content} />
           <DressCodeSection content={content} />
+          <PaletteSection />
           <RsvpSection content={content} />
           <ClosingSection content={content} />
         </div>
